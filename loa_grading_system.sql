@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2025 at 05:17 PM
+-- Generation Time: May 31, 2025 at 04:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -387,48 +387,51 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 
 CREATE TABLE `student_section` (
   `id` int(11) NOT NULL,
+  `course_code` varchar(225) NOT NULL,
   `section` varchar(225) NOT NULL,
   `yearlevel` varchar(225) NOT NULL,
-  `semester` varchar(225) NOT NULL
+  `semester` varchar(225) NOT NULL,
+  `schedule` text NOT NULL,
+  `class` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `student_section`
 --
 
-INSERT INTO `student_section` (`id`, `section`, `yearlevel`, `semester`) VALUES
-(1, '11M1', '1st Year', '1st Sem'),
-(2, '11M2', '1st Year', '1st Sem'),
-(3, '11M3', '1st Year', '1st Sem'),
-(4, '11M4', '1st Year', '1st Sem'),
-(5, '12M1', '1st Year', '2nd Sem'),
-(6, '12M2', '1st Year', '2nd Sem'),
-(7, '12M3', '1st Year', '2nd Sem'),
-(8, '12M4', '1st Year', '2nd Sem'),
-(9, '21A1', '1st Year', '1st Sem'),
-(10, '21A2', '2nd Year', '1st Sem'),
-(11, '21A3', '2nd Year', '1st Sem'),
-(12, '21A4', '2nd Year', '1st Sem'),
-(13, '22A1', '2nd Year', '2nd Sem'),
-(14, '22A2', '2nd Year', '2nd Sem'),
-(15, '22A3', '2nd Year', '2nd Sem'),
-(16, '22A4', '2nd Year', '2nd Sem'),
-(17, '31E1', '3rd Year', '1st Sem'),
-(18, '31E2', '3rd Year', '1st Sem'),
-(19, '31E3', '3rd Year', '1st Sem'),
-(20, '31E4', '3rd Year', '1st Sem'),
-(21, '32E1', '3rd Year', '2nd Sem'),
-(22, '32E2', '3rd Year', '2nd Sem'),
-(23, '32E3', '3rd Year', '2nd Sem'),
-(24, '32E4', '3rd Year', '2nd Sem'),
-(25, '41E1', '4th Year', '1st Sem'),
-(26, '41E2', '4th Year', '1st Sem'),
-(27, '41E3', '4th Year', '1st Sem'),
-(28, '41E4', '4th Year', '1st Sem'),
-(29, '42E1', '4th Year', '2nd Sem'),
-(30, '42E2', '4th Year', '2nd Sem'),
-(31, '42E3', '4th Year', '2nd Sem'),
-(32, '42E4', '4th Year', '2nd Sem');
+INSERT INTO `student_section` (`id`, `course_code`, `section`, `yearlevel`, `semester`, `schedule`, `class`) VALUES
+(1, '', '11M1', '1st Year', '1st Sem', '', 0),
+(2, '', '11M2', '1st Year', '1st Sem', '', 0),
+(3, '', '11M3', '1st Year', '1st Sem', '', 0),
+(4, '', '11M4', '1st Year', '1st Sem', '', 0),
+(5, '', '12M1', '1st Year', '2nd Sem', '', 0),
+(6, '', '12M2', '1st Year', '2nd Sem', '', 0),
+(7, '', '12M3', '1st Year', '2nd Sem', '', 0),
+(8, '', '12M4', '1st Year', '2nd Sem', '', 0),
+(9, '', '21A1', '1st Year', '1st Sem', '', 0),
+(10, '', '21A2', '2nd Year', '1st Sem', '', 0),
+(11, '', '21A3', '2nd Year', '1st Sem', '', 0),
+(12, '', '21A4', '2nd Year', '1st Sem', '', 0),
+(13, '', '22A1', '2nd Year', '2nd Sem', '', 0),
+(14, '', '22A2', '2nd Year', '2nd Sem', '', 0),
+(15, '', '22A3', '2nd Year', '2nd Sem', '', 0),
+(16, '', '22A4', '2nd Year', '2nd Sem', '', 0),
+(17, '', '31E1', '3rd Year', '1st Sem', '', 0),
+(18, '', '31E2', '3rd Year', '1st Sem', '', 0),
+(19, '', '31E3', '3rd Year', '1st Sem', '', 0),
+(20, '', '31E4', '3rd Year', '1st Sem', '', 0),
+(21, '', '32E1', '3rd Year', '2nd Sem', '', 0),
+(22, '', '32E2', '3rd Year', '2nd Sem', '', 0),
+(23, '', '32E3', '3rd Year', '2nd Sem', '', 0),
+(24, '', '32E4', '3rd Year', '2nd Sem', '', 0),
+(25, '', '41E1', '4th Year', '1st Sem', '', 0),
+(26, '', '41E2', '4th Year', '1st Sem', '', 0),
+(27, '', '41E3', '4th Year', '1st Sem', '', 0),
+(28, '', '41E4', '4th Year', '1st Sem', '', 0),
+(29, '', '42E1', '4th Year', '2nd Sem', '', 0),
+(30, '', '42E2', '4th Year', '2nd Sem', '', 0),
+(31, '', '42E3', '4th Year', '2nd Sem', '', 0),
+(32, '', '42E4', '4th Year', '2nd Sem', '', 0);
 
 -- --------------------------------------------------------
 
@@ -443,7 +446,7 @@ CREATE TABLE `student_subjects` (
   `school_year` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
   `section` varchar(50) NOT NULL,
-  `enrollment_date` datetime NOT NULL DEFAULT current_timestamp()
+  `enrollment_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -451,14 +454,14 @@ CREATE TABLE `student_subjects` (
 --
 
 INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `school_year`, `semester`, `section`, `enrollment_date`) VALUES
-(6, '1096-25', 'sub06', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(7, '1096-25', 'sub08', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(8, '1096-25', 'sub09', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(9, '1096-25', 'sub10', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(10, '1096-25', 'sub11', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(11, '1096-25', 'sub12', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(12, '1096-25', 'sub13', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55'),
-(13, '1096-25', 'sub21', '2025-2026', '1st Sem', '11M1', '2025-05-29 12:01:55');
+(6, '1096-25', 'sub06', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(7, '1096-25', 'sub08', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(8, '1096-25', 'sub09', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(9, '1096-25', 'sub10', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(10, '1096-25', 'sub11', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(11, '1096-25', 'sub12', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(12, '1096-25', 'sub13', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
+(13, '1096-25', 'sub21', '2025-2026', '1st Sem', '11M1', '2025-05-29');
 
 -- --------------------------------------------------------
 

@@ -1,12 +1,13 @@
 ﻿Imports MySql.Data.MySqlClient
-
+Imports System.Text
+Imports System.Windows.Forms
 Public Class dean_courseManagement
     Private connString As String = "server=localhost;port=3306;user id=root;password=;database=loa_grading_system"
 
     Private Sub dean_courseManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Enable and set up txtSearchStudent
-        txtSearchStudent.Enabled = True
-        txtSearchStudent.ReadOnly = False
+        'txtSearchStudent.Enabled = True
+        'txtSearchStudent.ReadOnly = False
 
         ' Initialize DGVSubject
         DGVSubject.AutoGenerateColumns = False
@@ -46,19 +47,22 @@ Public Class dean_courseManagement
         txtStudentStatus.ReadOnly = True
         txtCourse.ReadOnly = True
         txtYearlvl.ReadOnly = True
+        createPnl2.Visible = False
     End Sub
 
     Private Sub txtSearchStudent_TextChanged(sender As Object, e As EventArgs) Handles txtSearchStudent.TextChanged
         SearchStudent(txtSearchStudent.Text)
     End Sub
 
-    Private Sub txtSearchStudent_Click(sender As Object, e As EventArgs) Handles txtSearchStudent.Click
-        ' Ensure the textbox is enabled and focused when clicked
-        If Not txtSearchStudent.Enabled Then
-            txtSearchStudent.Enabled = True
-        End If
-        txtSearchStudent.Focus()
-    End Sub
+    'Private Sub txtSearchStudent_Click(sender As Object, e As EventArgs) Handles txtSearchStudent.Click
+    '    ' Ensure the textbox is enabled and focused when clicked
+    '    If Not txtSearchStudent.Enabled Then
+    '        txtSearchStudent.Enabled = True
+    '    End If
+    '    txtSearchStudent.Focus()
+    'End Sub
+
+
 
     Private Sub UpdateAcademicPeriodLabels()
         ' Get current school year and semester
@@ -214,7 +218,50 @@ Public Class dean_courseManagement
         End Using
     End Sub
 
+    Private Sub LoadSectionsForStudent()
+        If String.IsNullOrWhiteSpace(txtCourse.Text) OrElse String.IsNullOrWhiteSpace(txtYearlvl.Text) Then
+            Return
+        End If
+
+        Try
+            Using conn As New MySqlConnection(connString)
+                conn.Open()
+
+                ' Get current semester
+                Dim currentSemester As String = lblSem.Text
+
+                ' Clear existing items
+                cboSection.Items.Clear()
+
+                ' Get sections based on year level and semester
+                Dim query As String = "SELECT section FROM student_section " &
+                                    "WHERE yearlevel = @yearLevel " &
+                                    "AND semester = @semester " &
+                                    "AND course_code = @courseCode " &
+                                    "ORDER BY section"
+
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@yearLevel", txtYearlvl.Text)
+                    cmd.Parameters.AddWithValue("@semester", currentSemester)
+                    cmd.Parameters.AddWithValue("@courseCode", txtCourse.Text)
+
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            cboSection.Items.Add(reader("section").ToString())
+                        End While
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading sections: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub btnApplySub_Click(sender As Object, e As EventArgs) Handles btnApplySub.Click
+
+        createPnl2.Visible = True
+        LoadSectionsForStudent()
+
         If String.IsNullOrWhiteSpace(txtStudentStatus.Text) Then
             MessageBox.Show("Please select a student first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -222,11 +269,6 @@ Public Class dean_courseManagement
 
         ' Check prerequisites
         If Not CheckPrerequisites() Then
-            Return
-        End If
-
-        ' Confirm enrollment
-        If MessageBox.Show("Do you want to enroll this student to the selected subjects?", "Confirm Enrollment", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Return
         End If
 
@@ -240,61 +282,6 @@ Public Class dean_courseManagement
             dt.Columns.Add("section")
             DGVStudentSubjects.DataSource = dt
         End If
-
-        Dim studentSubjectsTable As DataTable = DirectCast(DGVStudentSubjects.DataSource, DataTable)
-
-        If txtStudentStatus.Text.Trim().ToUpper() = "REGULAR" Then
-            ' For Regular students - ask section once and apply to all subjects
-            Dim section As String = InputBox("Enter section for all subjects:", "Section Assignment").ToUpper
-            If String.IsNullOrWhiteSpace(section) Then
-                MessageBox.Show("Section is required.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
-            End If
-
-            ' Verify section exists in database
-            If Not VerifySection(section, txtYearlvl.Text) Then
-                MessageBox.Show("Invalid section for the student's year level.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            End If
-
-            ' Add ALL subjects from DGVSubject with the same section
-            For Each row As DataGridViewRow In DGVSubject.Rows
-                If Not row.IsNewRow Then
-                    Dim newRow As DataRow = studentSubjectsTable.NewRow()
-                    newRow("sub_id") = row.Cells("sub_id").Value
-                    newRow("sub_code") = row.Cells("sub_code").Value
-                    newRow("subject_name") = row.Cells("sub_name").Value
-                    newRow("unit") = row.Cells("unitt").Value
-                    newRow("section") = section
-                    studentSubjectsTable.Rows.Add(newRow)
-                End If
-            Next
-        Else
-            ' For Irregular students - handle one subject at a time
-            For Each row As DataGridViewRow In DGVSubject.SelectedRows
-                Dim section As String = InputBox($"Enter section for subject {row.Cells("sub_code").Value}:", "Section Assignment").ToUpper
-                If String.IsNullOrWhiteSpace(section) Then
-                    Continue For
-                End If
-
-                ' Verify section exists in database
-                If Not VerifySection(section, txtYearlvl.Text) Then
-                    MessageBox.Show($"Invalid section for subject {row.Cells("sub_code").Value}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Continue For
-                End If
-
-                Dim newRow As DataRow = studentSubjectsTable.NewRow()
-                newRow("sub_id") = row.Cells("sub_id").Value
-                newRow("sub_code") = row.Cells("sub_code").Value
-                newRow("subject_name") = row.Cells("sub_name").Value
-                newRow("unit") = row.Cells("unitt").Value
-                newRow("section") = section
-                studentSubjectsTable.Rows.Add(newRow)
-            Next
-        End If
-
-        ' Refresh the display
-        DGVStudentSubjects.Refresh()
     End Sub
 
     Private Function CheckPrerequisites() As Boolean
@@ -408,4 +395,51 @@ Public Class dean_courseManagement
         End Using
     End Sub
 
+
+
+
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        If String.IsNullOrWhiteSpace(cboSection.Text) Then
+            MessageBox.Show("Please select a section.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim studentSubjectsTable As DataTable = DirectCast(DGVStudentSubjects.DataSource, DataTable)
+
+        If txtStudentStatus.Text.Trim().ToUpper() = "REGULAR" Then
+            ' For Regular students - apply selected section to all subjects
+            For Each row As DataGridViewRow In DGVSubject.Rows
+                If Not row.IsNewRow Then
+                    Dim newRow As DataRow = studentSubjectsTable.NewRow()
+                    newRow("sub_id") = row.Cells("sub_id").Value
+                    newRow("sub_code") = row.Cells("sub_code").Value
+                    newRow("subject_name") = row.Cells("sub_name").Value
+                    newRow("unit") = row.Cells("unitt").Value
+                    newRow("section") = cboSection.Text
+                    studentSubjectsTable.Rows.Add(newRow)
+                End If
+            Next
+            createPnl2.Visible = False
+        Else
+            ' For Irregular students - handle selected subjects only
+            For Each row As DataGridViewRow In DGVSubject.SelectedRows
+                Dim newRow As DataRow = studentSubjectsTable.NewRow()
+                newRow("sub_id") = row.Cells("sub_id").Value
+                newRow("sub_code") = row.Cells("sub_code").Value
+                newRow("subject_name") = row.Cells("sub_name").Value
+                newRow("unit") = row.Cells("unitt").Value
+                newRow("section") = cboSection.Text
+                studentSubjectsTable.Rows.Add(newRow)
+            Next
+        End If
+
+        ' Refresh the display
+        DGVStudentSubjects.Refresh()
+        MessageBox.Show("Subjects have been added with the selected section.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        createPnl2.Visible = False
+    End Sub
 End Class

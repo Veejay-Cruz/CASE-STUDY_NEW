@@ -66,8 +66,15 @@ Partial Class dean_courseManagement
         ssub_name = New DataGridViewTextBoxColumn()
         unit = New DataGridViewTextBoxColumn()
         sectionn = New DataGridViewTextBoxColumn()
+        cboSection = New ComboBox()
+        createPnl2 = New Panel()
+        Label7 = New Label()
+        btnCancel = New ReaLTaiizor.Controls.ForeverButton()
+        btnSave = New ReaLTaiizor.Controls.ForeverButton()
+        Label10 = New Label()
         CType(DGVSubject, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVStudentSubjects, ComponentModel.ISupportInitialize).BeginInit()
+        createPnl2.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -425,6 +432,76 @@ Partial Class dean_courseManagement
         sectionn.Name = "sectionn"
         sectionn.ReadOnly = True
         ' 
+        ' cboSection
+        ' 
+        cboSection.DropDownStyle = ComboBoxStyle.DropDownList
+        cboSection.FormattingEnabled = True
+        cboSection.Location = New Point(23, 87)
+        cboSection.Name = "cboSection"
+        cboSection.Size = New Size(297, 23)
+        cboSection.TabIndex = 10
+        ' 
+        ' createPnl2
+        ' 
+        createPnl2.BackColor = Color.MidnightBlue
+        createPnl2.Controls.Add(Label7)
+        createPnl2.Controls.Add(btnCancel)
+        createPnl2.Controls.Add(btnSave)
+        createPnl2.Controls.Add(cboSection)
+        createPnl2.Location = New Point(426, 469)
+        createPnl2.Name = "createPnl2"
+        createPnl2.Size = New Size(343, 202)
+        createPnl2.TabIndex = 42
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.BackColor = Color.MidnightBlue
+        Label7.Font = New Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.ForeColor = Color.White
+        Label7.Location = New Point(93, 23)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(167, 25)
+        Label7.TabIndex = 15
+        Label7.Text = "APPLY SECTION"
+        ' 
+        ' btnCancel
+        ' 
+        btnCancel.BackColor = Color.Transparent
+        btnCancel.BaseColor = Color.IndianRed
+        btnCancel.Font = New Font("Segoe UI", 12F)
+        btnCancel.Location = New Point(178, 132)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Rounded = False
+        btnCancel.Size = New Size(115, 42)
+        btnCancel.TabIndex = 11
+        btnCancel.Text = "CANCEL"
+        btnCancel.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
+        ' 
+        ' btnSave
+        ' 
+        btnSave.BackColor = Color.Transparent
+        btnSave.BaseColor = Color.FromArgb(CByte(35), CByte(168), CByte(109))
+        btnSave.Font = New Font("Segoe UI", 12F)
+        btnSave.Location = New Point(57, 132)
+        btnSave.Name = "btnSave"
+        btnSave.Rounded = False
+        btnSave.Size = New Size(115, 42)
+        btnSave.TabIndex = 10
+        btnSave.Text = "SAVE"
+        btnSave.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label10.ForeColor = Color.Black
+        Label10.Location = New Point(110, 188)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(852, 19)
+        Label10.TabIndex = 43
+        Label10.Text = "ADD VALIDATION IF STUDENT ALREADY HAD THAT SUBJECT AND ALSO WILL NOT SHOW UP ON THE DGVSTUDENTS"
+        ' 
         ' dean_courseManagement
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -432,6 +509,8 @@ Partial Class dean_courseManagement
         AutoValidate = AutoValidate.EnablePreventFocusChange
         BackColor = SystemColors.Control
         ClientSize = New Size(1138, 719)
+        Controls.Add(Label10)
+        Controls.Add(createPnl2)
         Controls.Add(DGVStudentSubjects)
         Controls.Add(DGVSubject)
         Controls.Add(btnConfirmSub)
@@ -460,6 +539,8 @@ Partial Class dean_courseManagement
         Text = "teacher_courseManagement"
         CType(DGVSubject, ComponentModel.ISupportInitialize).EndInit()
         CType(DGVStudentSubjects, ComponentModel.ISupportInitialize).EndInit()
+        createPnl2.ResumeLayout(False)
+        createPnl2.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -495,4 +576,10 @@ Partial Class dean_courseManagement
     Friend WithEvents sub_name As DataGridViewTextBoxColumn
     Friend WithEvents unitt As DataGridViewTextBoxColumn
     Friend WithEvents prereqq As DataGridViewTextBoxColumn
+    Friend WithEvents cboSection As ComboBox
+    Friend WithEvents createPnl2 As Panel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents btnCancel As ReaLTaiizor.Controls.ForeverButton
+    Friend WithEvents btnSave As ReaLTaiizor.Controls.ForeverButton
+    Friend WithEvents Label10 As Label
 End Class

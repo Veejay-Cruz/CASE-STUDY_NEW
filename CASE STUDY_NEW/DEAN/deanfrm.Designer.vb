@@ -24,7 +24,7 @@ Partial Class deanfrm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(deanfrm))
         Panel1 = New Panel()
-        courseBtn = New Button()
+        settingsBtn = New Button()
         logoutBtn = New Button()
         subjectmanBtn = New Button()
         coursemanagementBtn = New Button()
@@ -33,6 +33,7 @@ Partial Class deanfrm
         dashboardBtn = New Button()
         Panel4 = New Panel()
         PictureBox1 = New PictureBox()
+        sectionBtn = New Button()
         mainPanel = New Panel()
         Panel1.SuspendLayout()
         Panel4.SuspendLayout()
@@ -42,7 +43,8 @@ Partial Class deanfrm
         ' Panel1
         ' 
         Panel1.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        Panel1.Controls.Add(courseBtn)
+        Panel1.Controls.Add(settingsBtn)
+        Panel1.Controls.Add(sectionBtn)
         Panel1.Controls.Add(logoutBtn)
         Panel1.Controls.Add(subjectmanBtn)
         Panel1.Controls.Add(coursemanagementBtn)
@@ -56,21 +58,21 @@ Partial Class deanfrm
         Panel1.Size = New Size(267, 736)
         Panel1.TabIndex = 10
         ' 
-        ' courseBtn
+        ' settingsBtn
         ' 
-        courseBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        courseBtn.Dock = DockStyle.Top
-        courseBtn.FlatAppearance.BorderSize = 0
-        courseBtn.FlatStyle = FlatStyle.Flat
-        courseBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        courseBtn.Image = CType(resources.GetObject("courseBtn.Image"), Image)
-        courseBtn.ImageAlign = ContentAlignment.MiddleLeft
-        courseBtn.Location = New Point(0, 396)
-        courseBtn.Name = "courseBtn"
-        courseBtn.Size = New Size(267, 48)
-        courseBtn.TabIndex = 8
-        courseBtn.Text = "SETTINGS"
-        courseBtn.UseVisualStyleBackColor = False
+        settingsBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
+        settingsBtn.Dock = DockStyle.Top
+        settingsBtn.FlatAppearance.BorderSize = 0
+        settingsBtn.FlatStyle = FlatStyle.Flat
+        settingsBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        settingsBtn.Image = CType(resources.GetObject("settingsBtn.Image"), Image)
+        settingsBtn.ImageAlign = ContentAlignment.MiddleLeft
+        settingsBtn.Location = New Point(0, 448)
+        settingsBtn.Name = "settingsBtn"
+        settingsBtn.Size = New Size(267, 48)
+        settingsBtn.TabIndex = 8
+        settingsBtn.Text = "SETTINGS"
+        settingsBtn.UseVisualStyleBackColor = False
         ' 
         ' logoutBtn
         ' 
@@ -185,6 +187,22 @@ Partial Class deanfrm
         PictureBox1.TabIndex = 1
         PictureBox1.TabStop = False
         ' 
+        ' sectionBtn
+        ' 
+        sectionBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
+        sectionBtn.Dock = DockStyle.Top
+        sectionBtn.FlatAppearance.BorderSize = 0
+        sectionBtn.FlatStyle = FlatStyle.Flat
+        sectionBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        sectionBtn.Image = CType(resources.GetObject("sectionBtn.Image"), Image)
+        sectionBtn.ImageAlign = ContentAlignment.MiddleLeft
+        sectionBtn.Location = New Point(0, 396)
+        sectionBtn.Name = "sectionBtn"
+        sectionBtn.Size = New Size(267, 52)
+        sectionBtn.TabIndex = 13
+        sectionBtn.Text = "SECTIONS"
+        sectionBtn.UseVisualStyleBackColor = False
+        ' 
         ' mainPanel
         ' 
         mainPanel.BackColor = SystemColors.Control
@@ -220,6 +238,7 @@ Partial Class deanfrm
     Friend WithEvents dashboardBtn As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents courseBtn As Button
+    Friend WithEvents settingsBtn As Button
     Friend WithEvents mainPanel As Panel
+    Friend WithEvents sectionBtn As Button
 End Class

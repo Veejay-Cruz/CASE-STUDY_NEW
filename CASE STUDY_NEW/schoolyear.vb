@@ -48,19 +48,25 @@ Public Class schoolyear
     End Sub
     Private Sub btnAddSchoolYear_Click(sender As Object, e As EventArgs) Handles btnAddSchoolYear.Click
         pnlAddSchoolYear.Visible = True
+        pnlAddSchoolYear.BringToFront()
         txtSchoolYear.Clear()
         cboStatus.SelectedIndex = 0 ' Set default to "open"
         txtSchoolYear.Focus()
+        btnAddSchoolYear.Enabled = False ' Disable the button while adding a new school year
+
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         pnlAddSchoolYear.Visible = False
+        btnAddSchoolYear.Enabled = True ' Re-enable the button when canceling
+
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If ValidateInputs() Then
             SaveSchoolYear()
         End If
+        btnAddSchoolYear.Enabled = True ' Re-enable the button after saving
     End Sub
 
     Private Function ValidateInputs() As Boolean

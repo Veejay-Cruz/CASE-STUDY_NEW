@@ -23,4 +23,8 @@
     Private Sub logoutBtn_Click(sender As Object, e As EventArgs) Handles logoutBtn.Click
         Application.Exit()
     End Sub
+
+    Private Sub sectionBtn_Click(sender As Object, e As EventArgs) Handles sectionBtn.Click
+        LoadFormInPanel(New dean_sectionManagement())
+    End Sub
 End Class
