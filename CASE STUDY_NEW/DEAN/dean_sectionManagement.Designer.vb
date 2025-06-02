@@ -65,6 +65,8 @@ Partial Class dean_sectionManagement
         DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         DataGridViewCellStyle1.ForeColor = Color.Black
         DGVSection.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DGVSection.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DGVSection.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders
         DGVSection.BackgroundColor = SystemColors.ControlLightLight
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
@@ -337,7 +339,6 @@ Partial Class dean_sectionManagement
         semester.HeaderText = "SEMESTER"
         semester.Name = "semester"
         semester.ReadOnly = True
-        semester.Width = 242
         ' 
         ' schedule
         ' 
@@ -348,24 +349,28 @@ Partial Class dean_sectionManagement
         ' 
         ' classs
         ' 
+        classs.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         classs.DataPropertyName = "class"
         classs.HeaderText = "CLASS"
         classs.Name = "classs"
         classs.ReadOnly = True
+        classs.Width = 110
         ' 
         ' editt
         ' 
+        editt.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         editt.HeaderText = "EDIT"
         editt.Name = "editt"
         editt.ReadOnly = True
-        editt.Width = 242
+        editt.Width = 80
         ' 
         ' delete
         ' 
+        delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
         delete.HeaderText = "DELETE"
         delete.Name = "delete"
         delete.ReadOnly = True
-        delete.Width = 242
+        delete.Width = 80
         ' 
         ' dean_sectionManagement
         ' 

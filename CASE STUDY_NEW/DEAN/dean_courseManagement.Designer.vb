@@ -72,6 +72,7 @@ Partial Class dean_courseManagement
         btnCancel = New ReaLTaiizor.Controls.ForeverButton()
         btnSave = New ReaLTaiizor.Controls.ForeverButton()
         Label10 = New Label()
+        Label11 = New Label()
         CType(DGVSubject, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVStudentSubjects, ComponentModel.ISupportInitialize).BeginInit()
         createPnl2.SuspendLayout()
@@ -496,11 +497,22 @@ Partial Class dean_courseManagement
         Label10.AutoSize = True
         Label10.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label10.ForeColor = Color.Black
-        Label10.Location = New Point(110, 188)
+        Label10.Location = New Point(130, 169)
         Label10.Name = "Label10"
-        Label10.Size = New Size(852, 19)
+        Label10.Size = New Size(851, 19)
         Label10.TabIndex = 43
-        Label10.Text = "ADD VALIDATION IF STUDENT ALREADY HAD THAT SUBJECT AND ALSO WILL NOT SHOW UP ON THE DGVSTUDENTS"
+        Label10.Text = "ADD VALIDATION IF STUDENT ALREADY HAD THAT SUBJECT AND ALSO WILL NOT SHOW UP ON THE DGVSUBJECTS"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label11.ForeColor = Color.Black
+        Label11.Location = New Point(130, 188)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(637, 19)
+        Label11.TabIndex = 44
+        Label11.Text = "CHECKS ON STUDENT_SECTION IF HE ALREADY HAS THAT SUBJECT BASED ON SUB_ID"
         ' 
         ' dean_courseManagement
         ' 
@@ -509,6 +521,7 @@ Partial Class dean_courseManagement
         AutoValidate = AutoValidate.EnablePreventFocusChange
         BackColor = SystemColors.Control
         ClientSize = New Size(1138, 719)
+        Controls.Add(Label11)
         Controls.Add(Label10)
         Controls.Add(createPnl2)
         Controls.Add(DGVStudentSubjects)
@@ -582,4 +595,5 @@ Partial Class dean_courseManagement
     Friend WithEvents btnCancel As ReaLTaiizor.Controls.ForeverButton
     Friend WithEvents btnSave As ReaLTaiizor.Controls.ForeverButton
     Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
 End Class

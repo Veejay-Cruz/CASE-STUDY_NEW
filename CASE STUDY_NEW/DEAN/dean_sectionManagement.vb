@@ -144,4 +144,8 @@ Public Class dean_sectionManagement
         createPnl2.Visible = False
         ClearFields()
     End Sub
+
+    Private Sub TXTMclass_Click(sender As Object, e As EventArgs) Handles TXTMclass.Click
+        TXTMclass.Text = ""
+    End Sub
 End Class
