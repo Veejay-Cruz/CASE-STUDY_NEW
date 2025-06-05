@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2025 at 04:39 PM
+-- Generation Time: Jun 05, 2025 at 02:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -243,11 +243,11 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (16, '2003-25', NULL, '2025-2026', '1st Sem', '2025-08-01'),
 (17, '1022-27', NULL, '2027-2028', '1st Sem', '2025-05-25'),
 (18, '1094-27', NULL, '2027-2028', '1st Sem', '2025-05-26'),
-(19, '1095-25', 1, '2025-2026', '1st Sem', '2025-05-26'),
-(20, '1096-25', 1, '2025-2026', '1st Sem', '2025-05-27'),
-(21, '2004-25', 1, '2025-2026', '1st Sem', '2025-05-27'),
-(22, '2005-25', 1, '2025-2026', '1st Sem', '2025-05-27'),
-(23, '2006-25', 1, '2025-2026', '1st Sem', '2025-05-27');
+(19, '1095-25', NULL, '2025-2026', '1st Sem', '2025-05-26'),
+(20, '1096-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
+(21, '2004-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
+(22, '2005-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
+(23, '2006-25', NULL, '2025-2026', '1st Sem', '2025-05-27');
 
 -- --------------------------------------------------------
 
@@ -400,38 +400,11 @@ CREATE TABLE `student_section` (
 --
 
 INSERT INTO `student_section` (`id`, `course_code`, `section`, `yearlevel`, `semester`, `schedule`, `class`) VALUES
-(1, '', '11M1', '1st Year', '1st Sem', '', 0),
-(2, '', '11M2', '1st Year', '1st Sem', '', 0),
-(3, '', '11M3', '1st Year', '1st Sem', '', 0),
-(4, '', '11M4', '1st Year', '1st Sem', '', 0),
-(5, '', '12M1', '1st Year', '2nd Sem', '', 0),
-(6, '', '12M2', '1st Year', '2nd Sem', '', 0),
-(7, '', '12M3', '1st Year', '2nd Sem', '', 0),
-(8, '', '12M4', '1st Year', '2nd Sem', '', 0),
-(9, '', '21A1', '1st Year', '1st Sem', '', 0),
-(10, '', '21A2', '2nd Year', '1st Sem', '', 0),
-(11, '', '21A3', '2nd Year', '1st Sem', '', 0),
-(12, '', '21A4', '2nd Year', '1st Sem', '', 0),
-(13, '', '22A1', '2nd Year', '2nd Sem', '', 0),
-(14, '', '22A2', '2nd Year', '2nd Sem', '', 0),
-(15, '', '22A3', '2nd Year', '2nd Sem', '', 0),
-(16, '', '22A4', '2nd Year', '2nd Sem', '', 0),
-(17, '', '31E1', '3rd Year', '1st Sem', '', 0),
-(18, '', '31E2', '3rd Year', '1st Sem', '', 0),
-(19, '', '31E3', '3rd Year', '1st Sem', '', 0),
-(20, '', '31E4', '3rd Year', '1st Sem', '', 0),
-(21, '', '32E1', '3rd Year', '2nd Sem', '', 0),
-(22, '', '32E2', '3rd Year', '2nd Sem', '', 0),
-(23, '', '32E3', '3rd Year', '2nd Sem', '', 0),
-(24, '', '32E4', '3rd Year', '2nd Sem', '', 0),
-(25, '', '41E1', '4th Year', '1st Sem', '', 0),
-(26, '', '41E2', '4th Year', '1st Sem', '', 0),
-(27, '', '41E3', '4th Year', '1st Sem', '', 0),
-(28, '', '41E4', '4th Year', '1st Sem', '', 0),
-(29, '', '42E1', '4th Year', '2nd Sem', '', 0),
-(30, '', '42E2', '4th Year', '2nd Sem', '', 0),
-(31, '', '42E3', '4th Year', '2nd Sem', '', 0),
-(32, '', '42E4', '4th Year', '2nd Sem', '', 0);
+(33, 'BSIT', '11M1', '1st Year', '1st Sem', 'MORNING', 1),
+(34, 'BSIT', '11M2', '1st Year', '1st Sem', 'MORNING', 2),
+(35, 'BSIT', '11M3', '1st Year', '1st Sem', 'MORNING', 3),
+(38, 'BSCS', '11M1', '1st Year', '1st Sem', 'MORNING', 1),
+(39, 'BSCS', '11M2', '1st Year', '1st Sem', 'MORNING', 2);
 
 -- --------------------------------------------------------
 
@@ -443,6 +416,7 @@ CREATE TABLE `student_subjects` (
   `id` int(11) NOT NULL,
   `stud_id` varchar(225) NOT NULL,
   `sub_id` varchar(50) NOT NULL,
+  `sub_code` varchar(225) NOT NULL,
   `school_year` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
   `section` varchar(50) NOT NULL,
@@ -453,15 +427,25 @@ CREATE TABLE `student_subjects` (
 -- Dumping data for table `student_subjects`
 --
 
-INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `school_year`, `semester`, `section`, `enrollment_date`) VALUES
-(6, '1096-25', 'sub06', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(7, '1096-25', 'sub08', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(8, '1096-25', 'sub09', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(9, '1096-25', 'sub10', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(10, '1096-25', 'sub11', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(11, '1096-25', 'sub12', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(12, '1096-25', 'sub13', '2025-2026', '1st Sem', '11M1', '2025-05-29'),
-(13, '1096-25', 'sub21', '2025-2026', '1st Sem', '11M1', '2025-05-29');
+INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `school_year`, `semester`, `section`, `enrollment_date`) VALUES
+(22, '1095-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(23, '1095-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(24, '1095-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(25, '1095-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(26, '1095-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(27, '1095-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(28, '1095-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(29, '1095-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(30, '2004-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(31, '2004-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
+(32, '2004-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(33, '2004-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(34, '2004-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(35, '2004-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(36, '2004-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(37, '2004-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(38, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(39, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05');
 
 -- --------------------------------------------------------
 
@@ -658,8 +642,7 @@ ALTER TABLE `students`
 -- Indexes for table `student_section`
 --
 ALTER TABLE `student_section`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `section` (`section`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `student_subjects`
@@ -705,13 +688,13 @@ ALTER TABLE `enrollment`
 -- AUTO_INCREMENT for table `student_section`
 --
 ALTER TABLE `student_section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

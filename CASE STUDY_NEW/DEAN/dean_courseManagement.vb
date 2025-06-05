@@ -194,13 +194,19 @@ Public Class dean_courseManagement
                                     "FROM subjects " &
                                     "WHERE (course = @course OR course = 'General Education') " &
                                     "AND year_level = @yearLevel " &
-                                    "AND semester = @semester"
+                                    "AND semester = @semester " &
+                                    "AND sub_id NOT IN (SELECT sub_id FROM student_subjects WHERE stud_id = @studId AND school_year = @schoolYear AND semester = @semester)"
 
                 Using da As New MySqlDataAdapter
                     da.SelectCommand = New MySqlCommand(query, conn)
                     da.SelectCommand.Parameters.AddWithValue("@course", txtCourse.Text)
                     da.SelectCommand.Parameters.AddWithValue("@yearLevel", txtYearlvl.Text)
                     da.SelectCommand.Parameters.AddWithValue("@semester", currentSemester)
+
+
+                    da.SelectCommand.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
+                    da.SelectCommand.Parameters.AddWithValue("@schoolYear", lblSchoolyr.Text)
+
 
                     Dim dt As New DataTable
                     da.Fill(dt)
@@ -361,14 +367,34 @@ Public Class dean_courseManagement
 
                     ' Insert new subjects
                     Dim insertCmd As New MySqlCommand(
-                        "INSERT INTO student_subjects (stud_id, sub_id, school_year, semester, section) VALUES (@studId, @subId, @schoolYear, @semester, @section)",
+                        "INSERT INTO student_subjects (stud_id, sub_id, sub_code, school_year, semester, section) VALUES (@studId, @subId, @subCode, @schoolYear, @semester, @section)",
                         conn, transaction)
 
                     For Each row As DataGridViewRow In DGVStudentSubjects.Rows
                         If Not row.IsNewRow Then
+
+
+
+
+                            ' Check if subject already exists for this student
+                            Dim checkCmd As New MySqlCommand("SELECT COUNT(*) FROM student_subjects WHERE stud_id = @studId AND sub_id = @subId AND school_year = @schoolYear AND semester = @semester", conn, transaction)
+                            checkCmd.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
+                            checkCmd.Parameters.AddWithValue("@subId", row.Cells("sub_id").Value)
+                            checkCmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
+                            checkCmd.Parameters.AddWithValue("@semester", currentSemester)
+                            Dim exists As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                            If exists > 0 Then
+                                ' Optionally show a message or skip
+                                MessageBox.Show($"Subject {row.Cells("sub_code").Value} is already assigned to this student for the current semester and school year.", "Duplicate Subject", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Continue For
+                            End If
+
+
+
                             insertCmd.Parameters.Clear()
                             insertCmd.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
                             insertCmd.Parameters.AddWithValue("@subId", row.Cells("sub_id").Value)
+                            insertCmd.Parameters.AddWithValue("@subCode", row.Cells("sub_code").Value)
                             insertCmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
                             insertCmd.Parameters.AddWithValue("@semester", currentSemester)
                             insertCmd.Parameters.AddWithValue("@section", row.Cells("section").Value)
@@ -405,12 +431,49 @@ Public Class dean_courseManagement
             Return
         End If
 
+
+
+
+        If DGVStudentSubjects.DataSource Is Nothing Then
+            Dim dt As New DataTable()
+            dt.Columns.Add("sub_id")
+            dt.Columns.Add("sub_code")
+            dt.Columns.Add("subject_name")
+            dt.Columns.Add("unit")
+            dt.Columns.Add("section")
+            DGVStudentSubjects.DataSource = dt
+        End If
+
+
+
+
         Dim studentSubjectsTable As DataTable = DirectCast(DGVStudentSubjects.DataSource, DataTable)
+
+
+        Dim subjectAdded As Boolean = False
+
 
         If txtStudentStatus.Text.Trim().ToUpper() = "REGULAR" Then
             ' For Regular students - apply selected section to all subjects
             For Each row As DataGridViewRow In DGVSubject.Rows
                 If Not row.IsNewRow Then
+
+
+
+
+
+                    Dim subId As String = row.Cells("sub_id").Value.ToString()
+                    ' Check for duplicate
+                    Dim foundRows = studentSubjectsTable.Select($"sub_id = '{subId.Replace("'", "''")}'")
+                    If foundRows.Length > 0 Then
+                        MessageBox.Show($"Subject {row.Cells("sub_code").Value} is already added.", "Duplicate Subject", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Continue For
+                    End If
+
+
+
+
+
                     Dim newRow As DataRow = studentSubjectsTable.NewRow()
                     newRow("sub_id") = row.Cells("sub_id").Value
                     newRow("sub_code") = row.Cells("sub_code").Value
@@ -418,12 +481,27 @@ Public Class dean_courseManagement
                     newRow("unit") = row.Cells("unitt").Value
                     newRow("section") = cboSection.Text
                     studentSubjectsTable.Rows.Add(newRow)
+
+
+                    subjectAdded = True
                 End If
             Next
             createPnl2.Visible = False
         Else
             ' For Irregular students - handle selected subjects only
             For Each row As DataGridViewRow In DGVSubject.SelectedRows
+
+
+                Dim subId As String = row.Cells("sub_id").Value.ToString()
+                ' Check for duplicate
+                Dim foundRows = studentSubjectsTable.Select($"sub_id = '{subId.Replace("'", "''")}'")
+                If foundRows.Length > 0 Then
+                    MessageBox.Show($"Subject {row.Cells("sub_code").Value} is already added.", "Duplicate Subject", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Continue For
+                End If
+
+
+
                 Dim newRow As DataRow = studentSubjectsTable.NewRow()
                 newRow("sub_id") = row.Cells("sub_id").Value
                 newRow("sub_code") = row.Cells("sub_code").Value
@@ -431,17 +509,32 @@ Public Class dean_courseManagement
                 newRow("unit") = row.Cells("unitt").Value
                 newRow("section") = cboSection.Text
                 studentSubjectsTable.Rows.Add(newRow)
+
+                subjectAdded = True
             Next
+            createPnl2.Visible = False
         End If
 
         ' Refresh the display
         DGVStudentSubjects.Refresh()
-        MessageBox.Show("Subjects have been added with the selected section.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        If subjectAdded Then
+            MessageBox.Show("Subjects have been added with the selected section.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         createPnl2.Visible = False
     End Sub
 
-
+    Private Sub DGVSubject_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVSubject.CellClick
+        ' Only for IRREGULAR students
+        If txtStudentStatus.Text.Trim().ToUpper() = "IRREGULAR" Then
+            If e.RowIndex >= 0 Then
+                createPnl2.Visible = True
+                LoadSectionsForStudent()
+            End If
+        End If
+    End Sub
 End Class

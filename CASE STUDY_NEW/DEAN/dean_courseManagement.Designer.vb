@@ -41,8 +41,6 @@ Partial Class dean_courseManagement
         txtStudname = New TextBox()
         txtCourse = New TextBox()
         Label4 = New Label()
-        txtSearchSubject = New TextBox()
-        Label6 = New Label()
         txtYearlvl = New TextBox()
         Label5 = New Label()
         btnApplySub = New Button()
@@ -71,8 +69,6 @@ Partial Class dean_courseManagement
         Label7 = New Label()
         btnCancel = New ReaLTaiizor.Controls.ForeverButton()
         btnSave = New ReaLTaiizor.Controls.ForeverButton()
-        Label10 = New Label()
-        Label11 = New Label()
         CType(DGVSubject, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVStudentSubjects, ComponentModel.ISupportInitialize).BeginInit()
         createPnl2.SuspendLayout()
@@ -138,22 +134,6 @@ Partial Class dean_courseManagement
         Label4.Size = New Size(47, 15)
         Label4.TabIndex = 12
         Label4.Text = "Course:"
-        ' 
-        ' txtSearchSubject
-        ' 
-        txtSearchSubject.Location = New Point(110, 210)
-        txtSearchSubject.Name = "txtSearchSubject"
-        txtSearchSubject.Size = New Size(337, 23)
-        txtSearchSubject.TabIndex = 17
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Location = New Point(11, 211)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(87, 15)
-        Label6.TabIndex = 16
-        Label6.Text = "Search Subject:"
         ' 
         ' txtYearlvl
         ' 
@@ -492,28 +472,6 @@ Partial Class dean_courseManagement
         btnSave.Text = "SAVE"
         btnSave.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
         ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label10.ForeColor = Color.Black
-        Label10.Location = New Point(130, 169)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(851, 19)
-        Label10.TabIndex = 43
-        Label10.Text = "ADD VALIDATION IF STUDENT ALREADY HAD THAT SUBJECT AND ALSO WILL NOT SHOW UP ON THE DGVSUBJECTS"
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label11.ForeColor = Color.Black
-        Label11.Location = New Point(130, 188)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(637, 19)
-        Label11.TabIndex = 44
-        Label11.Text = "CHECKS ON STUDENT_SECTION IF HE ALREADY HAS THAT SUBJECT BASED ON SUB_ID"
-        ' 
         ' dean_courseManagement
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -521,8 +479,6 @@ Partial Class dean_courseManagement
         AutoValidate = AutoValidate.EnablePreventFocusChange
         BackColor = SystemColors.Control
         ClientSize = New Size(1138, 719)
-        Controls.Add(Label11)
-        Controls.Add(Label10)
         Controls.Add(createPnl2)
         Controls.Add(DGVStudentSubjects)
         Controls.Add(DGVSubject)
@@ -537,8 +493,6 @@ Partial Class dean_courseManagement
         Controls.Add(btnApplySub)
         Controls.Add(txtYearlvl)
         Controls.Add(Label5)
-        Controls.Add(txtSearchSubject)
-        Controls.Add(Label6)
         Controls.Add(txtCourse)
         Controls.Add(Label4)
         Controls.Add(txtStudname)
@@ -564,8 +518,6 @@ Partial Class dean_courseManagement
     Friend WithEvents txtStudname As TextBox
     Friend WithEvents txtCourse As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents txtSearchSubject As TextBox
-    Friend WithEvents Label6 As Label
     Friend WithEvents txtYearlvl As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents btnApplySub As Button
@@ -594,6 +546,4 @@ Partial Class dean_courseManagement
     Friend WithEvents Label7 As Label
     Friend WithEvents btnCancel As ReaLTaiizor.Controls.ForeverButton
     Friend WithEvents btnSave As ReaLTaiizor.Controls.ForeverButton
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label11 As Label
 End Class

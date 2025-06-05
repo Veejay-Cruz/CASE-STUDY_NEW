@@ -26,38 +26,42 @@ Partial Class dean_subjectManagement
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
         DGVDepartment = New DataGridView()
-        Label1 = New Label()
-        Label8 = New Label()
-        Label2 = New Label()
-        DGVSection = New DataGridView()
         teach_id = New DataGridViewTextBoxColumn()
         lname = New DataGridViewTextBoxColumn()
         fname = New DataGridViewTextBoxColumn()
         apply = New DataGridViewButtonColumn()
+        Label1 = New Label()
+        Label8 = New Label()
+        Label2 = New Label()
+        DGVSection = New DataGridView()
         Label3 = New Label()
         Label4 = New Label()
         createPnl2 = New Panel()
+        cboSection = New ComboBox()
+        Label9 = New Label()
+        Label6 = New Label()
+        txtProfname = New TextBox()
+        Label5 = New Label()
         Label7 = New Label()
         btnCancel = New ReaLTaiizor.Controls.ForeverButton()
         btnSave = New ReaLTaiizor.Controls.ForeverButton()
         cboSubject = New ComboBox()
-        Label5 = New Label()
-        txtProfname = New TextBox()
-        Label6 = New Label()
-        Label9 = New Label()
-        cboSection = New ComboBox()
-        course_code = New DataGridViewTextBoxColumn()
+        txtprofid = New TextBox()
+        Label10 = New Label()
+        Label11 = New Label()
         teacher_id = New DataGridViewTextBoxColumn()
         teachername = New DataGridViewTextBoxColumn()
+        subject = New DataGridViewTextBoxColumn()
+        course_code = New DataGridViewTextBoxColumn()
         section = New DataGridViewTextBoxColumn()
         yearlevel = New DataGridViewTextBoxColumn()
         semester = New DataGridViewTextBoxColumn()
@@ -108,6 +112,43 @@ Partial Class dean_subjectManagement
         DGVDepartment.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DGVDepartment.Size = New Size(634, 460)
         DGVDepartment.TabIndex = 40
+        ' 
+        ' teach_id
+        ' 
+        teach_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.Black
+        teach_id.DefaultCellStyle = DataGridViewCellStyle3
+        teach_id.HeaderText = "TEACHER ID"
+        teach_id.Name = "teach_id"
+        teach_id.ReadOnly = True
+        teach_id.Width = 106
+        ' 
+        ' lname
+        ' 
+        lname.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.Black
+        lname.DefaultCellStyle = DataGridViewCellStyle4
+        lname.HeaderText = "LAST NAME"
+        lname.Name = "lname"
+        lname.ReadOnly = True
+        ' 
+        ' fname
+        ' 
+        fname.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        fname.HeaderText = "FIRST NAME"
+        fname.Name = "fname"
+        fname.ReadOnly = True
+        fname.Width = 106
+        ' 
+        ' apply
+        ' 
+        apply.HeaderText = "APPLY TEACHER"
+        apply.Name = "apply"
+        apply.ReadOnly = True
         ' 
         ' Label1
         ' 
@@ -161,7 +202,7 @@ Partial Class dean_subjectManagement
         DataGridViewCellStyle8.WrapMode = DataGridViewTriState.True
         DGVSection.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         DGVSection.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        DGVSection.Columns.AddRange(New DataGridViewColumn() {course_code, teacher_id, teachername, section, yearlevel, semester})
+        DGVSection.Columns.AddRange(New DataGridViewColumn() {teacher_id, teachername, subject, course_code, section, yearlevel, semester})
         DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle11.BackColor = Color.White
         DataGridViewCellStyle11.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -186,43 +227,6 @@ Partial Class dean_subjectManagement
         DGVSection.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DGVSection.Size = New Size(634, 479)
         DGVSection.TabIndex = 49
-        ' 
-        ' teach_id
-        ' 
-        teach_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.Black
-        teach_id.DefaultCellStyle = DataGridViewCellStyle3
-        teach_id.HeaderText = "TEACHER ID"
-        teach_id.Name = "teach_id"
-        teach_id.ReadOnly = True
-        teach_id.Width = 106
-        ' 
-        ' lname
-        ' 
-        lname.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = Color.Black
-        lname.DefaultCellStyle = DataGridViewCellStyle4
-        lname.HeaderText = "LAST NAME"
-        lname.Name = "lname"
-        lname.ReadOnly = True
-        ' 
-        ' fname
-        ' 
-        fname.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        fname.HeaderText = "FIRST NAME"
-        fname.Name = "fname"
-        fname.ReadOnly = True
-        fname.Width = 106
-        ' 
-        ' apply
-        ' 
-        apply.HeaderText = "APPLY TEACHER"
-        apply.Name = "apply"
-        apply.ReadOnly = True
         ' 
         ' Label3
         ' 
@@ -249,6 +253,8 @@ Partial Class dean_subjectManagement
         ' createPnl2
         ' 
         createPnl2.BackColor = Color.MidnightBlue
+        createPnl2.Controls.Add(txtprofid)
+        createPnl2.Controls.Add(Label10)
         createPnl2.Controls.Add(cboSection)
         createPnl2.Controls.Add(Label9)
         createPnl2.Controls.Add(Label6)
@@ -258,10 +264,60 @@ Partial Class dean_subjectManagement
         createPnl2.Controls.Add(btnCancel)
         createPnl2.Controls.Add(btnSave)
         createPnl2.Controls.Add(cboSubject)
-        createPnl2.Location = New Point(364, 295)
+        createPnl2.Location = New Point(364, 283)
         createPnl2.Name = "createPnl2"
-        createPnl2.Size = New Size(493, 303)
+        createPnl2.Size = New Size(493, 315)
         createPnl2.TabIndex = 52
+        ' 
+        ' cboSection
+        ' 
+        cboSection.DropDownStyle = ComboBoxStyle.DropDownList
+        cboSection.FormattingEnabled = True
+        cboSection.Location = New Point(154, 218)
+        cboSection.Name = "cboSection"
+        cboSection.Size = New Size(297, 23)
+        cboSection.TabIndex = 57
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label9.ForeColor = Color.White
+        Label9.Location = New Point(20, 218)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(75, 19)
+        Label9.TabIndex = 56
+        Label9.Text = "SECTION"
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label6.ForeColor = Color.White
+        Label6.Location = New Point(20, 166)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(71, 19)
+        Label6.TabIndex = 55
+        Label6.Text = "SUBJECT"
+        ' 
+        ' txtProfname
+        ' 
+        txtProfname.Location = New Point(154, 119)
+        txtProfname.Name = "txtProfname"
+        txtProfname.ReadOnly = True
+        txtProfname.Size = New Size(297, 23)
+        txtProfname.TabIndex = 54
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label5.ForeColor = Color.White
+        Label5.Location = New Point(20, 123)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(99, 19)
+        Label5.TabIndex = 53
+        Label5.Text = "PROFESSOR"
         ' 
         ' Label7
         ' 
@@ -269,7 +325,7 @@ Partial Class dean_subjectManagement
         Label7.BackColor = Color.MidnightBlue
         Label7.Font = New Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label7.ForeColor = Color.White
-        Label7.Location = New Point(154, 31)
+        Label7.Location = New Point(154, 26)
         Label7.Name = "Label7"
         Label7.Size = New Size(211, 25)
         Label7.TabIndex = 15
@@ -280,7 +336,7 @@ Partial Class dean_subjectManagement
         btnCancel.BackColor = Color.Transparent
         btnCancel.BaseColor = Color.IndianRed
         btnCancel.Font = New Font("Segoe UI", 12F)
-        btnCancel.Location = New Point(302, 243)
+        btnCancel.Location = New Point(303, 258)
         btnCancel.Name = "btnCancel"
         btnCancel.Rounded = False
         btnCancel.Size = New Size(115, 42)
@@ -293,7 +349,7 @@ Partial Class dean_subjectManagement
         btnSave.BackColor = Color.Transparent
         btnSave.BaseColor = Color.FromArgb(CByte(35), CByte(168), CByte(109))
         btnSave.Font = New Font("Segoe UI", 12F)
-        btnSave.Location = New Point(181, 243)
+        btnSave.Location = New Point(182, 258)
         btnSave.Name = "btnSave"
         btnSave.Rounded = False
         btnSave.Size = New Size(115, 42)
@@ -304,60 +360,59 @@ Partial Class dean_subjectManagement
         ' cboSubject
         ' 
         cboSubject.FormattingEnabled = True
-        cboSubject.Location = New Point(141, 147)
+        cboSubject.Location = New Point(154, 162)
         cboSubject.Name = "cboSubject"
         cboSubject.Size = New Size(297, 23)
         cboSubject.TabIndex = 10
         ' 
-        ' Label5
+        ' txtprofid
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = Color.White
-        Label5.Location = New Point(20, 83)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(99, 19)
-        Label5.TabIndex = 53
-        Label5.Text = "PROFESSOR"
+        txtprofid.Location = New Point(154, 73)
+        txtprofid.Name = "txtprofid"
+        txtprofid.ReadOnly = True
+        txtprofid.Size = New Size(297, 23)
+        txtprofid.TabIndex = 59
         ' 
-        ' txtProfname
+        ' Label10
         ' 
-        txtProfname.Location = New Point(141, 79)
-        txtProfname.Name = "txtProfname"
-        txtProfname.ReadOnly = True
-        txtProfname.Size = New Size(297, 23)
-        txtProfname.TabIndex = 54
+        Label10.AutoSize = True
+        Label10.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label10.ForeColor = Color.White
+        Label10.Location = New Point(20, 77)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(119, 19)
+        Label10.TabIndex = 58
+        Label10.Text = "PROFESSOR ID"
         ' 
-        ' Label6
+        ' Label11
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label6.ForeColor = Color.White
-        Label6.Location = New Point(20, 147)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(71, 19)
-        Label6.TabIndex = 55
-        Label6.Text = "SUBJECT"
+        Label11.AutoSize = True
+        Label11.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label11.ForeColor = Color.Black
+        Label11.Location = New Point(898, 88)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(362, 19)
+        Label11.TabIndex = 53
+        Label11.Text = "LOAD BASED ON SEMSTER AND SCHOOL YEAR"
         ' 
-        ' Label9
+        ' teacher_id
         ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label9.ForeColor = Color.White
-        Label9.Location = New Point(25, 203)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(75, 19)
-        Label9.TabIndex = 56
-        Label9.Text = "SECTION"
+        teacher_id.DataPropertyName = "teacher_id"
+        teacher_id.HeaderText = "TEACHER ID"
+        teacher_id.Name = "teacher_id"
+        teacher_id.ReadOnly = True
         ' 
-        ' cboSection
+        ' teachername
         ' 
-        cboSection.DropDownStyle = ComboBoxStyle.DropDownList
-        cboSection.FormattingEnabled = True
-        cboSection.Location = New Point(141, 204)
-        cboSection.Name = "cboSection"
-        cboSection.Size = New Size(297, 23)
-        cboSection.TabIndex = 57
+        teachername.HeaderText = "TEACHER NAME"
+        teachername.Name = "teachername"
+        teachername.ReadOnly = True
+        ' 
+        ' subject
+        ' 
+        subject.HeaderText = "SUBJECT"
+        subject.Name = "subject"
+        subject.ReadOnly = True
         ' 
         ' course_code
         ' 
@@ -371,19 +426,6 @@ Partial Class dean_subjectManagement
         course_code.Name = "course_code"
         course_code.ReadOnly = True
         course_code.Width = 83
-        ' 
-        ' teacher_id
-        ' 
-        teacher_id.DataPropertyName = "teacher_id"
-        teacher_id.HeaderText = "PROFESSOR ID"
-        teacher_id.Name = "teacher_id"
-        teacher_id.ReadOnly = True
-        ' 
-        ' teachername
-        ' 
-        teachername.HeaderText = "PROFESSOR NAME"
-        teachername.Name = "teachername"
-        teachername.ReadOnly = True
         ' 
         ' section
         ' 
@@ -419,6 +461,7 @@ Partial Class dean_subjectManagement
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1381, 674)
+        Controls.Add(Label11)
         Controls.Add(createPnl2)
         Controls.Add(Label4)
         Controls.Add(Label3)
@@ -459,9 +502,13 @@ Partial Class dean_subjectManagement
     Friend WithEvents cboSection As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents course_code As DataGridViewTextBoxColumn
+    Friend WithEvents txtprofid As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
     Friend WithEvents teacher_id As DataGridViewTextBoxColumn
     Friend WithEvents teachername As DataGridViewTextBoxColumn
+    Friend WithEvents subject As DataGridViewTextBoxColumn
+    Friend WithEvents course_code As DataGridViewTextBoxColumn
     Friend WithEvents section As DataGridViewTextBoxColumn
     Friend WithEvents yearlevel As DataGridViewTextBoxColumn
     Friend WithEvents semester As DataGridViewTextBoxColumn
