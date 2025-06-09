@@ -9,7 +9,56 @@ Public Class dean_subjectManagement
         UpdateAcademicPeriodLabels()
         LoadTeachersForDepartment()
         createPnl2.Visible = False
+        LoadTeacherSubjects()
     End Sub
+
+
+    Private Sub LoadTeacherSubjects()
+        'DGVSection.Rows.Clear()
+        'DGVSection.Columns.Clear()
+
+        '' Add columns if not already present
+        'DGVSection.Columns.Add("profid", "Teacher ID")
+        'DGVSection.Columns.Add("lname", "Last Name")
+        'DGVSection.Columns.Add("fname", "First Name")
+        'DGVSection.Columns.Add("subject", "Subject Code")
+        'DGVSection.Columns.Add("section", "Section")
+        'DGVSection.Columns.Add("course", "Course")
+        'DGVSection.Columns.Add("yearlevel", "Year Level")
+        'DGVSection.Columns.Add("semester", "Semester")
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                ' Join teacher_subjects with teacher_table to get names
+                Dim query As String = "SELECT ts.teacher_id, t.last_name, t.first_name, ts.sub_code, ts.section, ts.course_code, ts.yearlevel, ts.semester " &
+                                  "FROM teacher_subjects ts " &
+                                  "LEFT JOIN teacher_table t ON ts.teacher_id = t.teacher_id"
+                Using cmd As New MySqlCommand(query, conn)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            DGVSection.Rows.Add(
+                            reader("teacher_id").ToString(),
+                            reader("last_name").ToString(),
+                            reader("first_name").ToString(),
+                            reader("sub_code").ToString(),
+                            reader("section").ToString(),
+                            reader("course_code").ToString(),
+                            reader("yearlevel").ToString(),
+                            reader("semester").ToString()
+                        )
+                        End While
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading teacher subjects: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+    End Sub
+
+
+
+
 
     Private Sub UpdateAcademicPeriodLabels()
         ' Get current school year and semester
@@ -188,10 +237,120 @@ Public Class dean_subjectManagement
 
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        createPnl2.Visible = False
+
+        ClearAssignmentFields()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        ' Confirm action
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to assign this subject to the teacher?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result <> DialogResult.Yes Then Exit Sub
 
+        ' Validate input
+        If String.IsNullOrEmpty(txtprofid.Text) OrElse
+           String.IsNullOrEmpty(txtLname.Text) OrElse
+           String.IsNullOrEmpty(txtFname.Text) OrElse
+           cboSubject.SelectedItem Is Nothing OrElse
+           cboSection.SelectedItem Is Nothing Then
+            MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim courseCode As String = ""
+        Dim yearLevel As String = ""
+        Dim semester As String = ""
+
+        ' Get course, year_level, and semester of the selected subject
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim subjectQuery As String = "SELECT course, year_level, semester FROM subjects WHERE sub_code = @subCode"
+                Using cmd As New MySqlCommand(subjectQuery, conn)
+                    cmd.Parameters.AddWithValue("@subCode", cboSubject.SelectedItem.ToString())
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            courseCode = reader("course").ToString()
+                            yearLevel = reader("year_level").ToString()
+                            semester = reader("semester").ToString()
+                        End If
+                    End Using
+                End Using
+
+                If String.IsNullOrEmpty(courseCode) OrElse String.IsNullOrEmpty(yearLevel) OrElse String.IsNullOrEmpty(semester) Then
+                    MessageBox.Show("Subject details not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+
+
+                ' Check for duplicate assignment
+                Dim checkQuery As String = "SELECT COUNT(*) FROM teacher_subjects WHERE teacher_id = @teacherId AND sub_code = @subCode AND section = @section"
+                Using checkCmd As New MySqlCommand(checkQuery, conn)
+                    checkCmd.Parameters.AddWithValue("@teacherId", txtprofid.Text)
+                    checkCmd.Parameters.AddWithValue("@subCode", cboSubject.SelectedItem.ToString())
+                    checkCmd.Parameters.AddWithValue("@section", cboSection.SelectedItem.ToString())
+                    Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                    If count > 0 Then
+                        MessageBox.Show("This teacher is already assigned to this subject and section.", "Duplicate Assignment", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+                End Using
+
+
+                ' Check if any teacher is already assigned to this subject and section
+                Dim checkOtherTeacherQuery As String = "SELECT COUNT(*) FROM teacher_subjects WHERE sub_code = @subCode AND section = @section"
+                Using checkOtherTeacherCmd As New MySqlCommand(checkOtherTeacherQuery, conn)
+                    checkOtherTeacherCmd.Parameters.AddWithValue("@subCode", cboSubject.SelectedItem.ToString())
+                    checkOtherTeacherCmd.Parameters.AddWithValue("@section", cboSection.SelectedItem.ToString())
+                    Dim countOther As Integer = Convert.ToInt32(checkOtherTeacherCmd.ExecuteScalar())
+                    If countOther > 0 Then
+                        MessageBox.Show("A teacher is already assigned to this subject and section. Only one teacher can be assigned per subject-section.", "Assignment Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+                End Using
+
+
+
+                ' Save to teacher_subjects table
+                Dim insertQuery As String = "INSERT INTO teacher_subjects (teacher_id, sub_code, course_code, section, yearlevel, semester) VALUES (@teacherId, @subCode, @courseCode, @section, @yearLevel, @semester)"
+                Using cmd As New MySqlCommand(insertQuery, conn)
+                    cmd.Parameters.AddWithValue("@teacherId", txtprofid.Text)
+                    cmd.Parameters.AddWithValue("@subCode", cboSubject.SelectedItem.ToString())
+                    cmd.Parameters.AddWithValue("@courseCode", courseCode)
+                    cmd.Parameters.AddWithValue("@section", cboSection.SelectedItem.ToString())
+                    cmd.Parameters.AddWithValue("@yearLevel", yearLevel)
+                    cmd.Parameters.AddWithValue("@semester", semester)
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                '' Add to DGVSection
+                'If DGVSection.Columns.Count = 0 Then
+                '    DGVSection.Columns.Add("profid", "Teacher ID")
+                '    DGVSection.Columns.Add("lname", "Last Name")
+                '    DGVSection.Columns.Add("fname", "First Name")
+                '    DGVSection.Columns.Add("subject", "Subject Code")
+                '    DGVSection.Columns.Add("section", "Section")
+                '    DGVSection.Columns.Add("course", "Course")
+                '    DGVSection.Columns.Add("yearlevel", "Year Level")
+                '    DGVSection.Columns.Add("semester", "Semester")
+                'End If
+                DGVSection.Rows.Add(txtprofid.Text, txtLname.Text, txtFname.Text, cboSubject.SelectedItem.ToString(), cboSection.SelectedItem.ToString(), courseCode, yearLevel, semester)
+
+                MessageBox.Show("Subject assigned to teacher successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ClearAssignmentFields()
+                'LoadTeacherSubjects()
+            Catch ex As Exception
+                MessageBox.Show("Error saving assignment: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
     End Sub
+
+    Private Sub ClearAssignmentFields()
+        txtprofid.Clear()
+        txtLname.Clear()
+        txtFname.Clear()
+        cboSubject.SelectedIndex = -1
+        cboSection.SelectedIndex = -1
+        createPnl2.Visible = False
+    End Sub
+
 End Class

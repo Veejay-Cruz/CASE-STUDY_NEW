@@ -275,7 +275,7 @@ Partial Class subjects
         createPnl.Controls.Add(Label3)
         createPnl.Location = New Point(591, 277)
         createPnl.Name = "createPnl"
-        createPnl.Size = New Size(576, 522)
+        createPnl.Size = New Size(576, 597)
         createPnl.TabIndex = 14
         ' 
         ' txtprereq
@@ -283,7 +283,7 @@ Partial Class subjects
         txtprereq.BackColor = Color.Gainsboro
         txtprereq.BorderStyle = BorderStyle.None
         txtprereq.Font = New Font("Century Gothic", 9.75F)
-        txtprereq.Location = New Point(196, 407)
+        txtprereq.Location = New Point(196, 463)
         txtprereq.Multiline = True
         txtprereq.Name = "txtprereq"
         txtprereq.Size = New Size(332, 41)
@@ -294,7 +294,7 @@ Partial Class subjects
         Label9.AutoSize = True
         Label9.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         Label9.ForeColor = Color.White
-        Label9.Location = New Point(29, 430)
+        Label9.Location = New Point(29, 486)
         Label9.Name = "Label9"
         Label9.Size = New Size(109, 18)
         Label9.TabIndex = 19
@@ -316,7 +316,7 @@ Partial Class subjects
         ForeverButton2.BackColor = Color.Transparent
         ForeverButton2.BaseColor = Color.IndianRed
         ForeverButton2.Font = New Font("Segoe UI", 12F)
-        ForeverButton2.Location = New Point(424, 467)
+        ForeverButton2.Location = New Point(424, 533)
         ForeverButton2.Name = "ForeverButton2"
         ForeverButton2.Rounded = False
         ForeverButton2.Size = New Size(104, 38)
@@ -329,7 +329,7 @@ Partial Class subjects
         ForeverButton1.BackColor = Color.Transparent
         ForeverButton1.BaseColor = Color.FromArgb(CByte(35), CByte(168), CByte(109))
         ForeverButton1.Font = New Font("Segoe UI", 12F)
-        ForeverButton1.Location = New Point(297, 467)
+        ForeverButton1.Location = New Point(297, 533)
         ForeverButton1.Name = "ForeverButton1"
         ForeverButton1.Rounded = False
         ForeverButton1.Size = New Size(104, 38)
@@ -342,7 +342,7 @@ Partial Class subjects
         course.BackColor = Color.Gainsboro
         course.BorderStyle = BorderStyle.None
         course.Font = New Font("Century Gothic", 9.75F)
-        course.Location = New Point(196, 350)
+        course.Location = New Point(196, 406)
         course.Multiline = True
         course.Name = "course"
         course.Size = New Size(332, 41)
@@ -408,7 +408,7 @@ Partial Class subjects
         Label8.AutoSize = True
         Label8.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(32, 373)
+        Label8.Location = New Point(32, 429)
         Label8.Name = "Label8"
         Label8.Size = New Size(68, 18)
         Label8.TabIndex = 5

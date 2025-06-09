@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2025 at 10:56 AM
+-- Generation Time: Jun 09, 2025 at 01:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -292,8 +292,8 @@ CREATE TABLE `semester_table` (
 --
 
 INSERT INTO `semester_table` (`semester`, `status`) VALUES
-('1st Sem', 'Open'),
-('2nd Sem', 'Closed');
+('1st Sem', 'Closed'),
+('2nd Sem', 'Open');
 
 -- --------------------------------------------------------
 
@@ -503,7 +503,7 @@ INSERT INTO `subjects` (`sub_id`, `sub_code`, `subject_name`, `unit`, `year_leve
 CREATE TABLE `teacher_subjects` (
   `id` int(11) NOT NULL,
   `teacher_id` varchar(225) NOT NULL,
-  `sub_id` varchar(225) NOT NULL,
+  `sub_code` varchar(225) NOT NULL,
   `course_code` varchar(225) NOT NULL,
   `section` varchar(225) NOT NULL,
   `yearlevel` varchar(225) NOT NULL,
