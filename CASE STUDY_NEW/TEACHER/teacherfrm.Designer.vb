@@ -41,7 +41,7 @@ Partial Class teacherfrm
         ' 
         teacherPanel.Location = New Point(273, 0)
         teacherPanel.Name = "teacherPanel"
-        teacherPanel.Size = New Size(1229, 776)
+        teacherPanel.Size = New Size(1567, 687)
         teacherPanel.TabIndex = 12
         ' 
         ' Panel2

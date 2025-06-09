@@ -34,6 +34,7 @@ Public Class teacher_gradeentry
             Catch ex As MySqlException
                 MessageBox.Show("Error updating academic period labels: " & ex.Message)
             End Try
+            'SetGradeEntryColumnEditability()
         End Using
     End Sub
 
@@ -129,7 +130,93 @@ Public Class teacher_gradeentry
             Catch ex As Exception
                 MessageBox.Show("Error loading students: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
+            SetGradeEntryColumnEditability()
         End Using
     End Sub
 
+    Private Sub SetGradeEntryColumnEditability()
+        ' Set all grade columns to read-only by default
+        DGVGradeEntry.Columns("prelim").ReadOnly = True
+        DGVGradeEntry.Columns("midterm").ReadOnly = True
+        DGVGradeEntry.Columns("prefinal").ReadOnly = True
+        DGVGradeEntry.Columns("final").ReadOnly = True
+
+        ' Enable only the current term column
+        Select Case lblTerm.Text.ToLower()
+            Case "prelim"
+                DGVGradeEntry.Columns("prelim").ReadOnly = False
+            Case "midterm"
+                DGVGradeEntry.Columns("midterm").ReadOnly = False
+            Case "prefinal"
+                DGVGradeEntry.Columns("prefinal").ReadOnly = False
+            Case "final"
+                DGVGradeEntry.Columns("final").ReadOnly = False
+        End Select
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        If DGVGradeEntry.Rows.Count = 0 Then
+            MessageBox.Show("No students to save.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        Dim termCol As String = ""
+        Select Case lblTerm.Text.ToLower()
+            Case "prelim" : termCol = "prelim"
+            Case "midterm" : termCol = "midterm"
+            Case "prefinal" : termCol = "prefinal"
+            Case "final" : termCol = "final"
+            Case Else
+                MessageBox.Show("Invalid term.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+        End Select
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                For Each row As DataGridViewRow In DGVGradeEntry.Rows
+                    If row.IsNewRow Then Continue For
+
+                    Dim studId As String = row.Cells("stud_id").Value.ToString()
+                    Dim subCode As String = row.Cells("subject").Value.ToString()
+                    Dim gradeValue As String = row.Cells(termCol.ToUpper()).Value.ToString()
+
+                    ' Only save if a grade is entered
+                    If String.IsNullOrWhiteSpace(gradeValue) Then Continue For
+
+                    ' Check if a grade record exists
+                    Dim checkQuery As String = "SELECT COUNT(*) FROM grades WHERE stud_id = @studId AND sub_code = @subCode"
+                    Dim exists As Integer
+                    Using checkCmd As New MySqlCommand(checkQuery, conn)
+                        checkCmd.Parameters.AddWithValue("@studId", studId)
+                        checkCmd.Parameters.AddWithValue("@subCode", subCode)
+                        exists = Convert.ToInt32(checkCmd.ExecuteScalar())
+                    End Using
+
+                    If exists > 0 Then
+                        ' Update
+                        Dim updateQuery As String = $"UPDATE grades SET {termCol} = @gradeValue WHERE stud_id = @studId AND sub_code = @subCode"
+                        Using updateCmd As New MySqlCommand(updateQuery, conn)
+                            updateCmd.Parameters.AddWithValue("@gradeValue", gradeValue)
+                            updateCmd.Parameters.AddWithValue("@studId", studId)
+                            updateCmd.Parameters.AddWithValue("@subCode", subCode)
+                            updateCmd.ExecuteNonQuery()
+                        End Using
+                    Else
+                        ' Insert
+                        Dim insertQuery As String = $"INSERT INTO grades (stud_id, sub_code, {termCol}) VALUES (@studId, @subCode, @gradeValue)"
+                        Using insertCmd As New MySqlCommand(insertQuery, conn)
+                            insertCmd.Parameters.AddWithValue("@studId", studId)
+                            insertCmd.Parameters.AddWithValue("@subCode", subCode)
+                            insertCmd.Parameters.AddWithValue("@gradeValue", gradeValue)
+                            insertCmd.ExecuteNonQuery()
+                        End Using
+                    End If
+                Next
+                MessageBox.Show("Grades saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show("Error saving grades: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+    End Sub
 End Class

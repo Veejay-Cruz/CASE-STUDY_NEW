@@ -26,15 +26,26 @@ Partial Class teacher_gradeentry
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         DGVGradeEntry = New DataGridView()
+        stud_id = New DataGridViewTextBoxColumn()
+        lastname = New DataGridViewTextBoxColumn()
+        firstname = New DataGridViewTextBoxColumn()
+        middlename = New DataGridViewTextBoxColumn()
+        subject = New DataGridViewTextBoxColumn()
+        prelim = New DataGridViewTextBoxColumn()
+        midterm = New DataGridViewTextBoxColumn()
+        prefinal = New DataGridViewTextBoxColumn()
+        final = New DataGridViewTextBoxColumn()
+        finalgrade = New DataGridViewTextBoxColumn()
+        remarks = New DataGridViewTextBoxColumn()
         DGVTeachingloads = New DataGridView()
         course_code = New DataGridViewTextBoxColumn()
         sub_code = New DataGridViewTextBoxColumn()
@@ -54,17 +65,7 @@ Partial Class teacher_gradeentry
         Label3 = New Label()
         lblSchoolyr = New Label()
         Label6 = New Label()
-        stud_id = New DataGridViewTextBoxColumn()
-        lastname = New DataGridViewTextBoxColumn()
-        firstname = New DataGridViewTextBoxColumn()
-        middlename = New DataGridViewTextBoxColumn()
-        subject = New DataGridViewTextBoxColumn()
-        prelim = New DataGridViewTextBoxColumn()
-        midterm = New DataGridViewTextBoxColumn()
-        prefinal = New DataGridViewTextBoxColumn()
-        final = New DataGridViewTextBoxColumn()
-        finalgrade = New DataGridViewTextBoxColumn()
-        remarks = New DataGridViewTextBoxColumn()
+        btnSave = New Button()
         CType(DGVGradeEntry, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVTeachingloads, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -98,7 +99,6 @@ Partial Class teacher_gradeentry
         DGVGradeEntry.EnableHeadersVisualStyles = False
         DGVGradeEntry.Location = New Point(468, 134)
         DGVGradeEntry.Name = "DGVGradeEntry"
-        DGVGradeEntry.ReadOnly = True
         DGVGradeEntry.RowHeadersVisible = False
         DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle6.BackColor = Color.White
@@ -111,6 +111,89 @@ Partial Class teacher_gradeentry
         DGVGradeEntry.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DGVGradeEntry.Size = New Size(1087, 541)
         DGVGradeEntry.TabIndex = 41
+        ' 
+        ' stud_id
+        ' 
+        stud_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        stud_id.DataPropertyName = "stud_id"
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.Black
+        stud_id.DefaultCellStyle = DataGridViewCellStyle3
+        stud_id.HeaderText = "STUDENT ID"
+        stud_id.Name = "stud_id"
+        stud_id.ReadOnly = True
+        stud_id.Width = 102
+        ' 
+        ' lastname
+        ' 
+        lastname.HeaderText = "LAST NAME"
+        lastname.Name = "lastname"
+        lastname.ReadOnly = True
+        ' 
+        ' firstname
+        ' 
+        firstname.HeaderText = "FIRST NAME"
+        firstname.Name = "firstname"
+        firstname.ReadOnly = True
+        ' 
+        ' middlename
+        ' 
+        middlename.HeaderText = "MIDDLE NAME"
+        middlename.Name = "middlename"
+        middlename.ReadOnly = True
+        ' 
+        ' subject
+        ' 
+        subject.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        subject.DataPropertyName = "sub_code"
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.Black
+        subject.DefaultCellStyle = DataGridViewCellStyle4
+        subject.HeaderText = "SUBJECT"
+        subject.Name = "subject"
+        subject.ReadOnly = True
+        ' 
+        ' prelim
+        ' 
+        prelim.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        prelim.DataPropertyName = "prelim"
+        prelim.HeaderText = "PRELIM"
+        prelim.Name = "prelim"
+        prelim.Width = 76
+        ' 
+        ' midterm
+        ' 
+        midterm.DataPropertyName = "midterm"
+        midterm.HeaderText = "MIDTERM"
+        midterm.Name = "midterm"
+        ' 
+        ' prefinal
+        ' 
+        prefinal.DataPropertyName = "prefinal"
+        prefinal.HeaderText = "PREFINAL"
+        prefinal.Name = "prefinal"
+        ' 
+        ' final
+        ' 
+        final.DataPropertyName = "final"
+        final.HeaderText = "FINALS"
+        final.Name = "final"
+        ' 
+        ' finalgrade
+        ' 
+        finalgrade.DataPropertyName = "final_grade"
+        finalgrade.HeaderText = "FINAL GRADE"
+        finalgrade.Name = "finalgrade"
+        finalgrade.ReadOnly = True
+        ' 
+        ' remarks
+        ' 
+        remarks.DataPropertyName = "remarks"
+        remarks.HeaderText = "REMARKS"
+        remarks.Name = "remarks"
+        remarks.ReadOnly = True
         ' 
         ' DGVTeachingloads
         ' 
@@ -353,92 +436,14 @@ Partial Class teacher_gradeentry
         Label6.TabIndex = 54
         Label6.Text = "SCHOOL YEAR: "
         ' 
-        ' stud_id
+        ' btnSave
         ' 
-        stud_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        stud_id.DataPropertyName = "stud_id"
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.Black
-        stud_id.DefaultCellStyle = DataGridViewCellStyle3
-        stud_id.HeaderText = "STUDENT ID"
-        stud_id.Name = "stud_id"
-        stud_id.ReadOnly = True
-        stud_id.Width = 102
-        ' 
-        ' lastname
-        ' 
-        lastname.HeaderText = "LAST NAME"
-        lastname.Name = "lastname"
-        lastname.ReadOnly = True
-        ' 
-        ' firstname
-        ' 
-        firstname.HeaderText = "FIRST NAME"
-        firstname.Name = "firstname"
-        firstname.ReadOnly = True
-        ' 
-        ' middlename
-        ' 
-        middlename.HeaderText = "MIDDLE NAME"
-        middlename.Name = "middlename"
-        middlename.ReadOnly = True
-        ' 
-        ' subject
-        ' 
-        subject.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        subject.DataPropertyName = "sub_code"
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = Color.Black
-        subject.DefaultCellStyle = DataGridViewCellStyle4
-        subject.HeaderText = "SUBJECT"
-        subject.Name = "subject"
-        subject.ReadOnly = True
-        ' 
-        ' prelim
-        ' 
-        prelim.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        prelim.DataPropertyName = "prelim"
-        prelim.HeaderText = "PRELIM"
-        prelim.Name = "prelim"
-        prelim.ReadOnly = True
-        prelim.Width = 76
-        ' 
-        ' midterm
-        ' 
-        midterm.DataPropertyName = "midterm"
-        midterm.HeaderText = "MIDTERM"
-        midterm.Name = "midterm"
-        midterm.ReadOnly = True
-        ' 
-        ' prefinal
-        ' 
-        prefinal.DataPropertyName = "prefinal"
-        prefinal.HeaderText = "PREFINAL"
-        prefinal.Name = "prefinal"
-        prefinal.ReadOnly = True
-        ' 
-        ' final
-        ' 
-        final.DataPropertyName = "final"
-        final.HeaderText = "FINALS"
-        final.Name = "final"
-        final.ReadOnly = True
-        ' 
-        ' finalgrade
-        ' 
-        finalgrade.DataPropertyName = "final_grade"
-        finalgrade.HeaderText = "FINAL GRADE"
-        finalgrade.Name = "finalgrade"
-        finalgrade.ReadOnly = True
-        ' 
-        ' remarks
-        ' 
-        remarks.DataPropertyName = "remarks"
-        remarks.HeaderText = "REMARKS"
-        remarks.Name = "remarks"
-        remarks.ReadOnly = True
+        btnSave.Location = New Point(1467, 98)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(75, 23)
+        btnSave.TabIndex = 60
+        btnSave.Text = "SAVE"
+        btnSave.UseVisualStyleBackColor = True
         ' 
         ' teacher_gradeentry
         ' 
@@ -446,6 +451,7 @@ Partial Class teacher_gradeentry
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1567, 687)
         ControlBox = False
+        Controls.Add(btnSave)
         Controls.Add(lblTerm)
         Controls.Add(Label2)
         Controls.Add(lblSem)
@@ -502,4 +508,5 @@ Partial Class teacher_gradeentry
     Friend WithEvents final As DataGridViewTextBoxColumn
     Friend WithEvents finalgrade As DataGridViewTextBoxColumn
     Friend WithEvents remarks As DataGridViewTextBoxColumn
+    Friend WithEvents btnSave As Button
 End Class
