@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2025 at 01:17 PM
+-- Generation Time: Jun 09, 2025 at 02:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -219,9 +219,9 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 --
 
 CREATE TABLE `grades` (
-  `grade_id` varchar(225) NOT NULL,
+  `grade_id` int(11) NOT NULL,
   `stud_id` varchar(225) NOT NULL,
-  `sub_id` varchar(50) NOT NULL,
+  `sub_code` varchar(50) NOT NULL,
   `prelim` int(3) DEFAULT NULL,
   `midterm` int(3) DEFAULT NULL,
   `prefinal` int(3) DEFAULT NULL,
@@ -292,8 +292,8 @@ CREATE TABLE `semester_table` (
 --
 
 INSERT INTO `semester_table` (`semester`, `status`) VALUES
-('1st Sem', 'Closed'),
-('2nd Sem', 'Open');
+('1st Sem', 'Open'),
+('2nd Sem', 'Closed');
 
 -- --------------------------------------------------------
 
@@ -510,6 +510,15 @@ CREATE TABLE `teacher_subjects` (
   `semester` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `teacher_subjects`
+--
+
+INSERT INTO `teacher_subjects` (`id`, `teacher_id`, `sub_code`, `course_code`, `section`, `yearlevel`, `semester`) VALUES
+(1, 'TR0001', 'CS101', 'BSCS', '11M1', '1st Year', '1st Sem'),
+(3, 'TR0001', 'CS101', 'BSCS', '11M2', '1st Year', '1st Sem'),
+(4, 'TR0001', 'CC133-2', 'BSIT', '11M1', '1st Year', '1st Sem');
+
 -- --------------------------------------------------------
 
 --
@@ -689,6 +698,12 @@ ALTER TABLE `enrollment`
   MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `grades`
+--
+ALTER TABLE `grades`
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `student_section`
 --
 ALTER TABLE `student_section`
@@ -704,7 +719,7 @@ ALTER TABLE `student_subjects`
 -- AUTO_INCREMENT for table `teacher_subjects`
 --
 ALTER TABLE `teacher_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
