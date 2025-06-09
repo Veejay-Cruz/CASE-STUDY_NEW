@@ -25,6 +25,7 @@ Partial Class deanfrm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(deanfrm))
         Panel1 = New Panel()
         settingsBtn = New Button()
+        sectionBtn = New Button()
         logoutBtn = New Button()
         subjectmanBtn = New Button()
         coursemanagementBtn = New Button()
@@ -33,7 +34,6 @@ Partial Class deanfrm
         dashboardBtn = New Button()
         Panel4 = New Panel()
         PictureBox1 = New PictureBox()
-        sectionBtn = New Button()
         mainPanel = New Panel()
         Panel1.SuspendLayout()
         Panel4.SuspendLayout()
@@ -73,6 +73,22 @@ Partial Class deanfrm
         settingsBtn.TabIndex = 8
         settingsBtn.Text = "SETTINGS"
         settingsBtn.UseVisualStyleBackColor = False
+        ' 
+        ' sectionBtn
+        ' 
+        sectionBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
+        sectionBtn.Dock = DockStyle.Top
+        sectionBtn.FlatAppearance.BorderSize = 0
+        sectionBtn.FlatStyle = FlatStyle.Flat
+        sectionBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        sectionBtn.Image = CType(resources.GetObject("sectionBtn.Image"), Image)
+        sectionBtn.ImageAlign = ContentAlignment.MiddleLeft
+        sectionBtn.Location = New Point(0, 396)
+        sectionBtn.Name = "sectionBtn"
+        sectionBtn.Size = New Size(267, 52)
+        sectionBtn.TabIndex = 13
+        sectionBtn.Text = "SECTIONS"
+        sectionBtn.UseVisualStyleBackColor = False
         ' 
         ' logoutBtn
         ' 
@@ -186,22 +202,6 @@ Partial Class deanfrm
         PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
         PictureBox1.TabIndex = 1
         PictureBox1.TabStop = False
-        ' 
-        ' sectionBtn
-        ' 
-        sectionBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        sectionBtn.Dock = DockStyle.Top
-        sectionBtn.FlatAppearance.BorderSize = 0
-        sectionBtn.FlatStyle = FlatStyle.Flat
-        sectionBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        sectionBtn.Image = CType(resources.GetObject("sectionBtn.Image"), Image)
-        sectionBtn.ImageAlign = ContentAlignment.MiddleLeft
-        sectionBtn.Location = New Point(0, 396)
-        sectionBtn.Name = "sectionBtn"
-        sectionBtn.Size = New Size(267, 52)
-        sectionBtn.TabIndex = 13
-        sectionBtn.Text = "SECTIONS"
-        sectionBtn.UseVisualStyleBackColor = False
         ' 
         ' mainPanel
         ' 

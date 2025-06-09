@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2025 at 02:04 PM
+-- Generation Time: Jun 09, 2025 at 10:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,43 +39,6 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 ('01-2025', 'kia', 'admin123');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `assignment`
---
-
-CREATE TABLE `assignment` (
-  `assignment_id` varchar(225) NOT NULL,
-  `stud_id` varchar(225) NOT NULL,
-  `sub_id` varchar(225) NOT NULL,
-  `assignment_description` varchar(225) NOT NULL,
-  `grade` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `attendance`
---
-
-CREATE TABLE `attendance` (
-  `attendance_id` varchar(225) NOT NULL,
-  `stud_id` varchar(225) NOT NULL,
-  `sub_id` varchar(225) NOT NULL,
-  `attedance_date` date NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `attendance`
---
-
-INSERT INTO `attendance` (`attendance_id`, `stud_id`, `sub_id`, `attedance_date`, `status`) VALUES
-('a1001', '2001-25', 'sub10', '2025-05-01', 'Present'),
-('a1002', '2002-25', 'sub11', '2025-05-01', 'Absent'),
-('a1003', '2003-25', 'sub12', '2025-05-01', 'Present');
 
 -- --------------------------------------------------------
 
@@ -404,7 +367,20 @@ INSERT INTO `student_section` (`id`, `course_code`, `section`, `yearlevel`, `sem
 (34, 'BSIT', '11M2', '1st Year', '1st Sem', 'MORNING', 2),
 (35, 'BSIT', '11M3', '1st Year', '1st Sem', 'MORNING', 3),
 (38, 'BSCS', '11M1', '1st Year', '1st Sem', 'MORNING', 1),
-(39, 'BSCS', '11M2', '1st Year', '1st Sem', 'MORNING', 2);
+(39, 'BSCS', '11M2', '1st Year', '1st Sem', 'MORNING', 2),
+(40, 'BSCS', '11M3', '1st Year', '1st Sem', 'MORNING', 3),
+(41, 'BSIT', '21A1', '2nd Year', '1st Sem', 'AFTERNOON', 1),
+(42, 'BSCS', '22A1', '2nd Year', '2nd Sem', 'AFTERNOON', 1),
+(43, 'BSIT', '22A1', '2nd Year', '2nd Sem', 'AFTERNOON', 1),
+(44, 'BSIT', '31E1', '3rd Year', '1st Sem', 'EVENING', 1),
+(45, 'BSCS', '31E1', '3rd Year', '1st Sem', 'EVENING', 1),
+(46, 'BSCS', '32E1', '3rd Year', '2nd Sem', 'EVENING', 1),
+(47, 'BSIT', '32E1', '3rd Year', '2nd Sem', 'EVENING', 1),
+(48, 'BSCS', '41E1', '4th Year', '1st Sem', 'EVENING', 1),
+(49, 'BSCS', '42E1', '4th Year', '2nd Sem', 'EVENING', 1),
+(50, 'BSIT', '41E1', '4th Year', '1st Sem', 'EVENING', 1),
+(51, 'BSIT', '42E1', '4th Year', '2nd Sem', 'EVENING', 1),
+(52, 'BSCS', '21M1', '2nd Year', '1st Sem', 'MORNING', 1);
 
 -- --------------------------------------------------------
 
@@ -445,7 +421,25 @@ INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `school_y
 (36, '2004-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
 (37, '2004-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
 (38, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(39, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05');
+(39, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(40, '1096-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(41, '1096-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(42, '1096-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(43, '1096-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(44, '1096-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(45, '1096-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(46, '1096-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(47, '1096-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(48, '2005-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(49, '2005-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
+(50, '2005-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(51, '2005-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
+(52, '2005-25', 'sub25', 'CS101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(53, '2006-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(54, '2006-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(55, '2006-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(56, '2006-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(57, '2006-25', 'sub25', 'CS101', '2025-2026', '1st Sem', '11M1', '2025-06-09');
 
 -- --------------------------------------------------------
 
@@ -499,6 +493,22 @@ INSERT INTO `subjects` (`sub_id`, `sub_code`, `subject_name`, `unit`, `year_leve
 ('sub28', 'NSTP2', 'National Service Training Program', '3', '1st Year', '', 'General Education', 'NSTP1'),
 ('sub29', 'PE102', 'Physical Fitness 2', '2', '1st Year', '', 'General Education', 'PE101'),
 ('sub30', 'PE104', 'Physical Fitness 4', '2', '2nt Year', '', 'General Education', 'PE103');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher_subjects`
+--
+
+CREATE TABLE `teacher_subjects` (
+  `id` int(11) NOT NULL,
+  `teacher_id` varchar(225) NOT NULL,
+  `sub_id` varchar(225) NOT NULL,
+  `course_code` varchar(225) NOT NULL,
+  `section` varchar(225) NOT NULL,
+  `yearlevel` varchar(225) NOT NULL,
+  `semester` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -583,18 +593,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `assignment`
---
-ALTER TABLE `assignment`
-  ADD PRIMARY KEY (`assignment_id`);
-
---
--- Indexes for table `attendance`
---
-ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`attendance_id`);
-
---
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
@@ -657,6 +655,12 @@ ALTER TABLE `subjects`
   ADD PRIMARY KEY (`sub_id`);
 
 --
+-- Indexes for table `teacher_subjects`
+--
+ALTER TABLE `teacher_subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teacher_table`
 --
 ALTER TABLE `teacher_table`
@@ -688,13 +692,19 @@ ALTER TABLE `enrollment`
 -- AUTO_INCREMENT for table `student_section`
 --
 ALTER TABLE `student_section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `teacher_subjects`
+--
+ALTER TABLE `teacher_subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -27,4 +27,9 @@
     Private Sub sectionBtn_Click(sender As Object, e As EventArgs) Handles sectionBtn.Click
         LoadFormInPanel(New dean_sectionManagement())
     End Sub
+
+    'subject management button, adding subjects to teacher and adding subject teacher to section
+    Private Sub subjectmanBtn_Click(sender As Object, e As EventArgs) Handles subjectmanBtn.Click
+        LoadFormInPanel(New dean_subjectManagement())
+    End Sub
 End Class
