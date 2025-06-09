@@ -41,7 +41,7 @@ Partial Class teacherfrm
         ' 
         teacherPanel.Location = New Point(273, 0)
         teacherPanel.Name = "teacherPanel"
-        teacherPanel.Size = New Size(1010, 665)
+        teacherPanel.Size = New Size(1229, 776)
         teacherPanel.TabIndex = 12
         ' 
         ' Panel2
@@ -56,7 +56,7 @@ Partial Class teacherfrm
         Panel2.Dock = DockStyle.Left
         Panel2.Location = New Point(0, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(267, 665)
+        Panel2.Size = New Size(267, 776)
         Panel2.TabIndex = 13
         ' 
         ' btnSchoolyr
@@ -81,7 +81,7 @@ Partial Class teacherfrm
         logoutBtn.Dock = DockStyle.Bottom
         logoutBtn.FlatAppearance.BorderSize = 0
         logoutBtn.FlatStyle = FlatStyle.Flat
-        logoutBtn.Location = New Point(0, 630)
+        logoutBtn.Location = New Point(0, 741)
         logoutBtn.Name = "logoutBtn"
         logoutBtn.Size = New Size(267, 35)
         logoutBtn.TabIndex = 12
@@ -161,7 +161,7 @@ Partial Class teacherfrm
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.HighlightText
-        ClientSize = New Size(1283, 665)
+        ClientSize = New Size(1514, 776)
         ControlBox = False
         Controls.Add(Panel2)
         Controls.Add(teacherPanel)

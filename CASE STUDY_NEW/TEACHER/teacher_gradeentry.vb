@@ -37,7 +37,7 @@ Public Class teacher_gradeentry
         End Using
     End Sub
 
-
+    'TEACHING LOADS HEHE
     Private Sub LoadTeachingLoads()
         'DGVTeachingloads.Rows.Clear()
         'DGVTeachingloads.Columns.Clear()
@@ -69,8 +69,67 @@ Public Class teacher_gradeentry
         End Using
     End Sub
 
+    Private Sub DGVTeachingloads_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVTeachingloads.CellContentClick
+        If e.ColumnIndex = DGVTeachingloads.Columns("subload").Index AndAlso e.RowIndex >= 0 Then
+            Dim selectedRow As DataGridViewRow = DGVTeachingloads.Rows(e.RowIndex)
+            Dim courseCode As String = selectedRow.Cells("course_code").Value.ToString()
+            Dim subCode As String = selectedRow.Cells("sub_code").Value.ToString()
+            Dim section As String = selectedRow.Cells("section").Value.ToString()
 
+            Dim result As DialogResult = MessageBox.Show(
+                $"Load students for Subject: {subCode}, Section: {section}?",
+                "Load Students",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            )
+            If result = DialogResult.Yes Then
+                LoadStudentsForSubjectSection(subCode, section)
+            End If
+        End If
+    End Sub
 
+    Private Sub LoadStudentsForSubjectSection(subCode As String, section As String)
+        DGVGradeEntry.Rows.Clear()
+        ' No need to clear columns if you set them up in the designer
 
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                ' Join student_subjects, students, and grades to get all info
+                Dim query As String = "
+                SELECT ss.stud_id, s.last_name, s.first_name, s.middle_name, 
+                       ss.sub_code, 
+                       g.prelim, g.midterm, g.prefinal, g.final, g.final_grade, g.remarks
+                FROM student_subjects ss
+                INNER JOIN students s ON ss.stud_id = s.stud_id
+                LEFT JOIN grades g ON ss.stud_id = g.stud_id AND ss.sub_code = g.sub_code
+                WHERE ss.sub_code = @subCode AND ss.section = @section
+            "
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@subCode", subCode)
+                    cmd.Parameters.AddWithValue("@section", section)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            DGVGradeEntry.Rows.Add(
+                            reader("stud_id").ToString(),
+                            reader("last_name").ToString(),
+                            reader("first_name").ToString(),
+                            reader("middle_name").ToString(),
+                            reader("sub_code").ToString(),
+                            If(IsDBNull(reader("prelim")), "", reader("prelim").ToString()),
+                            If(IsDBNull(reader("midterm")), "", reader("midterm").ToString()),
+                            If(IsDBNull(reader("prefinal")), "", reader("prefinal").ToString()),
+                            If(IsDBNull(reader("final")), "", reader("final").ToString()),
+                            If(IsDBNull(reader("final_grade")), "", reader("final_grade").ToString()),
+                            If(IsDBNull(reader("remarks")), "", reader("remarks").ToString())
+                        )
+                        End While
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading students: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+    End Sub
 
 End Class

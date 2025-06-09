@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2025 at 02:42 PM
+-- Generation Time: Jun 09, 2025 at 05:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -116,7 +116,10 @@ INSERT INTO `audit_trail` (`username`, `date_time`, `action`) VALUES
 ('REG-2025-001', '2025-05-27 11:06:13', 'CREATED NEW'),
 ('REG-2025-001', '2025-05-27 20:01:07', 'CREATED NEW'),
 ('01-2025', '2025-05-27 22:33:37', 'CREATED NEW'),
-('01-2025', '2025-05-27 22:52:23', 'CREATED NEW');
+('01-2025', '2025-05-27 22:52:23', 'CREATED NEW'),
+('01-2025', '2025-06-09 22:36:18', 'CREATED NEW'),
+('01-2025', '2025-06-09 22:41:00', 'CREATED NEW SUBJECT'),
+('01-2025', '2025-06-09 22:58:30', 'CREATED NEW');
 
 -- --------------------------------------------------------
 
@@ -169,7 +172,9 @@ INSERT INTO `department` (`department_id`, `department_name`, `dean_id`, `status
 ('CTHM', 'College of Tourism and Hotel Management', NULL, 'Active'),
 ('EDUC', 'College of Education', NULL, 'Active'),
 ('REM', 'College of Real Estate Management', NULL, 'Active'),
-('RRR', 'RAMBUTAN', NULL, 'Inactive');
+('RRR', 'RAMBUTAN', NULL, 'Inactive'),
+('JAJA', 'du', NULL, 'Inactive'),
+('DUM', 'DUM', NULL, 'Active');
 
 -- --------------------------------------------------------
 
@@ -210,7 +215,9 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (20, '1096-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
 (21, '2004-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
 (22, '2005-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
-(23, '2006-25', NULL, '2025-2026', '1st Sem', '2025-05-27');
+(23, '2006-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
+(24, '2007-25', 1, '2025-2026', '1st Sem', '2025-06-09'),
+(25, '2008-25', 1, '2025-2026', '1st Sem', '2025-06-09');
 
 -- --------------------------------------------------------
 
@@ -340,7 +347,9 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('2003-25', 'Dela Cruz', 'Ana', 'Torres', '2nd Year', 'CAS', 'BSREM', 'pass789', 'IRREGULAR', 'Active'),
 ('2004-25', 'nald', 'rei', 'ma', '1st Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
 ('2005-25', 'jil', 'jor', 'nig', '1st Year', 'CCS', 'BSCS', '123', 'IRREGULAR', 'Active'),
-('2006-25', 'bi', 'les', 'yan', '1st Year', 'CCS', 'BSCS', '123', 'REGULAR', 'Active');
+('2006-25', 'bi', 'les', 'yan', '1st Year', 'CCS', 'BSCS', '123', 'REGULAR', 'Active'),
+('2007-25', 'ni', 'bor', 'kol', '1st Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
+('2008-25', 'at', 'bor', 'ni', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
 
 -- --------------------------------------------------------
 
@@ -492,7 +501,8 @@ INSERT INTO `subjects` (`sub_id`, `sub_code`, `subject_name`, `unit`, `year_leve
 ('sub27', 'REM301', 'Property Management', '3', '3rd Year', '', 'BSREM', NULL),
 ('sub28', 'NSTP2', 'National Service Training Program', '3', '1st Year', '', 'General Education', 'NSTP1'),
 ('sub29', 'PE102', 'Physical Fitness 2', '2', '1st Year', '', 'General Education', 'PE101'),
-('sub30', 'PE104', 'Physical Fitness 4', '2', '2nt Year', '', 'General Education', 'PE103');
+('sub30', 'PE104', 'Physical Fitness 4', '2', '2nt Year', '', 'General Education', 'PE103'),
+('sub31', 'dummy', 'asd', '3', '3rd Year', '', 'BSIT', '');
 
 -- --------------------------------------------------------
 
@@ -517,7 +527,8 @@ CREATE TABLE `teacher_subjects` (
 INSERT INTO `teacher_subjects` (`id`, `teacher_id`, `sub_code`, `course_code`, `section`, `yearlevel`, `semester`) VALUES
 (1, 'TR0001', 'CS101', 'BSCS', '11M1', '1st Year', '1st Sem'),
 (3, 'TR0001', 'CS101', 'BSCS', '11M2', '1st Year', '1st Sem'),
-(4, 'TR0001', 'CC133-2', 'BSIT', '11M1', '1st Year', '1st Sem');
+(4, 'TR0001', 'CC133-2', 'BSIT', '11M1', '1st Year', '1st Sem'),
+(6, 'TR0005', 'CC213', 'BSIT', '21A1', '2nd Year', '1st Sem');
 
 -- --------------------------------------------------------
 
@@ -695,7 +706,7 @@ ALTER TABLE `user_register`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `grades`
@@ -719,7 +730,7 @@ ALTER TABLE `student_subjects`
 -- AUTO_INCREMENT for table `teacher_subjects`
 --
 ALTER TABLE `teacher_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
