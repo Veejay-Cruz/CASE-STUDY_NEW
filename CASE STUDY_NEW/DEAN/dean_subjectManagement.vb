@@ -108,9 +108,19 @@ Public Class dean_subjectManagement
 
                 If courseCodes.Count = 0 Then Exit Sub
 
-                ' Get subject codes for these courses
-                Dim subjectQuery As String = "SELECT sub_code FROM subjects WHERE course IN (" & String.Join(",", courseCodes.Select(Function(c) "'" & c & "'")) & ")"
+                ' Get the current semester
+                Dim currentSemester As String = ""
+                Dim semQuery As String = "SELECT semester FROM semester_table WHERE status = 'Open' LIMIT 1"
+                Using semCmd As New MySqlCommand(semQuery, conn)
+                    currentSemester = Convert.ToString(semCmd.ExecuteScalar())
+                End Using
+
+                If String.IsNullOrEmpty(currentSemester) Then Exit Sub
+
+                ' Get subject codes for these courses and current semester only
+                Dim subjectQuery As String = "SELECT sub_code FROM subjects WHERE course IN (" & String.Join(",", courseCodes.Select(Function(c) "'" & c & "'")) & ") AND semester = @semester"
                 Dim subjectCmd As New MySqlCommand(subjectQuery, conn)
+                subjectCmd.Parameters.AddWithValue("@semester", currentSemester)
                 Using reader As MySqlDataReader = subjectCmd.ExecuteReader()
                     While reader.Read()
                         cboSubject.Items.Add(reader("sub_code").ToString())
