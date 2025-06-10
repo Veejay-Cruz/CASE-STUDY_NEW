@@ -119,7 +119,4 @@ Public Class courses
         createPnl2.Hide()
     End Sub
 
-    Private Sub deleteLbl_Click(sender As Object, e As EventArgs) Handles deleteLbl.Click
-
-    End Sub
 End Class

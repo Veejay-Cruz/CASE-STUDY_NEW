@@ -34,7 +34,6 @@ Partial Class main
         subjectBtn = New Button()
         studBtn = New Button()
         auditBtn = New Button()
-        reportsBtn = New Button()
         dashboardBtn = New Button()
         Panel4 = New Panel()
         PictureBox1 = New PictureBox()
@@ -55,7 +54,6 @@ Partial Class main
         Panel1.Controls.Add(subjectBtn)
         Panel1.Controls.Add(studBtn)
         Panel1.Controls.Add(auditBtn)
-        Panel1.Controls.Add(reportsBtn)
         Panel1.Controls.Add(dashboardBtn)
         Panel1.Controls.Add(Panel4)
         Panel1.Dock = DockStyle.Left
@@ -73,7 +71,7 @@ Partial Class main
         btnDepartment.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         btnDepartment.Image = CType(resources.GetObject("btnDepartment.Image"), Image)
         btnDepartment.ImageAlign = ContentAlignment.MiddleLeft
-        btnDepartment.Location = New Point(0, 552)
+        btnDepartment.Location = New Point(0, 500)
         btnDepartment.Name = "btnDepartment"
         btnDepartment.Size = New Size(267, 52)
         btnDepartment.TabIndex = 13
@@ -102,7 +100,7 @@ Partial Class main
         syBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         syBtn.Image = CType(resources.GetObject("syBtn.Image"), Image)
         syBtn.ImageAlign = ContentAlignment.MiddleLeft
-        syBtn.Location = New Point(0, 500)
+        syBtn.Location = New Point(0, 448)
         syBtn.Name = "syBtn"
         syBtn.Size = New Size(267, 52)
         syBtn.TabIndex = 10
@@ -118,7 +116,7 @@ Partial Class main
         usersBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         usersBtn.Image = CType(resources.GetObject("usersBtn.Image"), Image)
         usersBtn.ImageAlign = ContentAlignment.MiddleLeft
-        usersBtn.Location = New Point(0, 448)
+        usersBtn.Location = New Point(0, 396)
         usersBtn.Name = "usersBtn"
         usersBtn.Size = New Size(267, 52)
         usersBtn.TabIndex = 9
@@ -134,7 +132,7 @@ Partial Class main
         courseBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         courseBtn.Image = CType(resources.GetObject("courseBtn.Image"), Image)
         courseBtn.ImageAlign = ContentAlignment.MiddleLeft
-        courseBtn.Location = New Point(0, 396)
+        courseBtn.Location = New Point(0, 344)
         courseBtn.Name = "courseBtn"
         courseBtn.Size = New Size(267, 52)
         courseBtn.TabIndex = 8
@@ -150,7 +148,7 @@ Partial Class main
         subjectBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         subjectBtn.Image = CType(resources.GetObject("subjectBtn.Image"), Image)
         subjectBtn.ImageAlign = ContentAlignment.MiddleLeft
-        subjectBtn.Location = New Point(0, 344)
+        subjectBtn.Location = New Point(0, 292)
         subjectBtn.Name = "subjectBtn"
         subjectBtn.Size = New Size(267, 52)
         subjectBtn.TabIndex = 7
@@ -166,7 +164,7 @@ Partial Class main
         studBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         studBtn.Image = CType(resources.GetObject("studBtn.Image"), Image)
         studBtn.ImageAlign = ContentAlignment.MiddleLeft
-        studBtn.Location = New Point(0, 292)
+        studBtn.Location = New Point(0, 240)
         studBtn.Name = "studBtn"
         studBtn.Size = New Size(267, 52)
         studBtn.TabIndex = 6
@@ -182,28 +180,12 @@ Partial Class main
         auditBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         auditBtn.Image = CType(resources.GetObject("auditBtn.Image"), Image)
         auditBtn.ImageAlign = ContentAlignment.MiddleLeft
-        auditBtn.Location = New Point(0, 240)
+        auditBtn.Location = New Point(0, 188)
         auditBtn.Name = "auditBtn"
         auditBtn.Size = New Size(267, 52)
         auditBtn.TabIndex = 5
         auditBtn.Text = "AUDIT-TRAIL"
         auditBtn.UseVisualStyleBackColor = False
-        ' 
-        ' reportsBtn
-        ' 
-        reportsBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        reportsBtn.Dock = DockStyle.Top
-        reportsBtn.FlatAppearance.BorderSize = 0
-        reportsBtn.FlatStyle = FlatStyle.Flat
-        reportsBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        reportsBtn.Image = CType(resources.GetObject("reportsBtn.Image"), Image)
-        reportsBtn.ImageAlign = ContentAlignment.MiddleLeft
-        reportsBtn.Location = New Point(0, 188)
-        reportsBtn.Name = "reportsBtn"
-        reportsBtn.Size = New Size(267, 52)
-        reportsBtn.TabIndex = 4
-        reportsBtn.Text = "REPORTS"
-        reportsBtn.UseVisualStyleBackColor = False
         ' 
         ' dashboardBtn
         ' 
@@ -279,7 +261,6 @@ Partial Class main
     Friend WithEvents subjectBtn As Button
     Friend WithEvents studBtn As Button
     Friend WithEvents auditBtn As Button
-    Friend WithEvents reportsBtn As Button
     Friend WithEvents dashboardBtn As Button
     Friend WithEvents logoutBtn As Button
     Friend WithEvents mainPanel As Panel

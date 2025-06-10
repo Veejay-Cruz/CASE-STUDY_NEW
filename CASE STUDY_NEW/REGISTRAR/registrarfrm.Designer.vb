@@ -30,7 +30,6 @@ Partial Class registrarfrm
         courseBtn = New Button()
         subjectBtn = New Button()
         studBtn = New Button()
-        reportsBtn = New Button()
         dashboardBtn = New Button()
         Panel4 = New Panel()
         PictureBox1 = New PictureBox()
@@ -49,7 +48,6 @@ Partial Class registrarfrm
         Panel1.Controls.Add(courseBtn)
         Panel1.Controls.Add(subjectBtn)
         Panel1.Controls.Add(studBtn)
-        Panel1.Controls.Add(reportsBtn)
         Panel1.Controls.Add(dashboardBtn)
         Panel1.Controls.Add(Panel4)
         Panel1.Dock = DockStyle.Left
@@ -68,7 +66,7 @@ Partial Class registrarfrm
         btnDepartment.ForeColor = Color.White
         btnDepartment.Image = CType(resources.GetObject("btnDepartment.Image"), Image)
         btnDepartment.ImageAlign = ContentAlignment.MiddleLeft
-        btnDepartment.Location = New Point(0, 448)
+        btnDepartment.Location = New Point(0, 396)
         btnDepartment.Name = "btnDepartment"
         btnDepartment.Size = New Size(267, 52)
         btnDepartment.TabIndex = 14
@@ -100,7 +98,7 @@ Partial Class registrarfrm
         syBtn.ForeColor = Color.White
         syBtn.Image = CType(resources.GetObject("syBtn.Image"), Image)
         syBtn.ImageAlign = ContentAlignment.MiddleLeft
-        syBtn.Location = New Point(0, 396)
+        syBtn.Location = New Point(0, 344)
         syBtn.Name = "syBtn"
         syBtn.Size = New Size(267, 52)
         syBtn.TabIndex = 10
@@ -117,7 +115,7 @@ Partial Class registrarfrm
         courseBtn.ForeColor = Color.White
         courseBtn.Image = CType(resources.GetObject("courseBtn.Image"), Image)
         courseBtn.ImageAlign = ContentAlignment.MiddleLeft
-        courseBtn.Location = New Point(0, 344)
+        courseBtn.Location = New Point(0, 292)
         courseBtn.Name = "courseBtn"
         courseBtn.Size = New Size(267, 52)
         courseBtn.TabIndex = 8
@@ -134,7 +132,7 @@ Partial Class registrarfrm
         subjectBtn.ForeColor = Color.White
         subjectBtn.Image = CType(resources.GetObject("subjectBtn.Image"), Image)
         subjectBtn.ImageAlign = ContentAlignment.MiddleLeft
-        subjectBtn.Location = New Point(0, 292)
+        subjectBtn.Location = New Point(0, 240)
         subjectBtn.Name = "subjectBtn"
         subjectBtn.Size = New Size(267, 52)
         subjectBtn.TabIndex = 7
@@ -151,29 +149,12 @@ Partial Class registrarfrm
         studBtn.ForeColor = Color.White
         studBtn.Image = CType(resources.GetObject("studBtn.Image"), Image)
         studBtn.ImageAlign = ContentAlignment.MiddleLeft
-        studBtn.Location = New Point(0, 240)
+        studBtn.Location = New Point(0, 188)
         studBtn.Name = "studBtn"
         studBtn.Size = New Size(267, 52)
         studBtn.TabIndex = 6
         studBtn.Text = "STUDENTS"
         studBtn.UseVisualStyleBackColor = False
-        ' 
-        ' reportsBtn
-        ' 
-        reportsBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        reportsBtn.Dock = DockStyle.Top
-        reportsBtn.FlatAppearance.BorderSize = 0
-        reportsBtn.FlatStyle = FlatStyle.Flat
-        reportsBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        reportsBtn.ForeColor = Color.White
-        reportsBtn.Image = CType(resources.GetObject("reportsBtn.Image"), Image)
-        reportsBtn.ImageAlign = ContentAlignment.MiddleLeft
-        reportsBtn.Location = New Point(0, 188)
-        reportsBtn.Name = "reportsBtn"
-        reportsBtn.Size = New Size(267, 52)
-        reportsBtn.TabIndex = 4
-        reportsBtn.Text = "REPORTS"
-        reportsBtn.UseVisualStyleBackColor = False
         ' 
         ' dashboardBtn
         ' 
@@ -244,7 +225,6 @@ Partial Class registrarfrm
     Friend WithEvents courseBtn As Button
     Friend WithEvents subjectBtn As Button
     Friend WithEvents studBtn As Button
-    Friend WithEvents reportsBtn As Button
     Friend WithEvents dashboardBtn As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents PictureBox1 As PictureBox

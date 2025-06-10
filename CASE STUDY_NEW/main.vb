@@ -68,7 +68,7 @@
     End Sub
 
 
-    Private Sub reportsBtn_Click(sender As Object, e As EventArgs) Handles reportsBtn.Click
+    Private Sub reportsBtn_Click(sender As Object, e As EventArgs)
         'reports.show()
     End Sub
 
