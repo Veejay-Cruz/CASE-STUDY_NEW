@@ -5,6 +5,7 @@ Public Class teacher_gradeentry
     Private Sub teacher_gradeentry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateAcademicPeriodLabels()
         LoadTeachingLoads()
+
     End Sub
 
 
@@ -149,6 +150,7 @@ Public Class teacher_gradeentry
                 MessageBox.Show("Error loading students: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
             SetGradeEntryColumnEditability()
+            UpdateStudentCounters()
         End Using
     End Sub
 
@@ -272,6 +274,9 @@ Public Class teacher_gradeentry
             End If
         Next
 
+        ' Update student counters after saving
+        UpdateStudentCounters()
+
 
     End Sub
 
@@ -298,6 +303,27 @@ Public Class teacher_gradeentry
             Return "5.00"
         End If
     End Function
+
+    Private Sub UpdateStudentCounters()
+        Dim total As Integer = 0
+        Dim passed As Integer = 0
+        Dim failed As Integer = 0
+
+        For Each row As DataGridViewRow In DGVGradeEntry.Rows
+            If row.IsNewRow Then Continue For
+            total += 1
+            Dim remarks As String = If(row.Cells("remarks").Value, "").ToString().Trim().ToUpper()
+            If remarks = "PASSED" Then
+                passed += 1
+            ElseIf remarks = "FAILED" Then
+                failed += 1
+            End If
+        Next
+
+        lblstudentcounter.Text = total.ToString()
+        lblpassedcounter.Text = passed.ToString()
+        lblfailedcounter.Text = failed.ToString()
+    End Sub
 
 
 
