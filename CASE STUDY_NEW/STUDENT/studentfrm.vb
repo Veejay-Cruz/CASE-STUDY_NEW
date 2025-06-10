@@ -12,13 +12,6 @@
         childForm.Show()
     End Sub
 
-    Private Sub studentsubjectsBtn_Click(sender As Object, e As EventArgs) Handles studentsubjectsBtn.Click
-
-
-        Dim subjectsForm As New student_subjetcs()
-        subjectsForm.StudentId = StudentId
-        LoadFormInPanel(subjectsForm)
-    End Sub
 
     Private Sub logoutBtn_Click(sender As Object, e As EventArgs) Handles logoutBtn.Click
         Me.Close()
@@ -29,4 +22,7 @@
         LoadFormInPanel(New student_settings)
     End Sub
 
+    Private Sub studentsubjectsBtn_Click(sender As Object, e As EventArgs) Handles studentsubjectsBtn.Click
+        LoadFormInPanel(New student_grades)
+    End Sub
 End Class

@@ -100,7 +100,7 @@ Partial Class studentfrm
         studentsubjectsBtn.Name = "studentsubjectsBtn"
         studentsubjectsBtn.Size = New Size(200, 35)
         studentsubjectsBtn.TabIndex = 7
-        studentsubjectsBtn.Text = "SUBJECTS"
+        studentsubjectsBtn.Text = "GRADES"
         studentsubjectsBtn.UseVisualStyleBackColor = False
         ' 
         ' studentdashboardBtn
