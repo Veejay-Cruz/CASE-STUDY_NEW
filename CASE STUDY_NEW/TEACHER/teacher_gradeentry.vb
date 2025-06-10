@@ -86,8 +86,26 @@ Public Class teacher_gradeentry
             If result = DialogResult.Yes Then
                 LoadStudentsForSubjectSection(subCode, section)
             End If
+            'AddHandler DGVGradeEntry.CellValidating, AddressOf DGVGradeEntry_CellValidating
         End If
     End Sub
+
+
+    Private Sub DGVGradeEntry_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles DGVGradeEntry.CellValidating
+        ' Only validate for the grade columns
+        Dim colName As String = DGVGradeEntry.Columns(e.ColumnIndex).Name.ToLower()
+        If colName = "prelim" OrElse colName = "midterm" OrElse colName = "prefinal" OrElse colName = "final" Then
+            Dim input As String = e.FormattedValue.ToString().Trim()
+            If input <> "" Then
+                Dim grade As Integer
+                If Not Integer.TryParse(input, grade) OrElse grade < 60 OrElse grade > 100 Then
+                    MessageBox.Show("Please enter a valid grade between 60 and 100.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    e.Cancel = True
+                End If
+            End If
+        End If
+    End Sub
+
 
     Private Sub LoadStudentsForSubjectSection(subCode As String, section As String)
         DGVGradeEntry.Rows.Clear()
@@ -218,5 +236,69 @@ Public Class teacher_gradeentry
                 MessageBox.Show("Error saving grades: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
+
+        ' After saving grades, calculate final grade and remarks for each row
+        For Each row As DataGridViewRow In DGVGradeEntry.Rows
+            If row.IsNewRow Then Continue For
+
+            Dim prelim, midterm, prefinal, final As Integer
+            If Integer.TryParse(row.Cells("prelim").Value?.ToString(), prelim) AndAlso
+               Integer.TryParse(row.Cells("midterm").Value?.ToString(), midterm) AndAlso
+               Integer.TryParse(row.Cells("prefinal").Value?.ToString(), prefinal) AndAlso
+               Integer.TryParse(row.Cells("final").Value?.ToString(), final) Then
+
+                Dim avg As Double = (prelim + midterm + prefinal + final) / 4.0
+                Dim eqGrade As String = GetEquivalentGrade(avg)
+                row.Cells("final_grade").Value = eqGrade
+
+                If avg >= 75 Then
+                    row.Cells("remarks").Value = "PASSED"
+                Else
+                    row.Cells("remarks").Value = "FAILED"
+                End If
+
+                ' Optionally, update the grades table with final_grade and remarks
+                Using conn As New MySqlConnection(connString)
+                    conn.Open()
+                    Dim updateQuery As String = "UPDATE grades SET final_grade = @finalGrade, remarks = @remarks WHERE stud_id = @studId AND sub_code = @subCode"
+                    Using cmd As New MySqlCommand(updateQuery, conn)
+                        cmd.Parameters.AddWithValue("@finalGrade", eqGrade)
+                        cmd.Parameters.AddWithValue("@remarks", row.Cells("remarks").Value.ToString())
+                        cmd.Parameters.AddWithValue("@studId", row.Cells("stud_id").Value.ToString())
+                        cmd.Parameters.AddWithValue("@subCode", row.Cells("subject").Value.ToString())
+                        cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+            End If
+        Next
+
+
     End Sub
+
+    Private Function GetEquivalentGrade(avg As Double) As String
+        If avg >= 99 AndAlso avg <= 100 Then
+            Return "1.00"
+        ElseIf avg >= 96 AndAlso avg <= 98 Then
+            Return "1.25"
+        ElseIf avg >= 93 AndAlso avg <= 95 Then
+            Return "1.50"
+        ElseIf avg >= 90 AndAlso avg <= 92 Then
+            Return "1.75"
+        ElseIf avg >= 87 AndAlso avg <= 89 Then
+            Return "2.00"
+        ElseIf avg >= 84 AndAlso avg <= 86 Then
+            Return "2.25"
+        ElseIf avg >= 81 AndAlso avg <= 83 Then
+            Return "2.50"
+        ElseIf avg >= 78 AndAlso avg <= 80 Then
+            Return "2.75"
+        ElseIf avg >= 75 AndAlso avg <= 77 Then
+            Return "3.00"
+        Else
+            Return "5.00"
+        End If
+    End Function
+
+
+
 End Class
