@@ -31,4 +31,6 @@
     Private Sub btnDepartment_Click(sender As Object, e As EventArgs) Handles btnDepartment.Click
         LoadFormInPanel(New department())
     End Sub
+
+
 End Class

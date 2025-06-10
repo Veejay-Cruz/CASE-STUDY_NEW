@@ -41,7 +41,7 @@ Partial Class teacherfrm
         ' 
         teacherPanel.Location = New Point(273, 0)
         teacherPanel.Name = "teacherPanel"
-        teacherPanel.Size = New Size(1567, 687)
+        teacherPanel.Size = New Size(1567, 776)
         teacherPanel.TabIndex = 12
         ' 
         ' Panel2
@@ -66,6 +66,7 @@ Partial Class teacherfrm
         btnSchoolyr.FlatAppearance.BorderSize = 0
         btnSchoolyr.FlatStyle = FlatStyle.Flat
         btnSchoolyr.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        btnSchoolyr.ForeColor = Color.White
         btnSchoolyr.Image = CType(resources.GetObject("btnSchoolyr.Image"), Image)
         btnSchoolyr.ImageAlign = ContentAlignment.MiddleLeft
         btnSchoolyr.Location = New Point(0, 292)
@@ -81,6 +82,8 @@ Partial Class teacherfrm
         logoutBtn.Dock = DockStyle.Bottom
         logoutBtn.FlatAppearance.BorderSize = 0
         logoutBtn.FlatStyle = FlatStyle.Flat
+        logoutBtn.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        logoutBtn.ForeColor = Color.White
         logoutBtn.Location = New Point(0, 741)
         logoutBtn.Name = "logoutBtn"
         logoutBtn.Size = New Size(267, 35)
@@ -95,6 +98,7 @@ Partial Class teacherfrm
         settingsBtn.FlatAppearance.BorderSize = 0
         settingsBtn.FlatStyle = FlatStyle.Flat
         settingsBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        settingsBtn.ForeColor = Color.White
         settingsBtn.Image = CType(resources.GetObject("settingsBtn.Image"), Image)
         settingsBtn.ImageAlign = ContentAlignment.MiddleLeft
         settingsBtn.Location = New Point(0, 240)
@@ -111,6 +115,7 @@ Partial Class teacherfrm
         gradeEntryBtn.FlatAppearance.BorderSize = 0
         gradeEntryBtn.FlatStyle = FlatStyle.Flat
         gradeEntryBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        gradeEntryBtn.ForeColor = Color.White
         gradeEntryBtn.Image = CType(resources.GetObject("gradeEntryBtn.Image"), Image)
         gradeEntryBtn.ImageAlign = ContentAlignment.MiddleLeft
         gradeEntryBtn.Location = New Point(0, 188)
@@ -127,6 +132,7 @@ Partial Class teacherfrm
         dashboardBtn.FlatAppearance.BorderSize = 0
         dashboardBtn.FlatStyle = FlatStyle.Flat
         dashboardBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        dashboardBtn.ForeColor = Color.White
         dashboardBtn.Image = CType(resources.GetObject("dashboardBtn.Image"), Image)
         dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft
         dashboardBtn.Location = New Point(0, 136)

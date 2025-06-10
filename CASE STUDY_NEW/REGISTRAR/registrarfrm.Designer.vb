@@ -65,6 +65,7 @@ Partial Class registrarfrm
         btnDepartment.FlatAppearance.BorderSize = 0
         btnDepartment.FlatStyle = FlatStyle.Flat
         btnDepartment.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        btnDepartment.ForeColor = Color.White
         btnDepartment.Image = CType(resources.GetObject("btnDepartment.Image"), Image)
         btnDepartment.ImageAlign = ContentAlignment.MiddleLeft
         btnDepartment.Location = New Point(0, 448)
@@ -80,9 +81,11 @@ Partial Class registrarfrm
         logoutBtn.Dock = DockStyle.Bottom
         logoutBtn.FlatAppearance.BorderSize = 0
         logoutBtn.FlatStyle = FlatStyle.Flat
-        logoutBtn.Location = New Point(0, 879)
+        logoutBtn.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        logoutBtn.ForeColor = Color.White
+        logoutBtn.Location = New Point(0, 875)
         logoutBtn.Name = "logoutBtn"
-        logoutBtn.Size = New Size(267, 35)
+        logoutBtn.Size = New Size(267, 39)
         logoutBtn.TabIndex = 12
         logoutBtn.Text = "LOGOUT"
         logoutBtn.UseVisualStyleBackColor = False
@@ -94,6 +97,7 @@ Partial Class registrarfrm
         syBtn.FlatAppearance.BorderSize = 0
         syBtn.FlatStyle = FlatStyle.Flat
         syBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        syBtn.ForeColor = Color.White
         syBtn.Image = CType(resources.GetObject("syBtn.Image"), Image)
         syBtn.ImageAlign = ContentAlignment.MiddleLeft
         syBtn.Location = New Point(0, 396)
@@ -110,6 +114,7 @@ Partial Class registrarfrm
         courseBtn.FlatAppearance.BorderSize = 0
         courseBtn.FlatStyle = FlatStyle.Flat
         courseBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        courseBtn.ForeColor = Color.White
         courseBtn.Image = CType(resources.GetObject("courseBtn.Image"), Image)
         courseBtn.ImageAlign = ContentAlignment.MiddleLeft
         courseBtn.Location = New Point(0, 344)
@@ -126,6 +131,7 @@ Partial Class registrarfrm
         subjectBtn.FlatAppearance.BorderSize = 0
         subjectBtn.FlatStyle = FlatStyle.Flat
         subjectBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        subjectBtn.ForeColor = Color.White
         subjectBtn.Image = CType(resources.GetObject("subjectBtn.Image"), Image)
         subjectBtn.ImageAlign = ContentAlignment.MiddleLeft
         subjectBtn.Location = New Point(0, 292)
@@ -142,6 +148,7 @@ Partial Class registrarfrm
         studBtn.FlatAppearance.BorderSize = 0
         studBtn.FlatStyle = FlatStyle.Flat
         studBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        studBtn.ForeColor = Color.White
         studBtn.Image = CType(resources.GetObject("studBtn.Image"), Image)
         studBtn.ImageAlign = ContentAlignment.MiddleLeft
         studBtn.Location = New Point(0, 240)
@@ -158,6 +165,7 @@ Partial Class registrarfrm
         reportsBtn.FlatAppearance.BorderSize = 0
         reportsBtn.FlatStyle = FlatStyle.Flat
         reportsBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        reportsBtn.ForeColor = Color.White
         reportsBtn.Image = CType(resources.GetObject("reportsBtn.Image"), Image)
         reportsBtn.ImageAlign = ContentAlignment.MiddleLeft
         reportsBtn.Location = New Point(0, 188)
@@ -174,6 +182,7 @@ Partial Class registrarfrm
         dashboardBtn.FlatAppearance.BorderSize = 0
         dashboardBtn.FlatStyle = FlatStyle.Flat
         dashboardBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        dashboardBtn.ForeColor = Color.White
         dashboardBtn.Image = CType(resources.GetObject("dashboardBtn.Image"), Image)
         dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft
         dashboardBtn.Location = New Point(0, 136)
