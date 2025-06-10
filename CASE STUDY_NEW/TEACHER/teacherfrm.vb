@@ -27,4 +27,8 @@
     Private Sub btnSchoolyr_Click(sender As Object, e As EventArgs) Handles btnSchoolyr.Click
         LoadFormInPanel(New schoolyear)
     End Sub
+
+    Private Sub teacherfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadFormInPanel(New teacher_gradeentry)
+    End Sub
 End Class

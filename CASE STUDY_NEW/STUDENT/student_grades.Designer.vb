@@ -23,30 +23,39 @@ Partial Class student_grades
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(student_grades))
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         Label2 = New Label()
         MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         AloneComboBox1 = New ReaLTaiizor.Controls.AloneComboBox()
         printBtn = New Button()
-        DataGridView1 = New DataGridView()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        DGVSub = New DataGridView()
+        sub_code = New DataGridViewTextBoxColumn()
+        ssub = New DataGridViewTextBoxColumn()
+        unitt = New DataGridViewTextBoxColumn()
+        CType(DGVSub, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(46, 48)
+        Label1.Location = New Point(40, 36)
         Label1.Name = "Label1"
-        Label1.Size = New Size(91, 20)
+        Label1.Size = New Size(71, 15)
         Label1.TabIndex = 0
         Label1.Text = "View Grades"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(54, 96)
+        Label2.Location = New Point(47, 72)
         Label2.Name = "Label2"
-        Label2.Size = New Size(86, 20)
+        Label2.Size = New Size(68, 15)
         Label2.TabIndex = 1
         Label2.Text = "School Year"
         ' 
@@ -64,10 +73,9 @@ Partial Class student_grades
         AloneComboBox1.EnabledCalc = True
         AloneComboBox1.FormattingEnabled = True
         AloneComboBox1.ItemHeight = 20
-        AloneComboBox1.Location = New Point(54, 120)
-        AloneComboBox1.Margin = New Padding(3, 4, 3, 4)
+        AloneComboBox1.Location = New Point(47, 90)
         AloneComboBox1.Name = "AloneComboBox1"
-        AloneComboBox1.Size = New Size(215, 26)
+        AloneComboBox1.Size = New Size(189, 26)
         AloneComboBox1.TabIndex = 4
         ' 
         ' printBtn
@@ -78,41 +86,103 @@ Partial Class student_grades
         printBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
         printBtn.Image = CType(resources.GetObject("printBtn.Image"), Image)
         printBtn.ImageAlign = ContentAlignment.MiddleLeft
-        printBtn.Location = New Point(855, 721)
-        printBtn.Margin = New Padding(3, 4, 3, 4)
+        printBtn.Location = New Point(779, 99)
         printBtn.Name = "printBtn"
-        printBtn.Size = New Size(107, 45)
+        printBtn.Size = New Size(94, 34)
         printBtn.TabIndex = 14
         printBtn.Text = "PRINT"
         printBtn.TextAlign = ContentAlignment.MiddleRight
         printBtn.UseVisualStyleBackColor = False
         ' 
-        ' DataGridView1
+        ' DGVSub
         ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(54, 179)
-        DataGridView1.Margin = New Padding(3, 4, 3, 4)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(909, 504)
-        DataGridView1.TabIndex = 15
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = Color.White
+        DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = Color.Black
+        DGVSub.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DGVSub.BackgroundColor = SystemColors.ControlLightLight
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle2.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        DGVSub.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DGVSub.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DGVSub.Columns.AddRange(New DataGridViewColumn() {sub_code, ssub, unitt})
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.White
+        DataGridViewCellStyle5.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.Black
+        DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle5.SelectionForeColor = Color.White
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
+        DGVSub.DefaultCellStyle = DataGridViewCellStyle5
+        DGVSub.EnableHeadersVisualStyles = False
+        DGVSub.Location = New Point(12, 139)
+        DGVSub.Name = "DGVSub"
+        DGVSub.ReadOnly = True
+        DGVSub.RowHeadersVisible = False
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = Color.White
+        DataGridViewCellStyle6.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle6.ForeColor = Color.Black
+        DataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle6.SelectionForeColor = Color.White
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
+        DGVSub.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DGVSub.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DGVSub.Size = New Size(861, 396)
+        DGVSub.TabIndex = 41
+        ' 
+        ' sub_code
+        ' 
+        sub_code.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.Black
+        sub_code.DefaultCellStyle = DataGridViewCellStyle3
+        sub_code.HeaderText = "SUBJECT CODE"
+        sub_code.Name = "sub_code"
+        sub_code.ReadOnly = True
+        sub_code.Width = 125
+        ' 
+        ' ssub
+        ' 
+        ssub.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.Black
+        ssub.DefaultCellStyle = DataGridViewCellStyle4
+        ssub.HeaderText = "SUBJECT"
+        ssub.Name = "ssub"
+        ssub.ReadOnly = True
+        ' 
+        ' unitt
+        ' 
+        unitt.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        unitt.HeaderText = "UNIT"
+        unitt.Name = "unitt"
+        unitt.ReadOnly = True
+        unitt.Width = 60
         ' 
         ' student_grades
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1011, 815)
-        Controls.Add(DataGridView1)
+        ClientSize = New Size(885, 611)
+        Controls.Add(DGVSub)
         Controls.Add(printBtn)
         Controls.Add(AloneComboBox1)
         Controls.Add(Label2)
         Controls.Add(Label1)
         FormBorderStyle = FormBorderStyle.None
-        Margin = New Padding(3, 4, 3, 4)
         Name = "student_grades"
         StartPosition = FormStartPosition.CenterScreen
         Text = "student_grades"
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(DGVSub, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -122,5 +192,8 @@ Partial Class student_grades
     Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
     Friend WithEvents AloneComboBox1 As ReaLTaiizor.Controls.AloneComboBox
     Friend WithEvents printBtn As Button
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DGVSub As DataGridView
+    Friend WithEvents sub_code As DataGridViewTextBoxColumn
+    Friend WithEvents ssub As DataGridViewTextBoxColumn
+    Friend WithEvents unitt As DataGridViewTextBoxColumn
 End Class

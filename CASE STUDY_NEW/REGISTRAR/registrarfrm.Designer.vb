@@ -196,9 +196,10 @@ Partial Class registrarfrm
         ' mainPanel
         ' 
         mainPanel.BackColor = Color.White
-        mainPanel.Location = New Point(273, 0)
+        mainPanel.Dock = DockStyle.Fill
+        mainPanel.Location = New Point(267, 0)
         mainPanel.Name = "mainPanel"
-        mainPanel.Size = New Size(1619, 902)
+        mainPanel.Size = New Size(1623, 914)
         mainPanel.TabIndex = 12
         ' 
         ' registrarfrm

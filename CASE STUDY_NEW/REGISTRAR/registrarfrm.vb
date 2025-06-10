@@ -32,5 +32,7 @@
         LoadFormInPanel(New department())
     End Sub
 
-
+    Private Sub registrarfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadFormInPanel(New dashboard)
+    End Sub
 End Class

@@ -29,7 +29,6 @@ Partial Class teacherfrm
         logoutBtn = New Button()
         settingsBtn = New Button()
         gradeEntryBtn = New Button()
-        dashboardBtn = New Button()
         Panel3 = New Panel()
         PictureBox2 = New PictureBox()
         Panel2.SuspendLayout()
@@ -51,7 +50,6 @@ Partial Class teacherfrm
         Panel2.Controls.Add(logoutBtn)
         Panel2.Controls.Add(settingsBtn)
         Panel2.Controls.Add(gradeEntryBtn)
-        Panel2.Controls.Add(dashboardBtn)
         Panel2.Controls.Add(Panel3)
         Panel2.Dock = DockStyle.Left
         Panel2.Location = New Point(0, 0)
@@ -69,7 +67,7 @@ Partial Class teacherfrm
         btnSchoolyr.ForeColor = Color.White
         btnSchoolyr.Image = CType(resources.GetObject("btnSchoolyr.Image"), Image)
         btnSchoolyr.ImageAlign = ContentAlignment.MiddleLeft
-        btnSchoolyr.Location = New Point(0, 292)
+        btnSchoolyr.Location = New Point(0, 240)
         btnSchoolyr.Name = "btnSchoolyr"
         btnSchoolyr.Size = New Size(267, 52)
         btnSchoolyr.TabIndex = 13
@@ -101,7 +99,7 @@ Partial Class teacherfrm
         settingsBtn.ForeColor = Color.White
         settingsBtn.Image = CType(resources.GetObject("settingsBtn.Image"), Image)
         settingsBtn.ImageAlign = ContentAlignment.MiddleLeft
-        settingsBtn.Location = New Point(0, 240)
+        settingsBtn.Location = New Point(0, 188)
         settingsBtn.Name = "settingsBtn"
         settingsBtn.Size = New Size(267, 52)
         settingsBtn.TabIndex = 8
@@ -118,29 +116,12 @@ Partial Class teacherfrm
         gradeEntryBtn.ForeColor = Color.White
         gradeEntryBtn.Image = CType(resources.GetObject("gradeEntryBtn.Image"), Image)
         gradeEntryBtn.ImageAlign = ContentAlignment.MiddleLeft
-        gradeEntryBtn.Location = New Point(0, 188)
+        gradeEntryBtn.Location = New Point(0, 136)
         gradeEntryBtn.Name = "gradeEntryBtn"
         gradeEntryBtn.Size = New Size(267, 52)
         gradeEntryBtn.TabIndex = 5
         gradeEntryBtn.Text = "GRADE ENTRY"
         gradeEntryBtn.UseVisualStyleBackColor = False
-        ' 
-        ' dashboardBtn
-        ' 
-        dashboardBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        dashboardBtn.Dock = DockStyle.Top
-        dashboardBtn.FlatAppearance.BorderSize = 0
-        dashboardBtn.FlatStyle = FlatStyle.Flat
-        dashboardBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        dashboardBtn.ForeColor = Color.White
-        dashboardBtn.Image = CType(resources.GetObject("dashboardBtn.Image"), Image)
-        dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft
-        dashboardBtn.Location = New Point(0, 136)
-        dashboardBtn.Name = "dashboardBtn"
-        dashboardBtn.Size = New Size(267, 52)
-        dashboardBtn.TabIndex = 3
-        dashboardBtn.Text = "DASHBOARD"
-        dashboardBtn.UseVisualStyleBackColor = False
         ' 
         ' Panel3
         ' 
@@ -185,7 +166,6 @@ Partial Class teacherfrm
     Friend WithEvents logoutBtn As Button
     Friend WithEvents settingsBtn As Button
     Friend WithEvents gradeEntryBtn As Button
-    Friend WithEvents dashboardBtn As Button
     Friend WithEvents Panel3 As Panel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents teacherPanel As Panel

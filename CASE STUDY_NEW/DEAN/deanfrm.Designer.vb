@@ -30,7 +30,6 @@ Partial Class deanfrm
         subjectmanBtn = New Button()
         coursemanagementBtn = New Button()
         gradeentryBtn = New Button()
-        dashboardBtn = New Button()
         Panel4 = New Panel()
         PictureBox1 = New PictureBox()
         mainPanel = New Panel()
@@ -48,7 +47,6 @@ Partial Class deanfrm
         Panel1.Controls.Add(subjectmanBtn)
         Panel1.Controls.Add(coursemanagementBtn)
         Panel1.Controls.Add(gradeentryBtn)
-        Panel1.Controls.Add(dashboardBtn)
         Panel1.Controls.Add(Panel4)
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
@@ -66,7 +64,7 @@ Partial Class deanfrm
         settingsBtn.ForeColor = Color.White
         settingsBtn.Image = CType(resources.GetObject("settingsBtn.Image"), Image)
         settingsBtn.ImageAlign = ContentAlignment.MiddleLeft
-        settingsBtn.Location = New Point(0, 396)
+        settingsBtn.Location = New Point(0, 344)
         settingsBtn.Name = "settingsBtn"
         settingsBtn.Size = New Size(267, 48)
         settingsBtn.TabIndex = 8
@@ -83,7 +81,7 @@ Partial Class deanfrm
         sectionBtn.ForeColor = Color.White
         sectionBtn.Image = CType(resources.GetObject("sectionBtn.Image"), Image)
         sectionBtn.ImageAlign = ContentAlignment.MiddleLeft
-        sectionBtn.Location = New Point(0, 344)
+        sectionBtn.Location = New Point(0, 292)
         sectionBtn.Name = "sectionBtn"
         sectionBtn.Size = New Size(267, 52)
         sectionBtn.TabIndex = 13
@@ -115,7 +113,7 @@ Partial Class deanfrm
         subjectmanBtn.ForeColor = Color.White
         subjectmanBtn.Image = CType(resources.GetObject("subjectmanBtn.Image"), Image)
         subjectmanBtn.ImageAlign = ContentAlignment.MiddleLeft
-        subjectmanBtn.Location = New Point(0, 292)
+        subjectmanBtn.Location = New Point(0, 240)
         subjectmanBtn.Name = "subjectmanBtn"
         subjectmanBtn.Size = New Size(267, 52)
         subjectmanBtn.TabIndex = 7
@@ -132,7 +130,7 @@ Partial Class deanfrm
         coursemanagementBtn.ForeColor = Color.White
         coursemanagementBtn.Image = CType(resources.GetObject("coursemanagementBtn.Image"), Image)
         coursemanagementBtn.ImageAlign = ContentAlignment.MiddleLeft
-        coursemanagementBtn.Location = New Point(0, 240)
+        coursemanagementBtn.Location = New Point(0, 188)
         coursemanagementBtn.Name = "coursemanagementBtn"
         coursemanagementBtn.Size = New Size(267, 52)
         coursemanagementBtn.TabIndex = 6
@@ -149,29 +147,12 @@ Partial Class deanfrm
         gradeentryBtn.ForeColor = Color.White
         gradeentryBtn.Image = CType(resources.GetObject("gradeentryBtn.Image"), Image)
         gradeentryBtn.ImageAlign = ContentAlignment.MiddleLeft
-        gradeentryBtn.Location = New Point(0, 188)
+        gradeentryBtn.Location = New Point(0, 136)
         gradeentryBtn.Name = "gradeentryBtn"
         gradeentryBtn.Size = New Size(267, 52)
         gradeentryBtn.TabIndex = 5
         gradeentryBtn.Text = "GRADE ENTRY"
         gradeentryBtn.UseVisualStyleBackColor = False
-        ' 
-        ' dashboardBtn
-        ' 
-        dashboardBtn.BackColor = Color.FromArgb(CByte(39), CByte(60), CByte(117))
-        dashboardBtn.Dock = DockStyle.Top
-        dashboardBtn.FlatAppearance.BorderSize = 0
-        dashboardBtn.FlatStyle = FlatStyle.Flat
-        dashboardBtn.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        dashboardBtn.ForeColor = Color.White
-        dashboardBtn.Image = CType(resources.GetObject("dashboardBtn.Image"), Image)
-        dashboardBtn.ImageAlign = ContentAlignment.MiddleLeft
-        dashboardBtn.Location = New Point(0, 136)
-        dashboardBtn.Name = "dashboardBtn"
-        dashboardBtn.Size = New Size(267, 52)
-        dashboardBtn.TabIndex = 3
-        dashboardBtn.Text = "DASHBOARD"
-        dashboardBtn.UseVisualStyleBackColor = False
         ' 
         ' Panel4
         ' 
@@ -224,7 +205,6 @@ Partial Class deanfrm
     Friend WithEvents subjectmanBtn As Button
     Friend WithEvents coursemanagementBtn As Button
     Friend WithEvents gradeentryBtn As Button
-    Friend WithEvents dashboardBtn As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents settingsBtn As Button
