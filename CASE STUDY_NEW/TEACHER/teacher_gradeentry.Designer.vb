@@ -66,6 +66,12 @@ Partial Class teacher_gradeentry
         lblSchoolyr = New Label()
         Label6 = New Label()
         btnSave = New Button()
+        lblOD = New Label()
+        lblUOD = New Label()
+        Label7 = New Label()
+        Label12 = New Label()
+        lblINC = New Label()
+        Label14 = New Label()
         CType(DGVGradeEntry, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVTeachingloads, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -193,7 +199,6 @@ Partial Class teacher_gradeentry
         remarks.DataPropertyName = "remarks"
         remarks.HeaderText = "REMARKS"
         remarks.Name = "remarks"
-        remarks.ReadOnly = True
         ' 
         ' DGVTeachingloads
         ' 
@@ -309,7 +314,7 @@ Partial Class teacher_gradeentry
         Label1.AutoSize = True
         Label1.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.Black
-        Label1.Location = New Point(484, 98)
+        Label1.Location = New Point(468, 98)
         Label1.Name = "Label1"
         Label1.Size = New Size(141, 19)
         Label1.TabIndex = 48
@@ -320,7 +325,7 @@ Partial Class teacher_gradeentry
         Label10.AutoSize = True
         Label10.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label10.ForeColor = Color.Black
-        Label10.Location = New Point(784, 98)
+        Label10.Location = New Point(720, 98)
         Label10.Name = "Label10"
         Label10.Size = New Size(72, 19)
         Label10.TabIndex = 49
@@ -331,7 +336,7 @@ Partial Class teacher_gradeentry
         Label11.AutoSize = True
         Label11.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label11.ForeColor = Color.Black
-        Label11.Location = New Point(1020, 98)
+        Label11.Location = New Point(902, 98)
         Label11.Name = "Label11"
         Label11.Size = New Size(66, 19)
         Label11.TabIndex = 50
@@ -342,7 +347,7 @@ Partial Class teacher_gradeentry
         lblstudentcounter.AutoSize = True
         lblstudentcounter.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblstudentcounter.ForeColor = Color.Black
-        lblstudentcounter.Location = New Point(631, 98)
+        lblstudentcounter.Location = New Point(615, 98)
         lblstudentcounter.Name = "lblstudentcounter"
         lblstudentcounter.Size = New Size(24, 19)
         lblstudentcounter.TabIndex = 51
@@ -353,7 +358,7 @@ Partial Class teacher_gradeentry
         lblpassedcounter.AutoSize = True
         lblpassedcounter.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblpassedcounter.ForeColor = Color.Black
-        lblpassedcounter.Location = New Point(862, 98)
+        lblpassedcounter.Location = New Point(798, 98)
         lblpassedcounter.Name = "lblpassedcounter"
         lblpassedcounter.Size = New Size(24, 19)
         lblpassedcounter.TabIndex = 52
@@ -364,7 +369,7 @@ Partial Class teacher_gradeentry
         lblfailedcounter.AutoSize = True
         lblfailedcounter.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblfailedcounter.ForeColor = Color.Black
-        lblfailedcounter.Location = New Point(1092, 98)
+        lblfailedcounter.Location = New Point(974, 98)
         lblfailedcounter.Name = "lblfailedcounter"
         lblfailedcounter.Size = New Size(24, 19)
         lblfailedcounter.TabIndex = 53
@@ -375,7 +380,7 @@ Partial Class teacher_gradeentry
         lblTerm.AutoSize = True
         lblTerm.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblTerm.ForeColor = Color.Black
-        lblTerm.Location = New Point(1145, 20)
+        lblTerm.Location = New Point(1004, 20)
         lblTerm.Name = "lblTerm"
         lblTerm.Size = New Size(29, 19)
         lblTerm.TabIndex = 59
@@ -386,7 +391,7 @@ Partial Class teacher_gradeentry
         Label2.AutoSize = True
         Label2.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label2.ForeColor = Color.Black
-        Label2.Location = New Point(1081, 20)
+        Label2.Location = New Point(940, 20)
         Label2.Name = "Label2"
         Label2.Size = New Size(58, 19)
         Label2.TabIndex = 58
@@ -397,7 +402,7 @@ Partial Class teacher_gradeentry
         lblSem.AutoSize = True
         lblSem.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblSem.ForeColor = Color.Black
-        lblSem.Location = New Point(1000, 20)
+        lblSem.Location = New Point(818, 20)
         lblSem.Name = "lblSem"
         lblSem.Size = New Size(29, 19)
         lblSem.TabIndex = 57
@@ -408,7 +413,7 @@ Partial Class teacher_gradeentry
         Label3.AutoSize = True
         Label3.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.Black
-        Label3.Location = New Point(902, 20)
+        Label3.Location = New Point(720, 20)
         Label3.Name = "Label3"
         Label3.Size = New Size(92, 19)
         Label3.TabIndex = 56
@@ -419,7 +424,7 @@ Partial Class teacher_gradeentry
         lblSchoolyr.AutoSize = True
         lblSchoolyr.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblSchoolyr.ForeColor = Color.Black
-        lblSchoolyr.Location = New Point(741, 20)
+        lblSchoolyr.Location = New Point(600, 20)
         lblSchoolyr.Name = "lblSchoolyr"
         lblSchoolyr.Size = New Size(29, 19)
         lblSchoolyr.TabIndex = 55
@@ -430,7 +435,7 @@ Partial Class teacher_gradeentry
         Label6.AutoSize = True
         Label6.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label6.ForeColor = Color.Black
-        Label6.Location = New Point(606, 20)
+        Label6.Location = New Point(465, 20)
         Label6.Name = "Label6"
         Label6.Size = New Size(129, 19)
         Label6.TabIndex = 54
@@ -445,12 +450,84 @@ Partial Class teacher_gradeentry
         btnSave.Text = "SAVE"
         btnSave.UseVisualStyleBackColor = True
         ' 
+        ' lblOD
+        ' 
+        lblOD.AutoSize = True
+        lblOD.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        lblOD.ForeColor = Color.Black
+        lblOD.Location = New Point(1241, 98)
+        lblOD.Name = "lblOD"
+        lblOD.Size = New Size(24, 19)
+        lblOD.TabIndex = 64
+        lblOD.Text = "---"
+        ' 
+        ' lblUOD
+        ' 
+        lblUOD.AutoSize = True
+        lblUOD.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        lblUOD.ForeColor = Color.Black
+        lblUOD.Location = New Point(1123, 98)
+        lblUOD.Name = "lblUOD"
+        lblUOD.Size = New Size(24, 19)
+        lblUOD.TabIndex = 63
+        lblUOD.Text = "---"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label7.ForeColor = Color.Black
+        Label7.Location = New Point(1195, 98)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(40, 19)
+        Label7.TabIndex = 62
+        Label7.Text = "OD:"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label12.ForeColor = Color.Black
+        Label12.Location = New Point(1067, 98)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(50, 19)
+        Label12.TabIndex = 61
+        Label12.Text = "UOD:"
+        ' 
+        ' lblINC
+        ' 
+        lblINC.AutoSize = True
+        lblINC.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        lblINC.ForeColor = Color.Black
+        lblINC.Location = New Point(1360, 98)
+        lblINC.Name = "lblINC"
+        lblINC.Size = New Size(24, 19)
+        lblINC.TabIndex = 66
+        lblINC.Text = "---"
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label14.ForeColor = Color.Black
+        Label14.Location = New Point(1314, 98)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(43, 19)
+        Label14.TabIndex = 65
+        Label14.Text = "INC:"
+        ' 
         ' teacher_gradeentry
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1567, 687)
         ControlBox = False
+        Controls.Add(lblINC)
+        Controls.Add(Label14)
+        Controls.Add(lblOD)
+        Controls.Add(lblUOD)
+        Controls.Add(Label7)
+        Controls.Add(Label12)
         Controls.Add(btnSave)
         Controls.Add(lblTerm)
         Controls.Add(Label2)
@@ -509,4 +586,10 @@ Partial Class teacher_gradeentry
     Friend WithEvents final As DataGridViewTextBoxColumn
     Friend WithEvents final_grade As DataGridViewTextBoxColumn
     Friend WithEvents remarks As DataGridViewTextBoxColumn
+    Friend WithEvents lblOD As Label
+    Friend WithEvents lblUOD As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents lblINC As Label
+    Friend WithEvents Label14 As Label
 End Class

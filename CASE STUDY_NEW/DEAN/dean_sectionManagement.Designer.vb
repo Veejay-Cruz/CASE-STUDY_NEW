@@ -362,6 +362,8 @@ Partial Class dean_sectionManagement
         editt.HeaderText = "EDIT"
         editt.Name = "editt"
         editt.ReadOnly = True
+        editt.Text = "EDIT"
+        editt.UseColumnTextForButtonValue = True
         editt.Width = 80
         ' 
         ' delete
@@ -370,6 +372,8 @@ Partial Class dean_sectionManagement
         delete.HeaderText = "DELETE"
         delete.Name = "delete"
         delete.ReadOnly = True
+        delete.Text = "DELETE"
+        delete.UseColumnTextForButtonValue = True
         delete.Width = 80
         ' 
         ' dean_sectionManagement

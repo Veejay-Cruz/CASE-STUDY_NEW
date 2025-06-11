@@ -42,6 +42,14 @@ Partial Class dean_subjectManagement
         Label1 = New Label()
         Label2 = New Label()
         DGVSection = New DataGridView()
+        teacher_id = New DataGridViewTextBoxColumn()
+        tLname = New DataGridViewTextBoxColumn()
+        tfname = New DataGridViewTextBoxColumn()
+        sub_code = New DataGridViewTextBoxColumn()
+        courseE = New DataGridViewTextBoxColumn()
+        section = New DataGridViewTextBoxColumn()
+        yearlevel = New DataGridViewTextBoxColumn()
+        semester = New DataGridViewTextBoxColumn()
         Label3 = New Label()
         Label4 = New Label()
         createPnl2 = New Panel()
@@ -63,14 +71,6 @@ Partial Class dean_subjectManagement
         Label11 = New Label()
         lblSchoolyr = New Label()
         Label14 = New Label()
-        teacher_id = New DataGridViewTextBoxColumn()
-        tLname = New DataGridViewTextBoxColumn()
-        tfname = New DataGridViewTextBoxColumn()
-        sub_code = New DataGridViewTextBoxColumn()
-        courseE = New DataGridViewTextBoxColumn()
-        section = New DataGridViewTextBoxColumn()
-        yearlevel = New DataGridViewTextBoxColumn()
-        semester = New DataGridViewTextBoxColumn()
         CType(DGVDepartment, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVSection, ComponentModel.ISupportInitialize).BeginInit()
         createPnl2.SuspendLayout()
@@ -228,6 +228,74 @@ Partial Class dean_subjectManagement
         DGVSection.Size = New Size(634, 479)
         DGVSection.TabIndex = 49
         ' 
+        ' teacher_id
+        ' 
+        teacher_id.DataPropertyName = "teacher_id"
+        teacher_id.HeaderText = "TEACHER ID"
+        teacher_id.Name = "teacher_id"
+        teacher_id.ReadOnly = True
+        ' 
+        ' tLname
+        ' 
+        tLname.HeaderText = "LAST NAME"
+        tLname.Name = "tLname"
+        tLname.ReadOnly = True
+        ' 
+        ' tfname
+        ' 
+        tfname.HeaderText = "FIRST NAME"
+        tfname.Name = "tfname"
+        tfname.ReadOnly = True
+        ' 
+        ' sub_code
+        ' 
+        sub_code.DataPropertyName = "sub_code"
+        sub_code.HeaderText = "SUBJECT"
+        sub_code.Name = "sub_code"
+        sub_code.ReadOnly = True
+        ' 
+        ' courseE
+        ' 
+        courseE.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        courseE.DataPropertyName = "course"
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle9.ForeColor = Color.Black
+        courseE.DefaultCellStyle = DataGridViewCellStyle9
+        courseE.HeaderText = "COURSE"
+        courseE.Name = "courseE"
+        courseE.ReadOnly = True
+        courseE.Width = 83
+        ' 
+        ' section
+        ' 
+        section.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        section.DataPropertyName = "section"
+        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle10.ForeColor = Color.Black
+        section.DefaultCellStyle = DataGridViewCellStyle10
+        section.HeaderText = "SECTION"
+        section.Name = "section"
+        section.ReadOnly = True
+        section.Width = 87
+        ' 
+        ' yearlevel
+        ' 
+        yearlevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        yearlevel.DataPropertyName = "yearlevel"
+        yearlevel.HeaderText = "YEAR LEVEL"
+        yearlevel.Name = "yearlevel"
+        yearlevel.ReadOnly = True
+        yearlevel.Width = 104
+        ' 
+        ' semester
+        ' 
+        semester.DataPropertyName = "semester"
+        semester.HeaderText = "SEMESTER"
+        semester.Name = "semester"
+        semester.ReadOnly = True
+        ' 
         ' Label3
         ' 
         Label3.AutoSize = True
@@ -365,11 +433,11 @@ Partial Class dean_subjectManagement
         Label7.BackColor = Color.MidnightBlue
         Label7.Font = New Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label7.ForeColor = Color.White
-        Label7.Location = New Point(154, 26)
+        Label7.Location = New Point(154, 24)
         Label7.Name = "Label7"
-        Label7.Size = New Size(211, 25)
+        Label7.Size = New Size(185, 25)
         Label7.TabIndex = 15
-        Label7.Text = "ASSIGN PROFESSOR"
+        Label7.Text = "ASSIGN TEACHER"
         ' 
         ' btnCancel
         ' 
@@ -459,74 +527,6 @@ Partial Class dean_subjectManagement
         Label14.Size = New Size(129, 19)
         Label14.TabIndex = 55
         Label14.Text = "SCHOOL YEAR: "
-        ' 
-        ' teacher_id
-        ' 
-        teacher_id.DataPropertyName = "teacher_id"
-        teacher_id.HeaderText = "TEACHER ID"
-        teacher_id.Name = "teacher_id"
-        teacher_id.ReadOnly = True
-        ' 
-        ' tLname
-        ' 
-        tLname.HeaderText = "LAST NAME"
-        tLname.Name = "tLname"
-        tLname.ReadOnly = True
-        ' 
-        ' tfname
-        ' 
-        tfname.HeaderText = "FIRST NAME"
-        tfname.Name = "tfname"
-        tfname.ReadOnly = True
-        ' 
-        ' sub_code
-        ' 
-        sub_code.DataPropertyName = "sub_code"
-        sub_code.HeaderText = "SUBJECT"
-        sub_code.Name = "sub_code"
-        sub_code.ReadOnly = True
-        ' 
-        ' courseE
-        ' 
-        courseE.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
-        courseE.DataPropertyName = "course"
-        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle9.ForeColor = Color.Black
-        courseE.DefaultCellStyle = DataGridViewCellStyle9
-        courseE.HeaderText = "COURSE"
-        courseE.Name = "courseE"
-        courseE.ReadOnly = True
-        courseE.Width = 83
-        ' 
-        ' section
-        ' 
-        section.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        section.DataPropertyName = "section"
-        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle10.ForeColor = Color.Black
-        section.DefaultCellStyle = DataGridViewCellStyle10
-        section.HeaderText = "SECTION"
-        section.Name = "section"
-        section.ReadOnly = True
-        section.Width = 87
-        ' 
-        ' yearlevel
-        ' 
-        yearlevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        yearlevel.DataPropertyName = "yearlevel"
-        yearlevel.HeaderText = "YEAR LEVEL"
-        yearlevel.Name = "yearlevel"
-        yearlevel.ReadOnly = True
-        yearlevel.Width = 104
-        ' 
-        ' semester
-        ' 
-        semester.DataPropertyName = "semester"
-        semester.HeaderText = "SEMESTER"
-        semester.Name = "semester"
-        semester.ReadOnly = True
         ' 
         ' dean_subjectManagement
         ' 

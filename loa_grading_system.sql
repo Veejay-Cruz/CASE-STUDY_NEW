@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2025 at 02:02 PM
+-- Generation Time: Jun 10, 2025 at 06:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -235,7 +235,7 @@ CREATE TABLE `grades` (
   `midterm` int(3) DEFAULT NULL,
   `prefinal` int(3) DEFAULT NULL,
   `final` int(3) DEFAULT NULL,
-  `final_grade` int(5) DEFAULT NULL,
+  `final_grade` decimal(3,2) DEFAULT NULL,
   `remarks` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -245,8 +245,8 @@ CREATE TABLE `grades` (
 
 INSERT INTO `grades` (`grade_id`, `stud_id`, `sub_code`, `prelim`, `midterm`, `prefinal`, `final`, `final_grade`, `remarks`) VALUES
 (1, '2005-25', 'CS101', 85, NULL, NULL, NULL, NULL, NULL),
-(2, '1095-25', 'BP113', 95, 95, 95, 95, 2, 'PASSED'),
-(3, '2004-25', 'BP113', 95, 60, 60, 60, 5, 'FAILED'),
+(2, '1095-25', 'BP113', 95, 95, 95, 95, 2.00, 'PASSED'),
+(3, '2004-25', 'BP113', 95, 60, 60, 60, 5.00, 'FAILED'),
 (4, '1096-25', 'BP113', 95, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -620,10 +620,10 @@ CREATE TABLE `term_table` (
 --
 
 INSERT INTO `term_table` (`term`, `status`) VALUES
-('final', 'Open'),
+('final', 'Closed'),
 ('midterm', 'Closed'),
 ('prefinal', 'Closed'),
-('prelim', 'Closed');
+('prelim', 'Open');
 
 -- --------------------------------------------------------
 

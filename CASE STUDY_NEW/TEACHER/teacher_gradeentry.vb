@@ -143,12 +143,39 @@ Public Class teacher_gradeentry
                             If(IsDBNull(reader("final_grade")), "", reader("final_grade").ToString()),
                             If(IsDBNull(reader("remarks")), "", reader("remarks").ToString())
                         )
+                            'If(lblTerm.Text.ToLower() = "final" AndAlso Not IsDBNull(reader("final_grade")) AndAlso Convert.ToDouble(reader("final_grade")) > 0, reader("final_grade").ToString(), ""),
                         End While
                     End Using
                 End Using
             Catch ex As Exception
                 MessageBox.Show("Error loading students: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
+
+            '' After loading students, check for missing prerequisite grades and set remarks to "UOD" if needed
+            'For Each row As DataGridViewRow In DGVGradeEntry.Rows
+            '    If row.IsNewRow Then Continue For
+
+            '    Dim prelim As String = If(row.Cells("prelim").Value, "").ToString().Trim()
+            '    Dim midterm As String = If(row.Cells("midterm").Value, "").ToString().Trim()
+            '    Dim prefinal As String = If(row.Cells("prefinal").Value, "").ToString().Trim()
+
+            '    Select Case lblTerm.Text.ToLower()
+            '        Case "midterm"
+            '            If String.IsNullOrEmpty(prelim) Then
+            '                row.Cells("remarks").Value = "UOD"
+            '            End If
+            '        Case "prefinal"
+            '            If String.IsNullOrEmpty(prelim) OrElse String.IsNullOrEmpty(midterm) Then
+            '                row.Cells("remarks").Value = "UOD"
+            '            End If
+            '        Case "final"
+            '            If String.IsNullOrEmpty(prelim) OrElse String.IsNullOrEmpty(midterm) OrElse String.IsNullOrEmpty(prefinal) Then
+            '                row.Cells("remarks").Value = "UOD"
+            '            End If
+            '    End Select
+            'Next
+
+
             SetGradeEntryColumnEditability()
             UpdateStudentCounters()
         End Using
@@ -200,9 +227,10 @@ Public Class teacher_gradeentry
                     Dim studId As String = row.Cells("stud_id").Value.ToString()
                     Dim subCode As String = row.Cells("subject").Value.ToString()
                     Dim gradeValue As String = row.Cells(termCol.ToUpper()).Value.ToString()
+                    Dim remarksValue As String = If(row.Cells("remarks").Value, "").ToString()
 
-                    ' Only save if a grade is entered
-                    If String.IsNullOrWhiteSpace(gradeValue) Then Continue For
+                    ' Only skip if both grade and remarks are empty
+                    If String.IsNullOrWhiteSpace(gradeValue) AndAlso String.IsNullOrWhiteSpace(remarksValue) Then Continue For
 
                     ' Check if a grade record exists
                     Dim checkQuery As String = "SELECT COUNT(*) FROM grades WHERE stud_id = @studId AND sub_code = @subCode"
@@ -214,32 +242,34 @@ Public Class teacher_gradeentry
                     End Using
 
                     If exists > 0 Then
-                        ' Update
-                        Dim updateQuery As String = $"UPDATE grades SET {termCol} = @gradeValue WHERE stud_id = @studId AND sub_code = @subCode"
+                        Dim updateQuery As String = $"UPDATE grades SET {termCol} = @gradeValue, remarks = @remarks WHERE stud_id = @studId AND sub_code = @subCode"
                         Using updateCmd As New MySqlCommand(updateQuery, conn)
-                            updateCmd.Parameters.AddWithValue("@gradeValue", gradeValue)
+                            updateCmd.Parameters.AddWithValue("@gradeValue", If(String.IsNullOrWhiteSpace(gradeValue), DBNull.Value, CType(gradeValue, Object)))
+                            updateCmd.Parameters.AddWithValue("@remarks", remarksValue)
                             updateCmd.Parameters.AddWithValue("@studId", studId)
                             updateCmd.Parameters.AddWithValue("@subCode", subCode)
                             updateCmd.ExecuteNonQuery()
                         End Using
                     Else
-                        ' Insert
-                        Dim insertQuery As String = $"INSERT INTO grades (stud_id, sub_code, {termCol}) VALUES (@studId, @subCode, @gradeValue)"
+                        Dim insertQuery As String = $"INSERT INTO grades (stud_id, sub_code, {termCol}, remarks) VALUES (@studId, @subCode, @gradeValue, @remarks)"
                         Using insertCmd As New MySqlCommand(insertQuery, conn)
                             insertCmd.Parameters.AddWithValue("@studId", studId)
                             insertCmd.Parameters.AddWithValue("@subCode", subCode)
-                            insertCmd.Parameters.AddWithValue("@gradeValue", gradeValue)
+                            insertCmd.Parameters.AddWithValue("@gradeValue", If(String.IsNullOrWhiteSpace(gradeValue), DBNull.Value, CType(gradeValue, Object)))
+                            insertCmd.Parameters.AddWithValue("@remarks", remarksValue)
                             insertCmd.ExecuteNonQuery()
                         End Using
                     End If
                 Next
-                MessageBox.Show("Grades saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Grades and remarks saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show("Error saving grades: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
 
-        ' After saving grades, calculate final grade and remarks for each row
+
+
+        'save grades
         For Each row As DataGridViewRow In DGVGradeEntry.Rows
             If row.IsNewRow Then Continue For
 
@@ -273,6 +303,9 @@ Public Class teacher_gradeentry
                 End Using
             End If
         Next
+
+
+
 
         ' Update student counters after saving
         UpdateStudentCounters()
@@ -308,6 +341,9 @@ Public Class teacher_gradeentry
         Dim total As Integer = 0
         Dim passed As Integer = 0
         Dim failed As Integer = 0
+        Dim uod As Integer = 0
+        Dim od As Integer = 0
+        Dim inc As Integer = 0
 
         For Each row As DataGridViewRow In DGVGradeEntry.Rows
             If row.IsNewRow Then Continue For
@@ -317,13 +353,41 @@ Public Class teacher_gradeentry
                 passed += 1
             ElseIf remarks = "FAILED" Then
                 failed += 1
+            ElseIf remarks = "UOD" Then
+                uod += 1
+            ElseIf remarks = "OD" Then
+                od += 1
+            ElseIf remarks = "INC" Then
+                inc += 1
             End If
         Next
 
         lblstudentcounter.Text = total.ToString()
         lblpassedcounter.Text = passed.ToString()
         lblfailedcounter.Text = failed.ToString()
+        lblUOD.Text = uod.ToString()
+        lblOD.Text = od.ToString()
+        lblINC.Text = inc.ToString()
     End Sub
+
+    Private Sub DGVGradeEntry_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVGradeEntry.CellDoubleClick
+        If e.RowIndex < 0 OrElse e.ColumnIndex < 0 Then Exit Sub
+
+        Dim dgv As DataGridView = CType(sender, DataGridView)
+        Dim colName As String = dgv.Columns(e.ColumnIndex).Name.ToLower()
+
+        If colName = "remarks" Then
+            Dim input As String = InputBox("Input remarks for the student (UOD, INC, OD):", "Input Remarks").Trim().ToUpper()
+            If input = "" Then Exit Sub
+
+            If input = "UOD" OrElse input = "INC" OrElse input = "OD" Then
+                dgv.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = input
+            Else
+                MessageBox.Show("Only 'UOD', 'INC', or 'OD' are accepted.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        End If
+    End Sub
+
 
 
 
