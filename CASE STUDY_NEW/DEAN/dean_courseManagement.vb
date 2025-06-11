@@ -367,8 +367,8 @@ Public Class dean_courseManagement
 
                     ' Insert new subjects
                     Dim insertCmd As New MySqlCommand(
-                        "INSERT INTO student_subjects (stud_id, sub_id, sub_code, school_year, semester, section) VALUES (@studId, @subId, @subCode, @schoolYear, @semester, @section)",
-                        conn, transaction)
+                    "INSERT INTO student_subjects (stud_id, sub_id, sub_code, subject_name, school_year, semester, section) VALUES (@studId, @subId, @subCode, @subjectName, @schoolYear, @semester, @section)",
+                     conn, transaction)
 
                     For Each row As DataGridViewRow In DGVStudentSubjects.Rows
                         If Not row.IsNewRow Then
@@ -395,6 +395,7 @@ Public Class dean_courseManagement
                             insertCmd.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
                             insertCmd.Parameters.AddWithValue("@subId", row.Cells("sub_id").Value)
                             insertCmd.Parameters.AddWithValue("@subCode", row.Cells("sub_code").Value)
+                            insertCmd.Parameters.AddWithValue("@subjectName", row.Cells("sub_name").Value)
                             insertCmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
                             insertCmd.Parameters.AddWithValue("@semester", currentSemester)
                             insertCmd.Parameters.AddWithValue("@section", row.Cells("section").Value)

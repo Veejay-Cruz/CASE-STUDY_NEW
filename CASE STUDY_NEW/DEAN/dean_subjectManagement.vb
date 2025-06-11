@@ -311,7 +311,8 @@ Public Class dean_subjectManagement
 
 
                 ' Save to teacher_subjects table
-                Dim insertQuery As String = "INSERT INTO teacher_subjects (teacher_id, sub_code, course_code, section, yearlevel, semester) VALUES (@teacherId, @subCode, @courseCode, @section, @yearLevel, @semester)"
+                Dim schoolYear As String = lblSchoolyr.Text
+                Dim insertQuery As String = "INSERT INTO teacher_subjects (teacher_id, sub_code, course_code, section, yearlevel, semester, school_year) VALUES (@teacherId, @subCode, @courseCode, @section, @yearLevel, @semester, @schoolYear)"
                 Using cmd As New MySqlCommand(insertQuery, conn)
                     cmd.Parameters.AddWithValue("@teacherId", txtprofid.Text)
                     cmd.Parameters.AddWithValue("@subCode", cboSubject.SelectedItem.ToString())
@@ -319,6 +320,7 @@ Public Class dean_subjectManagement
                     cmd.Parameters.AddWithValue("@section", cboSection.SelectedItem.ToString())
                     cmd.Parameters.AddWithValue("@yearLevel", yearLevel)
                     cmd.Parameters.AddWithValue("@semester", semester)
+                    cmd.Parameters.AddWithValue("@schoolYear", schoolYear)
                     cmd.ExecuteNonQuery()
                 End Using
 

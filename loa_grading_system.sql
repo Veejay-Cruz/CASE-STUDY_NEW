@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2025 at 06:47 PM
+-- Generation Time: Jun 11, 2025 at 03:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -120,7 +120,8 @@ INSERT INTO `audit_trail` (`username`, `date_time`, `action`) VALUES
 ('01-2025', '2025-06-09 22:36:18', 'CREATED NEW'),
 ('01-2025', '2025-06-09 22:41:00', 'CREATED NEW SUBJECT'),
 ('01-2025', '2025-06-09 22:58:30', 'CREATED NEW'),
-('REG-2025-001', '2025-06-10 19:11:28', 'CREATED NEW');
+('REG-2025-001', '2025-06-10 19:11:28', 'CREATED NEW'),
+('01-2025', '2025-06-11 21:30:49', 'CREATED NEW');
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,8 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (23, '2006-25', NULL, '2025-2026', '1st Sem', '2025-05-27'),
 (24, '2007-25', 1, '2025-2026', '1st Sem', '2025-06-09'),
 (25, '2008-25', 1, '2025-2026', '1st Sem', '2025-06-09'),
-(26, '2009-25', 1, '2025-2026', '1st Sem', '2025-06-10');
+(26, '2009-25', 1, '2025-2026', '1st Sem', '2025-06-10'),
+(27, '2010-25', 1, '2025-2026', '1st Sem', '2025-06-11');
 
 -- --------------------------------------------------------
 
@@ -244,10 +246,16 @@ CREATE TABLE `grades` (
 --
 
 INSERT INTO `grades` (`grade_id`, `stud_id`, `sub_code`, `prelim`, `midterm`, `prefinal`, `final`, `final_grade`, `remarks`) VALUES
-(1, '2005-25', 'CS101', 85, NULL, NULL, NULL, NULL, NULL),
+(1, '2005-25', 'CS101', 80, 90, 80, 80, 2.50, 'PASSED'),
 (2, '1095-25', 'BP113', 95, 95, 95, 95, 2.00, 'PASSED'),
 (3, '2004-25', 'BP113', 95, 60, 60, 60, 5.00, 'FAILED'),
-(4, '1096-25', 'BP113', 95, NULL, NULL, NULL, NULL, NULL);
+(4, '1096-25', 'BP113', NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '2006-25', 'CS101', NULL, NULL, NULL, NULL, NULL, NULL),
+(6, '1095-25', 'CC133-2', NULL, NULL, NULL, NULL, NULL, 'INC'),
+(7, '2007-25', 'CC133-2', 80, NULL, NULL, NULL, NULL, 'OD'),
+(8, '2008-25', 'CC133-2', NULL, NULL, NULL, NULL, NULL, 'UOD'),
+(9, '1096-25', 'CC133-2', 90, 80, 99, 99, 1.75, 'PASSED'),
+(10, '2009-25', 'CC133-2', 80, 60, 60, 60, 5.00, 'FAILED');
 
 -- --------------------------------------------------------
 
@@ -362,7 +370,8 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('2006-25', 'bi', 'les', 'yan', '1st Year', 'CCS', 'BSCS', '123', 'REGULAR', 'Active'),
 ('2007-25', 'ni', 'bor', 'kol', '1st Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
 ('2008-25', 'at', 'bor', 'ni', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
-('2009-25', 'sha', 'nata', 'rol', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
+('2009-25', 'sha', 'nata', 'rol', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('2010-25', 'lakay', 'apo', 'saka', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
 
 -- --------------------------------------------------------
 
@@ -415,6 +424,7 @@ CREATE TABLE `student_subjects` (
   `stud_id` varchar(225) NOT NULL,
   `sub_id` varchar(50) NOT NULL,
   `sub_code` varchar(225) NOT NULL,
+  `subject_name` varchar(225) NOT NULL,
   `school_year` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
   `section` varchar(50) NOT NULL,
@@ -425,72 +435,78 @@ CREATE TABLE `student_subjects` (
 -- Dumping data for table `student_subjects`
 --
 
-INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `school_year`, `semester`, `section`, `enrollment_date`) VALUES
-(22, '1095-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(23, '1095-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(24, '1095-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(25, '1095-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(26, '1095-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(27, '1095-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(28, '1095-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(29, '1095-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(30, '2004-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(31, '2004-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
-(32, '2004-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(33, '2004-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(34, '2004-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(35, '2004-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(36, '2004-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(37, '2004-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(38, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(39, '2004-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(40, '1096-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(41, '1096-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(42, '1096-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(43, '1096-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(44, '1096-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(45, '1096-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(46, '1096-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(47, '1096-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(48, '2005-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(49, '2005-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
-(50, '2005-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(51, '2005-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
-(52, '2005-25', 'sub25', 'CS101', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
-(53, '2006-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
-(54, '2006-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
-(55, '2006-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
-(56, '2006-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
-(57, '2006-25', 'sub25', 'CS101', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
-(58, '1094-25', 'sub14', 'CC213', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
-(59, '1094-25', 'sub17', 'GEC107', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
-(60, '1094-25', 'sub18', 'GAD213', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
-(61, '1094-25', 'sub20', 'CC223', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
-(62, '1094-25', 'sub22', 'NET213', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
-(63, '1094-25', 'sub23', 'GEC101', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
-(64, '2007-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(65, '2007-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M2', '2025-06-10'),
-(66, '2007-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M3', '2025-06-10'),
-(67, '2007-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(68, '2007-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(69, '2007-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M2', '2025-06-10'),
-(70, '2007-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M3', '2025-06-10'),
-(71, '2008-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(72, '2008-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(73, '2008-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(74, '2008-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(75, '2008-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(76, '2008-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(77, '2008-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(78, '2008-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(79, '2009-25', 'sub06', 'CC133-2', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(80, '2009-25', 'sub08', 'CC113-1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(81, '2009-25', 'sub09', 'GEC101', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(82, '2009-25', 'sub10', 'PE101', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(83, '2009-25', 'sub11', 'GEC102', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(84, '2009-25', 'sub12', 'NSTP1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(85, '2009-25', 'sub13', 'BP113', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
-(86, '2009-25', 'sub21', 'CSS113', '2025-2026', '1st Sem', '11M1', '2025-06-10');
+INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `subject_name`, `school_year`, `semester`, `section`, `enrollment_date`) VALUES
+(22, '1095-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(23, '1095-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(24, '1095-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(25, '1095-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(26, '1095-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(27, '1095-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(28, '1095-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(29, '1095-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(31, '2004-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
+(32, '2004-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(33, '2004-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(34, '2004-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(35, '2004-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(36, '2004-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(37, '2004-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(39, '2004-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(40, '1096-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(41, '1096-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(42, '1096-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(43, '1096-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(44, '1096-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(45, '1096-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(46, '1096-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(47, '1096-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(48, '2005-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(49, '2005-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
+(50, '2005-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(51, '2005-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M2', '2025-06-05'),
+(52, '2005-25', 'sub25', 'CS101', 'Introduction to Computer Science', '2025-2026', '1st Sem', '11M1', '2025-06-05'),
+(53, '2006-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(54, '2006-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(55, '2006-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(56, '2006-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(57, '2006-25', 'sub25', 'CS101', 'Introduction to Computer Science', '2025-2026', '1st Sem', '11M1', '2025-06-09'),
+(58, '1094-25', 'sub14', 'CC213', 'Data Structures and Algorithms', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
+(59, '1094-25', 'sub17', 'GEC107', 'Art Appreciation', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
+(60, '1094-25', 'sub18', 'GAD213', '2D Game Art Development', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
+(61, '1094-25', 'sub20', 'CC223', 'Information Management 1', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
+(62, '1094-25', 'sub22', 'NET213', 'Networking 1', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
+(63, '1094-25', 'sub23', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '21A1', '2025-06-10'),
+(64, '2007-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(65, '2007-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M2', '2025-06-10'),
+(66, '2007-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M3', '2025-06-10'),
+(67, '2007-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(68, '2007-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(69, '2007-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M2', '2025-06-10'),
+(70, '2007-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M3', '2025-06-10'),
+(71, '2008-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(72, '2008-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(73, '2008-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(74, '2008-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(75, '2008-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(76, '2008-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(77, '2008-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(78, '2008-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(79, '2009-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(80, '2009-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(81, '2009-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(82, '2009-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(83, '2009-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(84, '2009-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(85, '2009-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(86, '2009-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-10'),
+(87, '2010-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(88, '2010-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(89, '2010-25', 'sub09', 'GEC101', 'Understanding the Self', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(90, '2010-25', 'sub10', 'PE101', 'Physical Fitness 1', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(91, '2010-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(92, '2010-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(93, '2010-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(94, '2010-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-11');
 
 -- --------------------------------------------------------
 
@@ -559,24 +575,25 @@ CREATE TABLE `teacher_subjects` (
   `course_code` varchar(225) NOT NULL,
   `section` varchar(225) NOT NULL,
   `yearlevel` varchar(225) NOT NULL,
-  `semester` varchar(225) NOT NULL
+  `semester` varchar(225) NOT NULL,
+  `school_year` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacher_subjects`
 --
 
-INSERT INTO `teacher_subjects` (`id`, `teacher_id`, `sub_code`, `course_code`, `section`, `yearlevel`, `semester`) VALUES
-(1, 'TR0001', 'CS101', 'BSCS', '11M1', '1st Year', '1st Sem'),
-(3, 'TR0001', 'CS101', 'BSCS', '11M2', '1st Year', '1st Sem'),
-(4, 'TR0001', 'CC133-2', 'BSIT', '11M1', '1st Year', '1st Sem'),
-(6, 'TR0005', 'CC213', 'BSIT', '21A1', '2nd Year', '1st Sem'),
-(7, 'TR0002', 'ELEC313', 'BSIT', '31E1', '3rd Year', '1st Sem'),
-(8, 'TR0003', 'SAD313', 'BSIT', '31E1', '3rd Year', '1st Sem'),
-(9, 'TR0005', 'CC223', 'BSIT', '21A1', '2nd Year', '1st Sem'),
-(10, 'TR0005', 'GEC107', 'BSIT', '21A1', '2nd Year', '1st Sem'),
-(11, 'TR0005', 'PIT313', 'BSIT', '31E1', '3rd Year', '1st Sem'),
-(12, 'TR0005', 'BP113', 'BSIT', '11M1', '1st Year', '1st Sem');
+INSERT INTO `teacher_subjects` (`id`, `teacher_id`, `sub_code`, `course_code`, `section`, `yearlevel`, `semester`, `school_year`) VALUES
+(1, 'TR0001', 'CS101', 'BSCS', '11M1', '1st Year', '1st Sem', '2025-2026'),
+(3, 'TR0001', 'CS101', 'BSCS', '11M2', '1st Year', '1st Sem', '2025-2026'),
+(4, 'TR0001', 'CC133-2', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026'),
+(6, 'TR0005', 'CC213', 'BSIT', '21A1', '2nd Year', '1st Sem', '2025-2026'),
+(7, 'TR0002', 'ELEC313', 'BSIT', '31E1', '3rd Year', '1st Sem', '2025-2026'),
+(8, 'TR0003', 'SAD313', 'BSIT', '31E1', '3rd Year', '1st Sem', '2025-2026'),
+(9, 'TR0005', 'CC223', 'BSIT', '21A1', '2nd Year', '1st Sem', '2025-2026'),
+(10, 'TR0005', 'GEC107', 'BSIT', '21A1', '2nd Year', '1st Sem', '2025-2026'),
+(11, 'TR0005', 'PIT313', 'BSIT', '31E1', '3rd Year', '1st Sem', '2025-2026'),
+(12, 'TR0005', 'BP113', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026');
 
 -- --------------------------------------------------------
 
@@ -754,13 +771,13 @@ ALTER TABLE `user_register`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `student_section`
@@ -772,7 +789,7 @@ ALTER TABLE `student_section`
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `teacher_subjects`
