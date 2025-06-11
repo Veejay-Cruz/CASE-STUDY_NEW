@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2025 at 03:49 PM
+-- Generation Time: Jun 11, 2025 at 05:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -121,7 +121,8 @@ INSERT INTO `audit_trail` (`username`, `date_time`, `action`) VALUES
 ('01-2025', '2025-06-09 22:41:00', 'CREATED NEW SUBJECT'),
 ('01-2025', '2025-06-09 22:58:30', 'CREATED NEW'),
 ('REG-2025-001', '2025-06-10 19:11:28', 'CREATED NEW'),
-('01-2025', '2025-06-11 21:30:49', 'CREATED NEW');
+('01-2025', '2025-06-11 21:30:49', 'CREATED NEW'),
+('REG-2025-001', '2025-06-11 21:53:06', 'CREATED NEW');
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,8 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (24, '2007-25', 1, '2025-2026', '1st Sem', '2025-06-09'),
 (25, '2008-25', 1, '2025-2026', '1st Sem', '2025-06-09'),
 (26, '2009-25', 1, '2025-2026', '1st Sem', '2025-06-10'),
-(27, '2010-25', 1, '2025-2026', '1st Sem', '2025-06-11');
+(27, '2010-25', 1, '2025-2026', '1st Sem', '2025-06-11'),
+(28, '2011-25', 1, '2025-2026', '1st Sem', '2025-06-11');
 
 -- --------------------------------------------------------
 
@@ -371,7 +373,8 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('2007-25', 'ni', 'bor', 'kol', '1st Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
 ('2008-25', 'at', 'bor', 'ni', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('2009-25', 'sha', 'nata', 'rol', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
-('2010-25', 'lakay', 'apo', 'saka', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
+('2010-25', 'lakay', 'apo', 'saka', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('2011-25', 'fig', 'ayo', 'isa', '2nd Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
 
 -- --------------------------------------------------------
 
@@ -394,10 +397,9 @@ CREATE TABLE `student_section` (
 --
 
 INSERT INTO `student_section` (`id`, `course_code`, `section`, `yearlevel`, `semester`, `schedule`, `class`) VALUES
-(33, 'BSIT', '11M1', '1st Year', '1st Sem', 'MORNING', 1),
+(33, 'BSCS', '11M1', '1st Year', '1st Sem', 'MORNING', 1),
 (34, 'BSIT', '11M2', '1st Year', '1st Sem', 'MORNING', 2),
 (35, 'BSIT', '11M3', '1st Year', '1st Sem', 'MORNING', 3),
-(38, 'BSCS', '11M1', '1st Year', '1st Sem', 'MORNING', 1),
 (39, 'BSCS', '11M2', '1st Year', '1st Sem', 'MORNING', 2),
 (40, 'BSCS', '11M3', '1st Year', '1st Sem', 'MORNING', 3),
 (41, 'BSIT', '21A1', '2nd Year', '1st Sem', 'AFTERNOON', 1),
@@ -408,10 +410,11 @@ INSERT INTO `student_section` (`id`, `course_code`, `section`, `yearlevel`, `sem
 (46, 'BSCS', '32E1', '3rd Year', '2nd Sem', 'EVENING', 1),
 (47, 'BSIT', '32E1', '3rd Year', '2nd Sem', 'EVENING', 1),
 (48, 'BSCS', '41E1', '4th Year', '1st Sem', 'EVENING', 1),
-(49, 'BSCS', '42E1', '4th Year', '2nd Sem', 'EVENING', 1),
+(49, 'BSIT', '42E1', '4th Year', '2nd Sem', 'EVENING', 1),
 (50, 'BSIT', '41E1', '4th Year', '1st Sem', 'EVENING', 1),
-(51, 'BSIT', '42E1', '4th Year', '2nd Sem', 'EVENING', 1),
-(52, 'BSCS', '21M1', '2nd Year', '1st Sem', 'MORNING', 1);
+(52, 'BSCS', '21M1', '2nd Year', '1st Sem', 'MORNING', 1),
+(53, 'BSIT', '41E2', '4th Year', '1st Sem', 'EVENING', 2),
+(55, 'BSIT', '11M1', '1st Year', '1st Sem', 'MORNING', 1);
 
 -- --------------------------------------------------------
 
@@ -506,7 +509,13 @@ INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `subject_
 (91, '2010-25', 'sub11', 'GEC102', 'Mathematics in the Modern World', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
 (92, '2010-25', 'sub12', 'NSTP1', 'National Service Training Program 1', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
 (93, '2010-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
-(94, '2010-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-11');
+(94, '2010-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-11'),
+(95, '2011-25', 'sub14', 'CC213', 'Data Structures and Algorithms', '2025-2026', '1st Sem', '21A1', '2025-06-11'),
+(96, '2011-25', 'sub17', 'GEC107', 'Art Appreciation', '2025-2026', '1st Sem', '21A1', '2025-06-11'),
+(97, '2011-25', 'sub18', 'GAD213', '2D Game Art Development', '2025-2026', '1st Sem', '21A1', '2025-06-11'),
+(98, '2011-25', 'sub20', 'CC223', 'Information Management 1', '2025-2026', '1st Sem', '21A1', '2025-06-11'),
+(99, '2011-25', 'sub22', 'NET213', 'Networking 1', '2025-2026', '1st Sem', '21A1', '2025-06-11'),
+(100, '2011-25', 'sub23', 'GEC101', 'Purposive Communication', '2025-2026', '1st Sem', '21A1', '2025-06-11');
 
 -- --------------------------------------------------------
 
@@ -593,7 +602,8 @@ INSERT INTO `teacher_subjects` (`id`, `teacher_id`, `sub_code`, `course_code`, `
 (9, 'TR0005', 'CC223', 'BSIT', '21A1', '2nd Year', '1st Sem', '2025-2026'),
 (10, 'TR0005', 'GEC107', 'BSIT', '21A1', '2nd Year', '1st Sem', '2025-2026'),
 (11, 'TR0005', 'PIT313', 'BSIT', '31E1', '3rd Year', '1st Sem', '2025-2026'),
-(12, 'TR0005', 'BP113', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026');
+(12, 'TR0005', 'BP113', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026'),
+(13, 'TR0005', 'CC113-1', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026');
 
 -- --------------------------------------------------------
 
@@ -771,7 +781,7 @@ ALTER TABLE `user_register`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `grades`
@@ -783,19 +793,19 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT for table `student_section`
 --
 ALTER TABLE `student_section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `teacher_subjects`
 --
 ALTER TABLE `teacher_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -40,7 +40,6 @@ Partial Class dean_subjectManagement
         fname = New DataGridViewTextBoxColumn()
         apply = New DataGridViewButtonColumn()
         Label1 = New Label()
-        Label2 = New Label()
         DGVSection = New DataGridView()
         teacher_id = New DataGridViewTextBoxColumn()
         tLname = New DataGridViewTextBoxColumn()
@@ -50,8 +49,6 @@ Partial Class dean_subjectManagement
         section = New DataGridViewTextBoxColumn()
         yearlevel = New DataGridViewTextBoxColumn()
         semester = New DataGridViewTextBoxColumn()
-        Label3 = New Label()
-        Label4 = New Label()
         createPnl2 = New Panel()
         txtFname = New TextBox()
         Label13 = New Label()
@@ -66,7 +63,6 @@ Partial Class dean_subjectManagement
         btnCancel = New ReaLTaiizor.Controls.ForeverButton()
         btnSave = New ReaLTaiizor.Controls.ForeverButton()
         cboSubject = New ComboBox()
-        Label12 = New Label()
         lblSem = New Label()
         Label11 = New Label()
         lblSchoolyr = New Label()
@@ -78,6 +74,7 @@ Partial Class dean_subjectManagement
         ' 
         ' DGVDepartment
         ' 
+        DGVDepartment.AllowUserToAddRows = False
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.White
         DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -166,22 +163,11 @@ Partial Class dean_subjectManagement
         Label1.AutoSize = True
         Label1.Font = New Font("Century Gothic", 24F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = SystemColors.ActiveCaptionText
-        Label1.Location = New Point(28, 19)
+        Label1.Location = New Point(30, 36)
         Label1.Name = "Label1"
         Label1.Size = New Size(379, 39)
         Label1.TabIndex = 41
         Label1.Text = "SUBJECT MANAGEMENT"
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.Black
-        Label2.Location = New Point(144, 171)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(316, 19)
-        Label2.TabIndex = 48
-        Label2.Text = "LOAD TEACHER BASED ON DEPARTMENT"
         ' 
         ' DGVSection
         ' 
@@ -295,28 +281,6 @@ Partial Class dean_subjectManagement
         semester.HeaderText = "SEMESTER"
         semester.Name = "semester"
         semester.ReadOnly = True
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.Black
-        Label3.Location = New Point(463, 25)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(235, 19)
-        Label3.TabIndex = 50
-        Label3.Text = "APPLY TEACHER TO A SUBJECT"
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label4.ForeColor = Color.Black
-        Label4.Location = New Point(463, 59)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(239, 19)
-        Label4.TabIndex = 51
-        Label4.Text = "APPLY TEACHER TO A SECTION"
         ' 
         ' createPnl2
         ' 
@@ -473,23 +437,12 @@ Partial Class dean_subjectManagement
         cboSubject.Size = New Size(297, 23)
         cboSubject.TabIndex = 10
         ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label12.ForeColor = Color.Black
-        Label12.Location = New Point(735, 160)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(459, 19)
-        Label12.TabIndex = 54
-        Label12.Text = "MY IDEA: CREATE A NEW TABLE WITH THE COLUMNS BELOW"
-        ' 
         ' lblSem
         ' 
         lblSem.AutoSize = True
         lblSem.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblSem.ForeColor = Color.Black
-        lblSem.Location = New Point(1261, 36)
+        lblSem.Location = New Point(1252, 53)
         lblSem.Name = "lblSem"
         lblSem.Size = New Size(29, 19)
         lblSem.TabIndex = 58
@@ -500,7 +453,7 @@ Partial Class dean_subjectManagement
         Label11.AutoSize = True
         Label11.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label11.ForeColor = Color.Black
-        Label11.Location = New Point(1163, 36)
+        Label11.Location = New Point(1154, 53)
         Label11.Name = "Label11"
         Label11.Size = New Size(92, 19)
         Label11.TabIndex = 57
@@ -511,7 +464,7 @@ Partial Class dean_subjectManagement
         lblSchoolyr.AutoSize = True
         lblSchoolyr.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblSchoolyr.ForeColor = Color.Black
-        lblSchoolyr.Location = New Point(1028, 36)
+        lblSchoolyr.Location = New Point(1019, 53)
         lblSchoolyr.Name = "lblSchoolyr"
         lblSchoolyr.Size = New Size(29, 19)
         lblSchoolyr.TabIndex = 56
@@ -522,7 +475,7 @@ Partial Class dean_subjectManagement
         Label14.AutoSize = True
         Label14.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label14.ForeColor = Color.Black
-        Label14.Location = New Point(893, 36)
+        Label14.Location = New Point(884, 53)
         Label14.Name = "Label14"
         Label14.Size = New Size(129, 19)
         Label14.TabIndex = 55
@@ -537,12 +490,8 @@ Partial Class dean_subjectManagement
         Controls.Add(Label11)
         Controls.Add(lblSchoolyr)
         Controls.Add(Label14)
-        Controls.Add(Label12)
         Controls.Add(createPnl2)
-        Controls.Add(Label4)
-        Controls.Add(Label3)
         Controls.Add(DGVSection)
-        Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(DGVDepartment)
         FormBorderStyle = FormBorderStyle.None
@@ -558,10 +507,7 @@ Partial Class dean_subjectManagement
 
     Friend WithEvents DGVDepartment As DataGridView
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents DGVSection As DataGridView
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents createPnl2 As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label7 As Label
@@ -574,7 +520,6 @@ Partial Class dean_subjectManagement
     Friend WithEvents Label6 As Label
     Friend WithEvents txtprofid As TextBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents Label12 As Label
     Friend WithEvents txtFname As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents lblSem As Label

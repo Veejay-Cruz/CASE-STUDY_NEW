@@ -29,6 +29,13 @@ Partial Class dean_sectionManagement
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         DGVSection = New DataGridView()
+        course_code = New DataGridViewTextBoxColumn()
+        section = New DataGridViewTextBoxColumn()
+        yearlevel = New DataGridViewTextBoxColumn()
+        semester = New DataGridViewTextBoxColumn()
+        schedule = New DataGridViewTextBoxColumn()
+        classs = New DataGridViewTextBoxColumn()
+        delete = New DataGridViewButtonColumn()
         Label1 = New Label()
         createLbl = New Label()
         createPnl2 = New Panel()
@@ -45,21 +52,13 @@ Partial Class dean_sectionManagement
         Label5 = New Label()
         Label3 = New Label()
         Label2 = New Label()
-        Label8 = New Label()
-        course_code = New DataGridViewTextBoxColumn()
-        section = New DataGridViewTextBoxColumn()
-        yearlevel = New DataGridViewTextBoxColumn()
-        semester = New DataGridViewTextBoxColumn()
-        schedule = New DataGridViewTextBoxColumn()
-        classs = New DataGridViewTextBoxColumn()
-        editt = New DataGridViewButtonColumn()
-        delete = New DataGridViewButtonColumn()
         CType(DGVSection, ComponentModel.ISupportInitialize).BeginInit()
         createPnl2.SuspendLayout()
         SuspendLayout()
         ' 
         ' DGVSection
         ' 
+        DGVSection.AllowUserToAddRows = False
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.White
         DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -77,7 +76,7 @@ Partial Class dean_sectionManagement
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
         DGVSection.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         DGVSection.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        DGVSection.Columns.AddRange(New DataGridViewColumn() {course_code, section, yearlevel, semester, schedule, classs, editt, delete})
+        DGVSection.Columns.AddRange(New DataGridViewColumn() {course_code, section, yearlevel, semester, schedule, classs, delete})
         DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle5.BackColor = Color.White
         DataGridViewCellStyle5.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -102,6 +101,74 @@ Partial Class dean_sectionManagement
         DGVSection.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DGVSection.Size = New Size(1000, 479)
         DGVSection.TabIndex = 41
+        ' 
+        ' course_code
+        ' 
+        course_code.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        course_code.DataPropertyName = "course_code"
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.Black
+        course_code.DefaultCellStyle = DataGridViewCellStyle3
+        course_code.HeaderText = "COURSE"
+        course_code.Name = "course_code"
+        course_code.ReadOnly = True
+        course_code.Width = 83
+        ' 
+        ' section
+        ' 
+        section.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        section.DataPropertyName = "section"
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.Black
+        section.DefaultCellStyle = DataGridViewCellStyle4
+        section.HeaderText = "SECTION"
+        section.Name = "section"
+        section.ReadOnly = True
+        section.Width = 87
+        ' 
+        ' yearlevel
+        ' 
+        yearlevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        yearlevel.DataPropertyName = "yearlevel"
+        yearlevel.HeaderText = "YEAR LEVEL"
+        yearlevel.Name = "yearlevel"
+        yearlevel.ReadOnly = True
+        yearlevel.Width = 104
+        ' 
+        ' semester
+        ' 
+        semester.DataPropertyName = "semester"
+        semester.HeaderText = "SEMESTER"
+        semester.Name = "semester"
+        semester.ReadOnly = True
+        ' 
+        ' schedule
+        ' 
+        schedule.DataPropertyName = "schedule"
+        schedule.HeaderText = "SCHEDULE"
+        schedule.Name = "schedule"
+        schedule.ReadOnly = True
+        ' 
+        ' classs
+        ' 
+        classs.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        classs.DataPropertyName = "class"
+        classs.HeaderText = "CLASS"
+        classs.Name = "classs"
+        classs.ReadOnly = True
+        classs.Width = 110
+        ' 
+        ' delete
+        ' 
+        delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        delete.HeaderText = "DELETE"
+        delete.Name = "delete"
+        delete.ReadOnly = True
+        delete.Text = "DELETE"
+        delete.UseColumnTextForButtonValue = True
+        delete.Width = 80
         ' 
         ' Label1
         ' 
@@ -287,101 +354,11 @@ Partial Class dean_sectionManagement
         Label2.TabIndex = 0
         Label2.Text = "COURSE"
         ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label8.ForeColor = Color.Black
-        Label8.Location = New Point(434, 129)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(254, 19)
-        Label8.TabIndex = 46
-        Label8.Text = "edit and delete na lang sa row"
-        ' 
-        ' course_code
-        ' 
-        course_code.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
-        course_code.DataPropertyName = "course_code"
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.Black
-        course_code.DefaultCellStyle = DataGridViewCellStyle3
-        course_code.HeaderText = "COURSE"
-        course_code.Name = "course_code"
-        course_code.ReadOnly = True
-        course_code.Width = 83
-        ' 
-        ' section
-        ' 
-        section.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        section.DataPropertyName = "section"
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = Color.Black
-        section.DefaultCellStyle = DataGridViewCellStyle4
-        section.HeaderText = "SECTION"
-        section.Name = "section"
-        section.ReadOnly = True
-        section.Width = 87
-        ' 
-        ' yearlevel
-        ' 
-        yearlevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        yearlevel.DataPropertyName = "yearlevel"
-        yearlevel.HeaderText = "YEAR LEVEL"
-        yearlevel.Name = "yearlevel"
-        yearlevel.ReadOnly = True
-        yearlevel.Width = 104
-        ' 
-        ' semester
-        ' 
-        semester.DataPropertyName = "semester"
-        semester.HeaderText = "SEMESTER"
-        semester.Name = "semester"
-        semester.ReadOnly = True
-        ' 
-        ' schedule
-        ' 
-        schedule.DataPropertyName = "schedule"
-        schedule.HeaderText = "SCHEDULE"
-        schedule.Name = "schedule"
-        schedule.ReadOnly = True
-        ' 
-        ' classs
-        ' 
-        classs.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        classs.DataPropertyName = "class"
-        classs.HeaderText = "CLASS"
-        classs.Name = "classs"
-        classs.ReadOnly = True
-        classs.Width = 110
-        ' 
-        ' editt
-        ' 
-        editt.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        editt.HeaderText = "EDIT"
-        editt.Name = "editt"
-        editt.ReadOnly = True
-        editt.Text = "EDIT"
-        editt.UseColumnTextForButtonValue = True
-        editt.Width = 80
-        ' 
-        ' delete
-        ' 
-        delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-        delete.HeaderText = "DELETE"
-        delete.Name = "delete"
-        delete.ReadOnly = True
-        delete.Text = "DELETE"
-        delete.UseColumnTextForButtonValue = True
-        delete.Width = 80
-        ' 
         ' dean_sectionManagement
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1048, 660)
-        Controls.Add(Label8)
         Controls.Add(createPnl2)
         Controls.Add(createLbl)
         Controls.Add(Label1)
@@ -415,13 +392,11 @@ Partial Class dean_sectionManagement
     Friend WithEvents cboSched As ComboBox
     Friend WithEvents Label6 As Label
     Friend WithEvents TXTMclass As MaskedTextBox
-    Friend WithEvents Label8 As Label
     Friend WithEvents course_code As DataGridViewTextBoxColumn
     Friend WithEvents section As DataGridViewTextBoxColumn
     Friend WithEvents yearlevel As DataGridViewTextBoxColumn
     Friend WithEvents semester As DataGridViewTextBoxColumn
     Friend WithEvents schedule As DataGridViewTextBoxColumn
     Friend WithEvents classs As DataGridViewTextBoxColumn
-    Friend WithEvents editt As DataGridViewButtonColumn
     Friend WithEvents delete As DataGridViewButtonColumn
 End Class

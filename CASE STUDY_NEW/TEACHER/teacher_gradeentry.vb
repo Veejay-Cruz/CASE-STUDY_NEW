@@ -41,27 +41,27 @@ Public Class teacher_gradeentry
 
     'TEACHING LOADS HEHE
     Private Sub LoadTeachingLoads()
-        'DGVTeachingloads.Rows.Clear()
-        'DGVTeachingloads.Columns.Clear()
 
-        '' Add columns if not already present
-        'DGVTeachingloads.Columns.Add("course_code", "Course Code")
-        'DGVTeachingloads.Columns.Add("sub_code", "Subject Code")
-        'DGVTeachingloads.Columns.Add("section", "Section")
 
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                Dim query As String = "SELECT course_code, sub_code, section FROM teacher_subjects WHERE teacher_id = @teacherId"
+                Dim query As String = "SELECT course_code, sub_code, section " &
+                                  "FROM teacher_subjects " &
+                                  "WHERE teacher_id = @teacherId " &
+                                  "AND school_year = @schoolYear " &
+                                  "AND semester = @semester"
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@teacherId", Login.CurrentTeacherID)
+                    cmd.Parameters.AddWithValue("@schoolYear", lblSchoolyr.Text)
+                    cmd.Parameters.AddWithValue("@semester", lblSem.Text)
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         While reader.Read()
                             DGVTeachingloads.Rows.Add(
-                                reader("course_code").ToString(),
-                                reader("sub_code").ToString(),
-                                reader("section").ToString()
-                            )
+                            reader("course_code").ToString(),
+                            reader("sub_code").ToString(),
+                            reader("section").ToString()
+                        )
                         End While
                     End Using
                 End Using

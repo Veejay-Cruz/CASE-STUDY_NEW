@@ -148,4 +148,30 @@ Public Class dean_sectionManagement
     Private Sub TXTMclass_Click(sender As Object, e As EventArgs) Handles TXTMclass.Click
         TXTMclass.Text = ""
     End Sub
+
+    Private Sub DGVSection_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVSection.CellClick
+        ' Check for valid row and delete button column
+        If e.RowIndex >= 0 AndAlso DGVSection.Columns(e.ColumnIndex).Name = "delete" Then
+            Dim sectionCode As String = DGVSection.Rows(e.RowIndex).Cells("section").Value.ToString()
+            Dim courseCode As String = DGVSection.Rows(e.RowIndex).Cells("course_code").Value.ToString()
+
+            If MessageBox.Show($"Are you sure you want to delete section {sectionCode} for course {courseCode}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                Using conn As New MySqlConnection(connString)
+                    Try
+                        conn.Open()
+                        Dim delQuery As String = "DELETE FROM student_section WHERE section = @section AND course_code = @courseCode"
+                        Using cmd As New MySqlCommand(delQuery, conn)
+                            cmd.Parameters.AddWithValue("@section", sectionCode)
+                            cmd.Parameters.AddWithValue("@courseCode", courseCode)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                        MessageBox.Show("Section deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        LoadSections()
+                    Catch ex As Exception
+                        MessageBox.Show("Error deleting section: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                End Using
+            End If
+        End If
+    End Sub
 End Class
