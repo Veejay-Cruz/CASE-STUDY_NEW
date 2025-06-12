@@ -284,6 +284,7 @@ Partial Class courses
         course_id.Location = New Point(188, 86)
         course_id.Multiline = True
         course_id.Name = "course_id"
+        course_id.ReadOnly = True
         course_id.Size = New Size(303, 41)
         course_id.TabIndex = 5
         ' 

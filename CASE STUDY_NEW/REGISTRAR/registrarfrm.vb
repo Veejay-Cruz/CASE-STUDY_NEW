@@ -35,4 +35,8 @@
     Private Sub registrarfrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadFormInPanel(New dashboard)
     End Sub
+
+    Private Sub subjectBtn_Click(sender As Object, e As EventArgs) Handles subjectBtn.Click
+        LoadFormInPanel(New subjects())
+    End Sub
 End Class

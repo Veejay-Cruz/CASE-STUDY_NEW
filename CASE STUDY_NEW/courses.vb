@@ -110,10 +110,38 @@ Public Class courses
     End Sub
     Private Sub createLbl_Click_1(sender As Object, e As EventArgs) Handles createLbl.Click
         createPnl2.Show()
+        course_id.Text = GenerateNextCourseId()
     End Sub
 
     Private Sub ForeverButton2_Click(sender As Object, e As EventArgs) Handles ForeverButton2.Click
         createPnl2.Hide()
+        course_id.Clear()
+        course_code.Clear()
+        course_name.Clear()
+        majorr.Clear()
+        department.SelectedIndex = -1
     End Sub
+
+
+    Private Function GenerateNextCourseId() As String
+        Dim nextId As String = ""
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                ' Get the highest numeric part of sub_id
+                Dim query As String = "SELECT MAX(CAST(SUBSTRING(course_id, 7) AS UNSIGNED)) FROM courses WHERE course_id LIKE 'course%'"
+                Using cmd As New MySqlCommand(query, conn)
+                    Dim result = cmd.ExecuteScalar()
+                    If result IsNot DBNull.Value AndAlso result IsNot Nothing Then
+                        Dim lastNum As Integer = Convert.ToInt32(result)
+                        nextId = "course" & (lastNum + 1).ToString()
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error generating Subject ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+        Return nextId
+    End Function
 
 End Class

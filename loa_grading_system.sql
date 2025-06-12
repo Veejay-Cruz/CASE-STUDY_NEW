@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2025 at 05:53 PM
+-- Generation Time: Jun 12, 2025 at 10:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -122,7 +122,11 @@ INSERT INTO `audit_trail` (`username`, `date_time`, `action`) VALUES
 ('01-2025', '2025-06-09 22:58:30', 'CREATED NEW'),
 ('REG-2025-001', '2025-06-10 19:11:28', 'CREATED NEW'),
 ('01-2025', '2025-06-11 21:30:49', 'CREATED NEW'),
-('REG-2025-001', '2025-06-11 21:53:06', 'CREATED NEW');
+('REG-2025-001', '2025-06-11 21:53:06', 'CREATED NEW'),
+('01-2025', '2025-06-12 15:15:55', 'UPDATED SUBJECT'),
+('REG-2025-001', '2025-06-12 15:33:44', 'UPDATED SUBJECT'),
+('01-2025', '2025-06-12 15:34:45', 'UPDATED SUBJECT'),
+('REG-2025-001', '2025-06-12 15:39:00', 'CREATED NEW SUBJECT');
 
 -- --------------------------------------------------------
 
@@ -149,7 +153,8 @@ INSERT INTO `courses` (`course_id`, `course_code`, `course_name`, `major`, `depa
 ('course03', 'BSIT', 'Bachelor of Science in Information Technology', '', 'CCS', 'Active'),
 ('course04', 'BSC', 'Bachelor of Science in Criminology', '', 'CCJ', 'Active'),
 ('course05', 'BPEA', 'Bachelor of Performing Arts', '', 'EDUC', 'Active'),
-('course06', 'BSPsych', 'Bachelor of Science in Psychology', '', 'RRR', 'Active');
+('course06', 'BSPsych', 'Bachelor of Science in Psychology', '', 'RRR', 'Active'),
+('course07', 'GEN ED', 'General Education', '', 'GEN ED', 'Active');
 
 -- --------------------------------------------------------
 
@@ -177,7 +182,8 @@ INSERT INTO `department` (`department_id`, `department_name`, `dean_id`, `status
 ('REM', 'College of Real Estate Management', NULL, 'Active'),
 ('RRR', 'RAMBUTAN', NULL, 'Inactive'),
 ('JAJA', 'du', NULL, 'Inactive'),
-('DUM', 'DUM', NULL, 'Inactive');
+('DUM', 'DUM', NULL, 'Inactive'),
+('GEN ED', 'General Education Department', NULL, 'Active');
 
 -- --------------------------------------------------------
 
@@ -223,7 +229,31 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (25, '2008-25', 1, '2025-2026', '1st Sem', '2025-06-09'),
 (26, '2009-25', 1, '2025-2026', '1st Sem', '2025-06-10'),
 (27, '2010-25', 1, '2025-2026', '1st Sem', '2025-06-11'),
-(28, '2011-25', 1, '2025-2026', '1st Sem', '2025-06-11');
+(28, '2011-25', 1, '2025-2026', '1st Sem', '2025-06-11'),
+(29, '1111-27', NULL, '2027-2028', '1st Sem', '2027-05-25'),
+(30, '1112-27', NULL, '2027-2028', '2nd Sem', '2027-10-15'),
+(31, '1113-27', NULL, '2027-2028', '1st Sem', '2027-05-25'),
+(32, '1114-27', NULL, '2027-2028', '2nd Sem', '2027-10-10'),
+(33, '1115-27', NULL, '2027-2028', '1st Sem', '2027-05-25'),
+(34, '1111-26', NULL, '2026-2027', '2nd Sem', '2026-01-15'),
+(35, '1112-26', NULL, '2026-2027', '2nd Sem', '2026-01-15'),
+(36, '1113-26', NULL, '2026-2027', '1st Sem', '2026-06-20'),
+(37, '1114-26', NULL, '2026-2027', '1st Sem', '2026-06-20'),
+(38, '1115-26', NULL, '2026-2027', '1st Sem', '2026-06-11'),
+(39, '1111-25', NULL, '2025-2026', '1st Sem', '2025-06-01'),
+(40, '1112-25', NULL, '2025-2026', '1st Sem', '202-08-01'),
+(41, '1113-25', NULL, '2025-2026', '1st Sem', '2025-08-01'),
+(42, '1114-25', NULL, '2025-2026', '1st Sem', '2025-05-25'),
+(43, '1115-25', NULL, '2025-2026', '1st Sem', '2025-05-26'),
+(44, '1111-24', NULL, '2024-2025', '1st Sem', '2024-04-26'),
+(45, '1112-24', NULL, '2024-2025', '1st Sem', '2024-02-21'),
+(46, '1113-24', NULL, '2024-2025', '1st Sem', '2024-05-27'),
+(47, '1114-24', NULL, '2024-2025', '1st Sem', '2024-05-27'),
+(48, '1115-24', NULL, '2024-2025', '1st Sem', '2024-05-27'),
+(49, '1111-23', 1, '2023-2024', '1st Sem', '2023-06-09'),
+(50, '1112-23', 1, '2023-2024', '1st Sem', '2023-06-09'),
+(51, '1113-23', 1, '2023-2024', '1st Sem', '2023-06-10'),
+(52, '1114-23', 1, '2023-2024', '1st Sem', '2023-06-11');
 
 -- --------------------------------------------------------
 
@@ -353,6 +383,32 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('1094-25', 'Jhad', 'Usman', 'Rosmar', '2nd Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('1095-25', 'Rol', 'Eman', 'Te', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('1096-25', 'mo', 'ja', 'rant', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('1111-23', 'Porter', 'Anita', 'Limo', '1st Year', 'CCS', 'BSCS', '123', 'IRREGULAR', 'Active'),
+('1111-24', 'Marinay', 'Reinald', 'Deiru', '1st Year', 'CCS', 'BSIT', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'REGULAR', 'Active'),
+('1111-25', 'Bernardo', 'Kia', 'Casantusan', '3rd Year', 'CCS', 'BSIT', '12345', 'REGULAR', 'Active'),
+('1111-26', 'Sahagun', 'Bernard', 'Gonzaga', '4th Year', 'CCS', 'BSIT', 'stud1240-25', 'REGULAR', 'Active'),
+('1111-27', 'usman', 'mahamad', 'rol', '1st Year', 'CTHM', 'courses', '123', 'REGULAR', 'Active'),
+('1112-24', 'Garcia', 'Maria', 'Lopez', '3rd Year', 'CCS', 'BSCS', 'pass123', 'REGULAR', 'Active'),
+('1112-25', 'Delos Santos', 'Rakko Raj', 'Habig', '2nd Year', 'CSS', 'BSIT', 'stud1235-25', 'IRREGULAR', 'Active'),
+('1112-26', 'Bernardo', 'Aicelle', 'Casantusan', '1st Year', 'CAS', 'BSREM', 'stud1241-25', 'REGULAR', 'Active'),
+('1112-27', 'isa', 'jeremaya', 'Romero', '4th Year', 'CTHM', 'courses', '123', 'REGULAR', 'Active'),
+('1113-24', 'Reyes', 'Juan', 'Santos', '4th Year', 'CCS', 'BSIT', 'pass456', 'REGULAR', 'Active'),
+('1113-25', 'Balon', 'Laurence', 'Sapero', '2nd Year', 'CCS', 'BSIT', 'stud1236-25', 'IRREGULAR', 'Active'),
+('1113-26', 'Noche', 'Ysmael', 'Bautista', '2nd Year', 'CCS', 'BSCS', 'noche123', 'Regular', 'Active'),
+('1113-27', 'Jhad', 'Usman', 'Rosmar', '2nd Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
+('1114-24', 'Dela Cruz', 'Ana', 'Torres', '2nd Year', 'CAS', 'BSREM', 'pass789', 'IRREGULAR', 'Active'),
+('1114-25', 'Cruz', 'Veejay', 'Roxas', '3rd Year', 'CCS', 'BSIT', 'stud1238-25', 'IRREGULAR', 'Active'),
+('1114-26', 'Dolor', 'Justine', 'Romero', '2nd Year', 'CCS', 'BSCS', 'stud1243-25', 'REGULAR', 'Active'),
+('1114-27', 'Rol', 'Eman', 'Te', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('1115-23', 'Galahar', 'Patrick', 'Mari', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('1115-24', 'nald', 'rei', 'ma', '1st Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
+('1115-25', 'Fernandez', 'Philip Jose', 'Quemano', '3rd Year', 'CCS', 'BSIT', 'stud1239-25', 'REGULAR', 'Active'),
+('1115-26', 'Marinay', 'Precious', 'Costales', '1st Year', 'CCS', 'BSCS', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'REGULAR', 'Active'),
+('1116-23', 'Parker', 'Georgina', 'Milan', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('1117-23', 'Rivers', 'Mari', 'Gomez', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('1118-23', 'Acosta', 'Mickey', 'Mori', '1st Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
+('1119-23', 'Shepard', 'Isaac', 'Morino', '1st Year', 'CCS', 'BSCS', '123', 'REGULAR', 'Active'),
+('1120-23', 'Molino', 'Jillian', 'Gomez', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('1234-25', 'Bernardo', 'Kia', 'Casantusan', '3rd Year', 'CCS', 'BSIT', '12345', 'REGULAR', 'Active'),
 ('1235-25', 'Delos Santos', 'Rakko Raj', 'Habig', '2nd Year', 'CSS', 'BSIT', 'stud1235-25', 'IRREGULAR', 'Active'),
 ('1236-25', 'Balon', 'Laurence', 'Sapero', '2nd Year', 'CCS', 'BSIT', 'stud1236-25', 'IRREGULAR', 'Active'),
@@ -539,7 +595,7 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`sub_id`, `sub_code`, `subject_name`, `unit`, `year_level`, `semester`, `course`, `prerequisite_sub_id`) VALUES
-('sub01', 'FIL101', 'Kontekstwalisadong Komunikasyon sa Filipino ', '3', '3rd Year', '1st Sem', 'General Education', NULL),
+('sub01', 'FIL101', 'Kontekstwalisadong Komunikasyon sa Filipino ', '3', '3rd Year', '1st Sem', 'GEN ED', NULL),
 ('sub02', 'ELEC313', 'IT Elective 2', '6', '3rd Year', '1st Sem', 'BSIT', '3rd Year Standing'),
 ('sub03', 'PIT313', 'Integrative Programming & Technologies 1', '3', '3rd Year', '1st Sem', 'BSIT', NULL),
 ('sub04', 'MS313', 'Quantitative Methods', '3', '3rd Year', '2nd Sem', 'BSIT', NULL),
@@ -547,29 +603,28 @@ INSERT INTO `subjects` (`sub_id`, `sub_code`, `subject_name`, `unit`, `year_leve
 ('sub06', 'CC133-2', 'Computer Programming 1', '3', '1st Year', '1st Sem', 'BSIT', NULL),
 ('sub07', 'VDG113', 'Visual Design Graphics', '3', '1st Year', '2nd Sem', 'BSIT', NULL),
 ('sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '3', '1st Year', '1st Sem', 'BSIT', NULL),
-('sub09', 'GEC101', 'Understanding the Self', '3', '1st Year', '1st Sem', 'General Education', NULL),
-('sub10', 'PE101', 'Physical Fitness 1', '2', '1st Year', '1st Sem', 'General Education', NULL),
-('sub11', 'GEC102', 'Mathematics in the Modern World', '3', '1st Year', '1st Sem', 'General Education', NULL),
-('sub12', 'NSTP1', 'National Service Training Program 1', '3', '1st Year', '1st Sem', 'General Education', NULL),
+('sub09', 'GEC101', 'Understanding the Self', '3', '1st Year', '1st Sem', 'GEN ED', NULL),
+('sub10', 'PE101', 'Physical Fitness 1', '2', '1st Year', '1st Sem', 'GEN ED', NULL),
+('sub11', 'GEC102', 'Mathematics in the Modern World', '3', '1st Year', '1st Sem', 'GEN ED', NULL),
+('sub12', 'NSTP1', 'National Service Training Program 1', '3', '1st Year', '1st Sem', 'GEN ED', NULL),
 ('sub13', 'BP113', 'Basic Photography', '3', '1st Year', '1st Sem', 'BSIT', NULL),
 ('sub14', 'CC213', 'Data Structures and Algorithms', '3', '2nd Year', '1st Sem', 'BSIT', 'CC123'),
 ('sub15', 'CS213', 'Discrete Structures 2', '3', '2nd Year', '2nd Sem', 'BSIT', NULL),
-('sub16', 'PE103', 'Physical Fitness 3', '3', '2nd Year', '1st Sem', 'General Eduction', 'PE102'),
+('sub16', 'PE103', 'Physical Fitness 3', '3', '2nd Year', '1st Sem', 'GEN ED', 'PE102'),
 ('sub17', 'GEC107', 'Art Appreciation', '3', '2nd Year', '1st Sem', 'BSIT', NULL),
 ('sub18', 'GAD213', '2D Game Art Development', '3', '2nd Year', '1st Sem', 'BSIT', NULL),
 ('sub19', 'SDF213', 'Object-Oriented Programming', '3', '2nd Year', '2nd Sem', 'BSIT', NULL),
 ('sub20', 'CC223', 'Information Management 1', '3', '2nd Year', '1st Sem', 'BSIT', NULL),
 ('sub21', 'CSS113', 'Advanced PC Troubleshooting', '3', '1st Year', '1st Sem', 'BSIT', NULL),
 ('sub22', 'NET213', 'Networking 1', '3', '2nd Year', '1st Sem', 'BSIT', 'CC113-2'),
-('sub23', 'GEC101', 'Purposive Communication', '3', '2nd Year', '1st Sem', 'General Education', NULL),
+('sub23', 'GEC101', 'Purposive Communication', '3', '2nd Year', '1st Sem', 'GEN ED', NULL),
 ('sub24', 'SAD313', 'System Analysis and Development', '3', '3rd Year', '1st Sem', 'BSIT', NULL),
 ('sub25', 'CS101', 'Introduction to Computer Science', '3', '1st Year', '1st Sem', 'BSCS', NULL),
 ('sub26', 'IT201', 'Database Systems', '3', '2nd Year', '', 'BSIT', NULL),
 ('sub27', 'REM301', 'Property Management', '3', '3rd Year', '', 'BSREM', NULL),
-('sub28', 'NSTP2', 'National Service Training Program', '3', '1st Year', '', 'General Education', 'NSTP1'),
-('sub29', 'PE102', 'Physical Fitness 2', '2', '1st Year', '', 'General Education', 'PE101'),
-('sub30', 'PE104', 'Physical Fitness 4', '2', '2nt Year', '', 'General Education', 'PE103'),
-('sub31', 'dummy', 'asd', '3', '3rd Year', '', 'BSIT', '');
+('sub28', 'NSTP2', 'National Service Training Program', '3', '1st Year', '2nd Sem', 'GEN ED', 'NSTP1'),
+('sub29', 'PE102', 'Physical Fitness 2', '2', '1st Year', '2nd Sem', 'GEN ED', 'PE101'),
+('sub30', 'PE104', 'Physical Fitness 4', '2', '2nt Year', '2nd Sem', 'GEN ED', 'PE103');
 
 -- --------------------------------------------------------
 
@@ -781,7 +836,7 @@ ALTER TABLE `user_register`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `grades`

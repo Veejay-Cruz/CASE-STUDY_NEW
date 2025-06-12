@@ -16,6 +16,7 @@ Public Class subjects
         DGV4.Columns("subjectt_name").DataPropertyName = "subject_name"
         DGV4.Columns("unitt").DataPropertyName = "unit"
         DGV4.Columns("yr_level").DataPropertyName = "year_level"
+        DGV4.Columns("semester").DataPropertyName = "semester"
         DGV4.Columns("coursee").DataPropertyName = "course"
         DGV4.Columns("prerequisite").DataPropertyName = "prerequisite_sub_id"
 
@@ -42,11 +43,9 @@ Public Class subjects
         End Try
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-        Me.Hide()
-        main.Show()
-    End Sub
 
+
+    'SAVE BUTTON
     Private Sub ForeverButton1_Click(sender As Object, e As EventArgs) Handles ForeverButton1.Click
         If String.IsNullOrWhiteSpace(sub_id.Text) OrElse String.IsNullOrWhiteSpace(sub_code.Text) OrElse String.IsNullOrWhiteSpace(subject_name.Text) Then
             MessageBox.Show("Please fill up required fields!")
@@ -63,8 +62,25 @@ Public Class subjects
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
+
+                Dim tableName As String = ""
+                Dim idField As String = ""
+
+                Select Case Login.CurrentUserRole
+                    Case "Admin"
+                        tableName = "admin"
+                        idField = "id"
+                    Case "Registrar"
+                        tableName = "registrar"
+                        idField = "registrar_id"
+                    Case Else
+                        MessageBox.Show("Unauthorized user role.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Return
+                End Select
+
+
                 Dim username As String = Login.usernameLbl.Text
-                Dim passwordQuery As String = "SELECT COUNT(*) FROM admin WHERE id ='" & username & "'AND password = '" & enteredPassword & "'"
+                Dim passwordQuery As String = $"SELECT COUNT(*) FROM {tableName} WHERE {idField} ='" & username & "'AND password = '" & enteredPassword & "'"
                 Using checkCmd As New MySqlCommand(passwordQuery, conn)
                     checkCmd.Parameters.AddWithValue("@username", username)
                     checkCmd.Parameters.AddWithValue("@password", enteredPassword)
@@ -78,14 +94,15 @@ Public Class subjects
                 If isEditMode Then
                     ' UPDATE
                     Label10.Text = "Update Subject"
-                    Dim query As String = "UPDATE subjects SET sub_code=@subject_code, subject_name=@subjectt_name, unit=@unitt, year_level=@yr_level, course=@coursee, prerequisite_sub_id=@prerequisite WHERE sub_id=@subject_id"
+                    Dim query As String = "UPDATE subjects SET sub_code=@subject_code, subject_name=@subjectt_name, unit=@unitt, year_level=@yr_level, semester=@semester, course=@coursee, prerequisite_sub_id=@prerequisite WHERE sub_id=@subject_id"
                     Using cmd As New MySqlCommand(query, conn)
                         cmd.Parameters.AddWithValue("@subject_id", editingSubjectId)
                         cmd.Parameters.AddWithValue("@subject_code", sub_code.Text)
                         cmd.Parameters.AddWithValue("@subjectt_name", subject_name.Text)
                         cmd.Parameters.AddWithValue("@unitt", unit.Text)
-                        cmd.Parameters.AddWithValue("@yr_level", year_level.Text)
-                        cmd.Parameters.AddWithValue("@coursee", course.Text)
+                        cmd.Parameters.AddWithValue("@yr_level", cboYrlvl.Text)
+                        cmd.Parameters.AddWithValue("@semester", cboSem.Text)
+                        cmd.Parameters.AddWithValue("@coursee", cboCourse.Text)
                         cmd.Parameters.AddWithValue("@prerequisite", txtprereq.Text)
                         cmd.ExecuteNonQuery()
                     End Using
@@ -93,15 +110,16 @@ Public Class subjects
                 Else
                     ' INSERT
 
-                    Dim query As String = "INSERT INTO subjects (sub_id, sub_code, subject_name, unit, year_level, course, prerequisite_sub_id) " &
-                                      "VALUES (@subject_id, @subject_code, @subjectt_name, @unitt, @yr_level, @coursee, @prerequisite)"
+                    Dim query As String = "INSERT INTO subjects (sub_id, sub_code, subject_name, unit, year_level, semester, course, prerequisite_sub_id) " &
+                                      "VALUES (@subject_id, @subject_code, @subjectt_name, @unitt, @yr_level, @semester, @coursee, @prerequisite)"
                     Using cmd As New MySqlCommand(query, conn)
                         cmd.Parameters.AddWithValue("@subject_id", sub_id.Text)
                         cmd.Parameters.AddWithValue("@subject_code", sub_code.Text)
                         cmd.Parameters.AddWithValue("@subjectt_name", subject_name.Text)
                         cmd.Parameters.AddWithValue("@unitt", unit.Text)
-                        cmd.Parameters.AddWithValue("@yr_level", year_level.Text)
-                        cmd.Parameters.AddWithValue("@coursee", course.Text)
+                        cmd.Parameters.AddWithValue("@yr_level", cboYrlvl.Text)
+                        cmd.Parameters.AddWithValue("@semester", cboSem.Text)
+                        cmd.Parameters.AddWithValue("@coursee", cboCourse.Text)
                         cmd.Parameters.AddWithValue("@prerequisite", txtprereq.Text)
                         cmd.ExecuteNonQuery()
                     End Using
@@ -125,8 +143,10 @@ Public Class subjects
                 subject_name.Clear()
                 sub_code.Clear()
                 unit.Clear()
-                year_level.Clear()
-                course.Clear()
+                cboYrlvl.SelectedIndex = -1 ' Reset year level selection
+                cboSem.SelectedIndex = -1 ' Reset semester selection
+
+                cboCourse.SelectedIndex = -1 ' Reset course selection
                 txtprereq.Clear()
                 isEditMode = False
                 editingSubjectId = ""
@@ -146,18 +166,43 @@ Public Class subjects
         createPnl.Hide()
     End Sub
 
+    Private Function GenerateNextSubjectId() As String
+        Dim nextId As String = ""
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                ' Get the highest numeric part of sub_id
+                Dim query As String = "SELECT MAX(CAST(SUBSTRING(sub_id, 4) AS UNSIGNED)) FROM subjects WHERE sub_id LIKE 'sub%'"
+                Using cmd As New MySqlCommand(query, conn)
+                    Dim result = cmd.ExecuteScalar()
+                    If result IsNot DBNull.Value AndAlso result IsNot Nothing Then
+                        Dim lastNum As Integer = Convert.ToInt32(result)
+                        nextId = "sub" & (lastNum + 1).ToString()
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error generating Subject ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+        Return nextId
+    End Function
+
+
+
     Private Sub createLbl_Click(sender As Object, e As EventArgs) Handles createLbl.Click
         isEditMode = False
         editingSubjectId = ""
         sub_id.Enabled = True ' Allow editing Subject ID for new
-        sub_id.Clear()
+        sub_id.Text = GenerateNextSubjectId()
         subject_name.Clear()
         sub_code.Clear()
         unit.Clear()
-        year_level.Clear()
-        course.Clear()
+        cboYrlvl.SelectedIndex = -1 ' Reset year level selection
+        cboSem.SelectedIndex = -1 ' Reset semester selection
+        cboCourse.SelectedIndex = -1 ' Reset course selection
         txtprereq.Clear()
         Label10.Text = "Create Subject"
+        LoadActiveCourses()
         createPnl.Show()
     End Sub
 
@@ -200,12 +245,36 @@ Public Class subjects
             sub_code.Text = row.Cells("subject_code").Value.ToString()
             subject_name.Text = row.Cells("subjectt_name").Value.ToString()
             unit.Text = row.Cells("unitt").Value.ToString()
-            year_level.Text = row.Cells("yr_level").Value.ToString()
-            course.Text = row.Cells("coursee").Value.ToString()
+            cboYrlvl.Text = row.Cells("yr_level").Value.ToString()
+            cboSem.Text = row.Cells("semester").Value.ToString()
+            cboCourse.Text = row.Cells("coursee").Value.ToString()
             txtprereq.Text = row.Cells("prerequisite").Value.ToString()
             Label10.Text = "Edit Subject"
+            LoadActiveCourses() ' Load active courses for the dropdown
+            If row.Cells("coursee").Value IsNot Nothing Then
+                cboCourse.Text = row.Cells("coursee").Value.ToString()
+            End If
             createPnl.Show()
         End If
+    End Sub
+
+    Private Sub LoadActiveCourses()
+        cboCourse.Items.Clear()
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim query As String = "SELECT course_code FROM courses WHERE status = 'Active'"
+                Using cmd As New MySqlCommand(query, conn)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            cboCourse.Items.Add(reader("course_code").ToString())
+                        End While
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading courses: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
     End Sub
 
 

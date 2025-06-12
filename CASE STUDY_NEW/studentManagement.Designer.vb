@@ -35,7 +35,6 @@ Partial Class studentManagement
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        createLbl = New Label()
         DGV1 = New DataGridView()
         id = New DataGridViewTextBoxColumn()
         lname = New DataGridViewTextBoxColumn()
@@ -48,7 +47,6 @@ Partial Class studentManagement
         stat = New DataGridViewTextBoxColumn()
         searchTxt = New TextBox()
         Label1 = New Label()
-        closeLbl = New Label()
         createPnl = New Panel()
         cboYearlvl = New ComboBox()
         Label13 = New Label()
@@ -81,20 +79,10 @@ Partial Class studentManagement
         Label14 = New Label()
         Label15 = New Label()
         cboFilter = New ComboBox()
+        createLbl = New Label()
         CType(DGV1, ComponentModel.ISupportInitialize).BeginInit()
         createPnl.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' createLbl
-        ' 
-        createLbl.AutoSize = True
-        createLbl.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        createLbl.ForeColor = Color.Black
-        createLbl.Location = New Point(1422, 41)
-        createLbl.Name = "createLbl"
-        createLbl.Size = New Size(112, 19)
-        createLbl.TabIndex = 0
-        createLbl.Text = "[create new]"
         ' 
         ' DGV1
         ' 
@@ -259,17 +247,6 @@ Partial Class studentManagement
         Label1.Size = New Size(380, 38)
         Label1.TabIndex = 4
         Label1.Text = "STUDENT MANAGEMENT"
-        ' 
-        ' closeLbl
-        ' 
-        closeLbl.AutoSize = True
-        closeLbl.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        closeLbl.ForeColor = Color.Black
-        closeLbl.Location = New Point(1549, 9)
-        closeLbl.Name = "closeLbl"
-        closeLbl.Size = New Size(60, 19)
-        closeLbl.TabIndex = 5
-        closeLbl.Text = "[close]"
         ' 
         ' createPnl
         ' 
@@ -601,7 +578,7 @@ Partial Class studentManagement
         Label15.FlatStyle = FlatStyle.System
         Label15.Font = New Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label15.ForeColor = Color.Black
-        Label15.Location = New Point(1093, 88)
+        Label15.Location = New Point(1085, 88)
         Label15.Name = "Label15"
         Label15.Size = New Size(61, 21)
         Label15.TabIndex = 44
@@ -610,10 +587,21 @@ Partial Class studentManagement
         ' cboFilter
         ' 
         cboFilter.FormattingEnabled = True
-        cboFilter.Location = New Point(1160, 88)
+        cboFilter.Location = New Point(1152, 88)
         cboFilter.Name = "cboFilter"
         cboFilter.Size = New Size(121, 23)
         cboFilter.TabIndex = 43
+        ' 
+        ' createLbl
+        ' 
+        createLbl.AutoSize = True
+        createLbl.Font = New Font("Century Gothic", 14.25F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        createLbl.ForeColor = Color.Black
+        createLbl.Location = New Point(1317, 41)
+        createLbl.Name = "createLbl"
+        createLbl.Size = New Size(129, 22)
+        createLbl.TabIndex = 0
+        createLbl.Text = "[create new]"
         ' 
         ' studentManagement
         ' 
@@ -631,7 +619,6 @@ Partial Class studentManagement
         Controls.Add(Label6)
         Controls.Add(deleteLbl)
         Controls.Add(createPnl)
-        Controls.Add(closeLbl)
         Controls.Add(Label1)
         Controls.Add(searchTxt)
         Controls.Add(DGV1)
@@ -646,12 +633,9 @@ Partial Class studentManagement
         ResumeLayout(False)
         PerformLayout()
     End Sub
-
-    Friend WithEvents createLbl As Label
     Friend WithEvents DGV1 As DataGridView
     Friend WithEvents searchTxt As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents closeLbl As Label
     Friend WithEvents createPnl As Panel
     Friend WithEvents Label3 As Label
     Friend WithEvents stud_id As TextBox
@@ -693,4 +677,5 @@ Partial Class studentManagement
     Friend WithEvents stat As DataGridViewTextBoxColumn
     Friend WithEvents Label15 As Label
     Friend WithEvents cboFilter As ComboBox
+    Friend WithEvents createLbl As Label
 End Class

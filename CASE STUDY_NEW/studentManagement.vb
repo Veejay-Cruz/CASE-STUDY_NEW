@@ -147,18 +147,18 @@ Public Class studentManagement
         ComboBox1.Items.Clear()
 
         If cboDepartment.SelectedIndex <> -1 Then
-            Dim selectedDepartment As String = cboDepartment.SelectedItem.ToString()
+            Dim selectedDepartment = cboDepartment.SelectedItem.ToString
 
             Using conn As New MySqlConnection(connString)
                 Try
                     conn.Open()
-                    Dim query As String = "SELECT course_code FROM courses WHERE department_id = @dept AND status = 'Active'"
+                    Dim query = "SELECT course_code FROM courses WHERE department_id = @dept AND status = 'Active'"
 
                     Using cmd As New MySqlCommand(query, conn)
                         cmd.Parameters.AddWithValue("@dept", selectedDepartment)
-                        Using reader As MySqlDataReader = cmd.ExecuteReader()
-                            While reader.Read()
-                                ComboBox1.Items.Add(reader("course_code").ToString())
+                        Using reader = cmd.ExecuteReader
+                            While reader.Read
+                                ComboBox1.Items.Add(reader("course_code").ToString)
                             End While
                         End Using
                     End Using
@@ -185,10 +185,10 @@ Public Class studentManagement
             Try
                 conn.Open()
                 ' Start a transaction to ensure both student and enrollment are created
-                Using transaction As MySqlTransaction = conn.BeginTransaction()
+                Using transaction = conn.BeginTransaction
                     Try
                         ' Insert into students table
-                        Dim query As String = "INSERT INTO students (stud_id, first_name, last_name, middle_name, department, year_level, course_code, password, status) " &
+                        Dim query = "INSERT INTO students (stud_id, first_name, last_name, middle_name, department, year_level, course_code, password, status) " &
                                           "VALUES (@id, @fname, @lname, @mname, @department, @yr_level, @course, @password, @status)"
 
                         Using cmd As New MySqlCommand(query, conn, transaction)
@@ -207,19 +207,19 @@ Public Class studentManagement
                         End Using
 
                         ' Get current school year and semester
-                        Dim currentSchoolYear As String = ""
-                        Dim currentSemester As String = ""
+                        Dim currentSchoolYear = ""
+                        Dim currentSemester = ""
 
                         Using cmdYear As New MySqlCommand("SELECT school_year FROM school_year_table WHERE status = 'Open'", conn, transaction)
-                            currentSchoolYear = Convert.ToString(cmdYear.ExecuteScalar())
+                            currentSchoolYear = Convert.ToString(cmdYear.ExecuteScalar)
                         End Using
 
                         Using cmdSem As New MySqlCommand("SELECT semester FROM semester_table WHERE status = 'Open'", conn, transaction)
-                            currentSemester = Convert.ToString(cmdSem.ExecuteScalar())
+                            currentSemester = Convert.ToString(cmdSem.ExecuteScalar)
                         End Using
 
                         ' Insert into enrollment table
-                        Dim enrollQuery As String = "INSERT INTO enrollment (stud_id, section_id, academic_year, semester, enrolled_date) " &
+                        Dim enrollQuery = "INSERT INTO enrollment (stud_id, section_id, academic_year, semester, enrolled_date) " &
                                                   "VALUES (@stud_id, @section_id, @academic_year, @semester, @enrolled_date)"
 
                         Using enrollCmd As New MySqlCommand(enrollQuery, conn, transaction)
@@ -227,14 +227,14 @@ Public Class studentManagement
                             enrollCmd.Parameters.AddWithValue("@section_id", 1) ' Default section, modify as needed
                             enrollCmd.Parameters.AddWithValue("@academic_year", currentSchoolYear)
                             enrollCmd.Parameters.AddWithValue("@semester", currentSemester)
-                            enrollCmd.Parameters.AddWithValue("@enrolled_date", DateTime.Now.ToString("yyyy-MM-dd"))
+                            enrollCmd.Parameters.AddWithValue("@enrolled_date", Date.Now.ToString("yyyy-MM-dd"))
                             enrollCmd.ExecuteNonQuery()
                         End Using
 
                         ' Add audit trail
-                        Dim username As String = Login.usernameLbl.Text
-                        Dim action As String = "CREATED NEW"
-                        Dim date_time As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                        Dim username = Login.usernameLbl.Text
+                        Dim action = "CREATED NEW"
+                        Dim date_time = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
 
                         Using auditCmd As New MySqlCommand("INSERT INTO audit_trail (username, action, date_time) VALUES (@username, @action, @date_time)", conn, transaction)
                             auditCmd.Parameters.AddWithValue("@username", username)
@@ -306,10 +306,6 @@ Public Class studentManagement
         End If
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles closeLbl.Click
-        Hide()
-        main.Show()
-    End Sub
 
     Private Sub createPnl_Paint(sender As Object, e As PaintEventArgs) Handles createPnl.Paint
         If status.Items.Count = 0 Then
@@ -322,11 +318,11 @@ Public Class studentManagement
             Try
                 Using conn As New MySqlConnection(connString)
                     conn.Open()
-                    Dim query As String = "SELECT department_id FROM department WHERE status = 'Active' ORDER BY department_id"
+                    Dim query = "SELECT department_id FROM department WHERE status = 'Active' ORDER BY department_id"
                     Using cmd As New MySqlCommand(query, conn)
-                        Using reader As MySqlDataReader = cmd.ExecuteReader()
-                            While reader.Read()
-                                cboDepartment.Items.Add(reader("department_id").ToString())
+                        Using reader = cmd.ExecuteReader
+                            While reader.Read
+                                cboDepartment.Items.Add(reader("department_id").ToString)
                             End While
                         End Using
                     End Using
@@ -437,4 +433,5 @@ Public Class studentManagement
     Private Sub searchTxt_Click(sender As Object, e As EventArgs) Handles searchTxt.Click
         searchTxt.Text = ""
     End Sub
+
 End Class

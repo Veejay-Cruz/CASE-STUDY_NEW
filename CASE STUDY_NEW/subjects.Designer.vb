@@ -24,8 +24,8 @@ Partial Class subjects
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
@@ -34,6 +34,7 @@ Partial Class subjects
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         DGV4 = New DataGridView()
         subject_id = New DataGridViewTextBoxColumn()
@@ -41,20 +42,22 @@ Partial Class subjects
         subjectt_name = New DataGridViewTextBoxColumn()
         unitt = New DataGridViewTextBoxColumn()
         yr_level = New DataGridViewTextBoxColumn()
+        semester = New DataGridViewTextBoxColumn()
         coursee = New DataGridViewTextBoxColumn()
         prerequisite = New DataGridViewTextBoxColumn()
         editBtn = New DataGridViewButtonColumn()
-        Label2 = New Label()
         deleteLbl = New Label()
         createLbl = New Label()
         createPnl = New Panel()
+        cboCourse = New ComboBox()
+        cboYrlvl = New ComboBox()
+        cboSem = New ComboBox()
+        Label11 = New Label()
         txtprereq = New TextBox()
         Label9 = New Label()
         Label10 = New Label()
         ForeverButton2 = New ReaLTaiizor.Controls.ForeverButton()
         ForeverButton1 = New ReaLTaiizor.Controls.ForeverButton()
-        course = New TextBox()
-        year_level = New TextBox()
         unit = New TextBox()
         sub_code = New TextBox()
         subject_name = New TextBox()
@@ -65,7 +68,6 @@ Partial Class subjects
         Label5 = New Label()
         Label4 = New Label()
         Label3 = New Label()
-        Label11 = New Label()
         CType(DGV4, ComponentModel.ISupportInitialize).BeginInit()
         createPnl.SuspendLayout()
         SuspendLayout()
@@ -98,28 +100,29 @@ Partial Class subjects
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
         DGV4.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         DGV4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        DGV4.Columns.AddRange(New DataGridViewColumn() {subject_id, subject_code, subjectt_name, unitt, yr_level, coursee, prerequisite, editBtn})
-        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.BackColor = Color.White
-        DataGridViewCellStyle11.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle11.ForeColor = Color.Black
-        DataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = DataGridViewTriState.True
-        DGV4.DefaultCellStyle = DataGridViewCellStyle11
+        DGV4.Columns.AddRange(New DataGridViewColumn() {subject_id, subject_code, subjectt_name, unitt, yr_level, semester, coursee, prerequisite, editBtn})
+        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = Color.White
+        DataGridViewCellStyle12.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle12.ForeColor = Color.Black
+        DataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = DataGridViewTriState.True
+        DGV4.DefaultCellStyle = DataGridViewCellStyle12
         DGV4.EnableHeadersVisualStyles = False
         DGV4.Location = New Point(-3, 63)
         DGV4.Name = "DGV4"
         DGV4.ReadOnly = True
-        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle12.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle12.ForeColor = Color.White
-        DataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle12.WrapMode = DataGridViewTriState.True
-        DGV4.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle13.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle13.ForeColor = Color.White
+        DataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = DataGridViewTriState.True
+        DGV4.RowHeadersDefaultCellStyle = DataGridViewCellStyle13
         DGV4.RowHeadersVisible = False
+        DGV4.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DGV4.Size = New Size(1616, 1017)
         DGV4.TabIndex = 6
         ' 
@@ -182,13 +185,23 @@ Partial Class subjects
         yr_level.ReadOnly = True
         yr_level.Width = 104
         ' 
-        ' coursee
+        ' semester
         ' 
-        coursee.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle8.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         DataGridViewCellStyle8.ForeColor = Color.Black
-        coursee.DefaultCellStyle = DataGridViewCellStyle8
+        semester.DefaultCellStyle = DataGridViewCellStyle8
+        semester.HeaderText = "SEMESTER"
+        semester.Name = "semester"
+        semester.ReadOnly = True
+        ' 
+        ' coursee
+        ' 
+        coursee.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle9.ForeColor = Color.Black
+        coursee.DefaultCellStyle = DataGridViewCellStyle9
         coursee.HeaderText = "COURSE"
         coursee.Name = "coursee"
         coursee.ReadOnly = True
@@ -196,37 +209,25 @@ Partial Class subjects
         ' prerequisite
         ' 
         prerequisite.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle9.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle9.ForeColor = Color.Black
-        prerequisite.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle10.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle10.ForeColor = Color.Black
+        prerequisite.DefaultCellStyle = DataGridViewCellStyle10
         prerequisite.HeaderText = "PRE-REQUISITE"
         prerequisite.Name = "prerequisite"
         prerequisite.ReadOnly = True
         ' 
         ' editBtn
         ' 
-        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.BackColor = Color.White
-        DataGridViewCellStyle10.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle10.ForeColor = Color.Black
-        editBtn.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = Color.White
+        DataGridViewCellStyle11.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle11.ForeColor = Color.Black
+        editBtn.DefaultCellStyle = DataGridViewCellStyle11
         editBtn.HeaderText = ""
         editBtn.Name = "editBtn"
         editBtn.ReadOnly = True
         editBtn.Text = "Edit"
         editBtn.UseColumnTextForButtonValue = True
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.BackColor = Color.White
-        Label2.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.Black
-        Label2.Location = New Point(1540, 5)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(60, 19)
-        Label2.TabIndex = 7
-        Label2.Text = "[close]"
         ' 
         ' deleteLbl
         ' 
@@ -257,14 +258,15 @@ Partial Class subjects
         ' createPnl
         ' 
         createPnl.BackColor = Color.MidnightBlue
+        createPnl.Controls.Add(cboCourse)
+        createPnl.Controls.Add(cboYrlvl)
+        createPnl.Controls.Add(cboSem)
         createPnl.Controls.Add(Label11)
         createPnl.Controls.Add(txtprereq)
         createPnl.Controls.Add(Label9)
         createPnl.Controls.Add(Label10)
         createPnl.Controls.Add(ForeverButton2)
         createPnl.Controls.Add(ForeverButton1)
-        createPnl.Controls.Add(course)
-        createPnl.Controls.Add(year_level)
         createPnl.Controls.Add(unit)
         createPnl.Controls.Add(sub_code)
         createPnl.Controls.Add(subject_name)
@@ -280,9 +282,50 @@ Partial Class subjects
         createPnl.Size = New Size(576, 597)
         createPnl.TabIndex = 14
         ' 
+        ' cboCourse
+        ' 
+        cboCourse.DropDownStyle = ComboBoxStyle.DropDownList
+        cboCourse.FormattingEnabled = True
+        cboCourse.Location = New Point(196, 414)
+        cboCourse.Name = "cboCourse"
+        cboCourse.Size = New Size(332, 23)
+        cboCourse.TabIndex = 25
+        ' 
+        ' cboYrlvl
+        ' 
+        cboYrlvl.BackColor = Color.White
+        cboYrlvl.DropDownStyle = ComboBoxStyle.DropDownList
+        cboYrlvl.FormattingEnabled = True
+        cboYrlvl.Items.AddRange(New Object() {"1st Year", "2nd Year", "3rd Year", "4th Year"})
+        cboYrlvl.Location = New Point(196, 312)
+        cboYrlvl.Name = "cboYrlvl"
+        cboYrlvl.Size = New Size(332, 23)
+        cboYrlvl.TabIndex = 24
+        ' 
+        ' cboSem
+        ' 
+        cboSem.DropDownStyle = ComboBoxStyle.DropDownList
+        cboSem.FormattingEnabled = True
+        cboSem.Items.AddRange(New Object() {"1st Sem", "2nd Sem"})
+        cboSem.Location = New Point(196, 363)
+        cboSem.Name = "cboSem"
+        cboSem.Size = New Size(332, 23)
+        cboSem.TabIndex = 23
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        Label11.ForeColor = Color.White
+        Label11.Location = New Point(29, 363)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(77, 18)
+        Label11.TabIndex = 22
+        Label11.Text = "SEMESTER"
+        ' 
         ' txtprereq
         ' 
-        txtprereq.BackColor = Color.Gainsboro
+        txtprereq.BackColor = Color.White
         txtprereq.BorderStyle = BorderStyle.None
         txtprereq.Font = New Font("Century Gothic", 9.75F)
         txtprereq.Location = New Point(196, 463)
@@ -339,34 +382,12 @@ Partial Class subjects
         ForeverButton1.Text = "SAVE"
         ForeverButton1.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
         ' 
-        ' course
-        ' 
-        course.BackColor = Color.Gainsboro
-        course.BorderStyle = BorderStyle.None
-        course.Font = New Font("Century Gothic", 9.75F)
-        course.Location = New Point(196, 406)
-        course.Multiline = True
-        course.Name = "course"
-        course.Size = New Size(332, 41)
-        course.TabIndex = 10
-        ' 
-        ' year_level
-        ' 
-        year_level.BackColor = Color.Gainsboro
-        year_level.BorderStyle = BorderStyle.None
-        year_level.Font = New Font("Century Gothic", 9.75F)
-        year_level.Location = New Point(196, 289)
-        year_level.Multiline = True
-        year_level.Name = "year_level"
-        year_level.Size = New Size(332, 41)
-        year_level.TabIndex = 9
-        ' 
         ' unit
         ' 
-        unit.BackColor = Color.Gainsboro
+        unit.BackColor = Color.White
         unit.BorderStyle = BorderStyle.None
         unit.Font = New Font("Century Gothic", 9.75F)
-        unit.Location = New Point(196, 232)
+        unit.Location = New Point(196, 244)
         unit.Multiline = True
         unit.Name = "unit"
         unit.Size = New Size(332, 41)
@@ -374,7 +395,7 @@ Partial Class subjects
         ' 
         ' sub_code
         ' 
-        sub_code.BackColor = Color.Gainsboro
+        sub_code.BackColor = Color.White
         sub_code.BorderStyle = BorderStyle.None
         sub_code.Font = New Font("Century Gothic", 9.75F)
         sub_code.Location = New Point(196, 115)
@@ -385,7 +406,7 @@ Partial Class subjects
         ' 
         ' subject_name
         ' 
-        subject_name.BackColor = Color.Gainsboro
+        subject_name.BackColor = Color.White
         subject_name.BorderStyle = BorderStyle.None
         subject_name.Font = New Font("Century Gothic", 9.75F)
         subject_name.Location = New Point(196, 171)
@@ -396,12 +417,13 @@ Partial Class subjects
         ' 
         ' sub_id
         ' 
-        sub_id.BackColor = Color.Gainsboro
+        sub_id.BackColor = Color.White
         sub_id.BorderStyle = BorderStyle.None
         sub_id.Font = New Font("Century Gothic", 9.75F)
         sub_id.Location = New Point(196, 61)
         sub_id.Multiline = True
         sub_id.Name = "sub_id"
+        sub_id.ReadOnly = True
         sub_id.Size = New Size(332, 41)
         sub_id.TabIndex = 6
         ' 
@@ -471,17 +493,6 @@ Partial Class subjects
         Label3.TabIndex = 0
         Label3.Text = "SUBJECT ID"
         ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
-        Label11.ForeColor = Color.White
-        Label11.Location = New Point(29, 363)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(77, 18)
-        Label11.TabIndex = 22
-        Label11.Text = "SEMESTER"
-        ' 
         ' subjects
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -491,7 +502,6 @@ Partial Class subjects
         Controls.Add(createPnl)
         Controls.Add(deleteLbl)
         Controls.Add(createLbl)
-        Controls.Add(Label2)
         Controls.Add(DGV4)
         Controls.Add(Label1)
         FormBorderStyle = FormBorderStyle.None
@@ -507,7 +517,6 @@ Partial Class subjects
 
     Friend WithEvents Label1 As Label
     Friend WithEvents DGV4 As DataGridView
-    Friend WithEvents Label2 As Label
     Friend WithEvents deleteLbl As Label
     Friend WithEvents createLbl As Label
     Friend WithEvents createPnl As Panel
@@ -518,8 +527,6 @@ Partial Class subjects
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents course As TextBox
-    Friend WithEvents year_level As TextBox
     Friend WithEvents unit As TextBox
     Friend WithEvents sub_code As TextBox
     Friend WithEvents subject_name As TextBox
@@ -528,13 +535,17 @@ Partial Class subjects
     Friend WithEvents Label10 As Label
     Friend WithEvents txtprereq As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents cboSem As ComboBox
     Friend WithEvents subject_id As DataGridViewTextBoxColumn
     Friend WithEvents subject_code As DataGridViewTextBoxColumn
     Friend WithEvents subjectt_name As DataGridViewTextBoxColumn
     Friend WithEvents unitt As DataGridViewTextBoxColumn
     Friend WithEvents yr_level As DataGridViewTextBoxColumn
+    Friend WithEvents semester As DataGridViewTextBoxColumn
     Friend WithEvents coursee As DataGridViewTextBoxColumn
     Friend WithEvents prerequisite As DataGridViewTextBoxColumn
     Friend WithEvents editBtn As DataGridViewButtonColumn
-    Friend WithEvents Label11 As Label
+    Friend WithEvents cboCourse As ComboBox
+    Friend WithEvents cboYrlvl As ComboBox
 End Class
