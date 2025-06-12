@@ -8,6 +8,8 @@ Public Class dean_courseManagement
         ' Enable and set up txtSearchStudent
         'txtSearchStudent.Enabled = True
         'txtSearchStudent.ReadOnly = False
+        cboSearchStudent.AutoCompleteMode = AutoCompleteMode.None
+        cboSearchStudent.AutoCompleteSource = AutoCompleteSource.None
 
         ' Initialize DGVSubject
         DGVSubject.AutoGenerateColumns = False
@@ -50,17 +52,55 @@ Public Class dean_courseManagement
         createPnl2.Visible = False
     End Sub
 
-    Private Sub txtSearchStudent_TextChanged(sender As Object, e As EventArgs) Handles txtSearchStudent.TextChanged
-        SearchStudent(txtSearchStudent.Text)
-    End Sub
 
-    'Private Sub txtSearchStudent_Click(sender As Object, e As EventArgs) Handles txtSearchStudent.Click
-    '    ' Ensure the textbox is enabled and focused when clicked
-    '    If Not txtSearchStudent.Enabled Then
-    '        txtSearchStudent.Enabled = True
-    '    End If
-    '    txtSearchStudent.Focus()
-    'End Sub
+    Private Sub cboSearchStudent_KeyUp(sender As Object, e As KeyEventArgs) Handles cboSearchStudent.KeyUp
+        Dim searchText As String = cboSearchStudent.Text.Trim()
+        If String.IsNullOrEmpty(searchText) Then Exit Sub
+
+        ' Get current school year and semester from labels
+        Dim currentSchoolYear As String = lblSchoolyr.Text
+        Dim currentSemester As String = lblSem.Text
+
+
+        ' Save caret position
+        Dim caretPos As Integer = cboSearchStudent.SelectionStart
+
+
+        cboSearchStudent.Items.Clear()
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim query As String = "SELECT DISTINCT s.stud_id " &
+                                  "FROM students s " &
+                                  "INNER JOIN enrollment e ON s.stud_id = e.stud_id " &
+                                  "WHERE e.academic_year = @schoolYear " &
+                                  "AND e.semester = @semester " &
+                                  "AND (s.stud_id LIKE @search OR s.last_name LIKE @search OR s.first_name LIKE @search) " &
+                                  "ORDER BY s.stud_id LIMIT 20"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
+                    cmd.Parameters.AddWithValue("@semester", currentSemester)
+                    cmd.Parameters.AddWithValue("@search", "%" & searchText & "%")
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            cboSearchStudent.Items.Add(reader("stud_id").ToString())
+                        End While
+
+
+                    End Using
+                End Using
+            Catch ex As Exception
+                ' Optionally handle error
+            End Try
+        End Using
+        cboSearchStudent.DroppedDown = True
+        cboSearchStudent.SelectionStart = cboSearchStudent.Text.Length
+        cboSearchStudent.Text = searchText
+        cboSearchStudent.SelectionStart = caretPos
+
+        cboSearchStudent.SelectionLength = 0 ' Reset selection length to 0 to avoid selecting the entire text
+
+    End Sub
 
 
 
@@ -90,44 +130,42 @@ Public Class dean_courseManagement
         End Using
     End Sub
 
-    Private Sub SearchStudent(searchText As String)
-        If String.IsNullOrWhiteSpace(searchText) Then
-            ClearFields()
-            Return
-        End If
+    'Private Sub SearchStudent(searchText As String)
+    '    If String.IsNullOrWhiteSpace(searchText) Then
+    '        ClearFields()
+    '        Return
+    '    End If
 
-        Using conn As New MySqlConnection(connString)
-            Try
-                conn.Open()
+    '    Dim currentSchoolYear As String = lblSchoolyr.Text
+    '    Dim currentSemester As String = lblSem.Text
 
-                ' Search for student
-                Dim query As String = "SELECT s.* FROM students s " &
-                                "WHERE s.stud_id LIKE @search"
-
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@search", searchText)
-
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
-                        If reader.Read() Then
-                            ' Display student information
-                            txtStudname.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
-                            txtStudentStatus.Text = reader("status").ToString()
-                            txtCourse.Text = reader("course_code").ToString()
-                            txtYearlvl.Text = reader("year_level").ToString()
-
-                            ' Clear the subject grid until confirmation
-                            DGVSubject.DataSource = Nothing
-                        Else
-                            'ClearFields()
-                        End If
-                    End Using
-                End Using
-
-            Catch ex As Exception
-                MessageBox.Show("Error searching student: " & ex.Message)
-            End Try
-        End Using
-    End Sub
+    '    Using conn As New MySqlConnection(connString)
+    '        Try
+    '            conn.Open()
+    '            Dim query As String = "SELECT s.* FROM students s " &
+    '                              "INNER JOIN enrollment e ON s.stud_id = e.stud_id " &
+    '                              "WHERE e.academic_year = @schoolYear " &
+    '                              "AND e.semester = @semester " &
+    '                              "AND s.stud_id = @search"
+    '            Using cmd As New MySqlCommand(query, conn)
+    '                cmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
+    '                cmd.Parameters.AddWithValue("@semester", currentSemester)
+    '                cmd.Parameters.AddWithValue("@search", searchText)
+    '                Using reader As MySqlDataReader = cmd.ExecuteReader()
+    '                    If reader.Read() Then
+    '                        txtStudname.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
+    '                        txtStudentStatus.Text = reader("status").ToString()
+    '                        txtCourse.Text = reader("course_code").ToString()
+    '                        txtYearlvl.Text = reader("year_level").ToString()
+    '                        DGVSubject.DataSource = Nothing
+    '                    End If
+    '                End Using
+    '            End Using
+    '        Catch ex As Exception
+    '            MessageBox.Show("Error searching student: " & ex.Message)
+    '        End Try
+    '    End Using
+    'End Sub
 
     Private Sub LoadSubjectsForCourse(courseCode As String)
         Using conn As New MySqlConnection(connString)
@@ -149,7 +187,7 @@ Public Class dean_courseManagement
     End Sub
 
     Private Sub ClearFields()
-        txtSearchStudent.Clear()
+        cboSearchStudent.Text = String.Empty
         txtStudname.Clear()
         txtStudentStatus.Clear()
         txtCourse.Clear()
@@ -204,7 +242,7 @@ Public Class dean_courseManagement
                     da.SelectCommand.Parameters.AddWithValue("@semester", currentSemester)
 
 
-                    da.SelectCommand.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
+                    da.SelectCommand.Parameters.AddWithValue("@studId", cboSearchStudent.Text)
                     da.SelectCommand.Parameters.AddWithValue("@schoolYear", lblSchoolyr.Text)
 
 
@@ -268,7 +306,7 @@ Public Class dean_courseManagement
         createPnl2.Visible = True
         LoadSectionsForStudent()
 
-        If String.IsNullOrWhiteSpace(txtStudentStatus.Text) Then
+        If String.IsNullOrWhiteSpace(cboSearchStudent.Text) Then
             MessageBox.Show("Please select a student first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -336,7 +374,7 @@ Public Class dean_courseManagement
     End Function
 
     Private Sub btnConfirmSub_Click(sender As Object, e As EventArgs) Handles btnConfirmSub.Click
-        If String.IsNullOrWhiteSpace(txtSearchStudent.Text) Then
+        If String.IsNullOrWhiteSpace(cboSearchStudent.Text) Then
             MessageBox.Show("Please select a student first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -360,7 +398,7 @@ Public Class dean_courseManagement
                     Dim deleteCmd As New MySqlCommand(
                         "DELETE FROM student_subjects WHERE stud_id = @studId AND school_year = @schoolYear AND semester = @semester",
                         conn, transaction)
-                    deleteCmd.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
+                    deleteCmd.Parameters.AddWithValue("@studId", cboSearchStudent.Text)
                     deleteCmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
                     deleteCmd.Parameters.AddWithValue("@semester", currentSemester)
                     deleteCmd.ExecuteNonQuery()
@@ -378,7 +416,7 @@ Public Class dean_courseManagement
 
                             ' Check if subject already exists for this student
                             Dim checkCmd As New MySqlCommand("SELECT COUNT(*) FROM student_subjects WHERE stud_id = @studId AND sub_id = @subId AND school_year = @schoolYear AND semester = @semester", conn, transaction)
-                            checkCmd.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
+                            checkCmd.Parameters.AddWithValue("@studId", cboSearchStudent.Text)
                             checkCmd.Parameters.AddWithValue("@subId", row.Cells("sub_id").Value)
                             checkCmd.Parameters.AddWithValue("@schoolYear", currentSchoolYear)
                             checkCmd.Parameters.AddWithValue("@semester", currentSemester)
@@ -392,7 +430,7 @@ Public Class dean_courseManagement
 
 
                             insertCmd.Parameters.Clear()
-                            insertCmd.Parameters.AddWithValue("@studId", txtSearchStudent.Text)
+                            insertCmd.Parameters.AddWithValue("@studId", cboSearchStudent.Text)
                             insertCmd.Parameters.AddWithValue("@subId", row.Cells("sub_id").Value)
                             insertCmd.Parameters.AddWithValue("@subCode", row.Cells("sub_code").Value)
                             insertCmd.Parameters.AddWithValue("@subjectName", row.Cells("sub_name").Value)
@@ -538,4 +576,36 @@ Public Class dean_courseManagement
             End If
         End If
     End Sub
+
+    Private Sub cboSearchStudent_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboSearchStudent.SelectedIndexChanged
+        Dim selectedId As String = cboSearchStudent.Text.Trim()
+        If String.IsNullOrEmpty(selectedId) Then Exit Sub
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim query As String = "SELECT * FROM students WHERE stud_id = @stud_id"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@stud_id", selectedId)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            txtStudname.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
+                            txtStudentStatus.Text = reader("status").ToString()
+                            txtCourse.Text = reader("course_code").ToString()
+                            txtYearlvl.Text = reader("year_level").ToString()
+                        Else
+                            txtStudname.Clear()
+                            txtStudentStatus.Clear()
+                            txtCourse.Clear()
+                            txtYearlvl.Clear()
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading student info: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+
 End Class

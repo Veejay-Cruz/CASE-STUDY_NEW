@@ -36,7 +36,6 @@ Partial Class dean_courseManagement
         Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         Label2 = New Label()
-        txtSearchStudent = New TextBox()
         Label3 = New Label()
         txtStudname = New TextBox()
         txtCourse = New TextBox()
@@ -69,6 +68,7 @@ Partial Class dean_courseManagement
         Label7 = New Label()
         btnCancel = New ReaLTaiizor.Controls.ForeverButton()
         btnSave = New ReaLTaiizor.Controls.ForeverButton()
+        cboSearchStudent = New ComboBox()
         CType(DGVSubject, ComponentModel.ISupportInitialize).BeginInit()
         CType(DGVStudentSubjects, ComponentModel.ISupportInitialize).BeginInit()
         createPnl2.SuspendLayout()
@@ -93,13 +93,6 @@ Partial Class dean_courseManagement
         Label2.Size = New Size(86, 15)
         Label2.TabIndex = 8
         Label2.Text = "Student Name:"
-        ' 
-        ' txtSearchStudent
-        ' 
-        txtSearchStudent.Location = New Point(110, 92)
-        txtSearchStudent.Name = "txtSearchStudent"
-        txtSearchStudent.Size = New Size(238, 23)
-        txtSearchStudent.TabIndex = 9
         ' 
         ' Label3
         ' 
@@ -472,6 +465,13 @@ Partial Class dean_courseManagement
         btnSave.Text = "SAVE"
         btnSave.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
         ' 
+        ' cboSearchStudent
+        ' 
+        cboSearchStudent.Location = New Point(110, 89)
+        cboSearchStudent.Name = "cboSearchStudent"
+        cboSearchStudent.Size = New Size(256, 23)
+        cboSearchStudent.TabIndex = 43
+        ' 
         ' dean_courseManagement
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -479,6 +479,7 @@ Partial Class dean_courseManagement
         AutoValidate = AutoValidate.EnablePreventFocusChange
         BackColor = SystemColors.Control
         ClientSize = New Size(1138, 719)
+        Controls.Add(cboSearchStudent)
         Controls.Add(createPnl2)
         Controls.Add(DGVStudentSubjects)
         Controls.Add(DGVSubject)
@@ -497,7 +498,6 @@ Partial Class dean_courseManagement
         Controls.Add(Label4)
         Controls.Add(txtStudname)
         Controls.Add(Label3)
-        Controls.Add(txtSearchStudent)
         Controls.Add(Label2)
         Controls.Add(Label1)
         FormBorderStyle = FormBorderStyle.None
@@ -546,4 +546,5 @@ Partial Class dean_courseManagement
     Friend WithEvents Label7 As Label
     Friend WithEvents btnCancel As ReaLTaiizor.Controls.ForeverButton
     Friend WithEvents btnSave As ReaLTaiizor.Controls.ForeverButton
+    Friend WithEvents cboSearchStudent As ComboBox
 End Class

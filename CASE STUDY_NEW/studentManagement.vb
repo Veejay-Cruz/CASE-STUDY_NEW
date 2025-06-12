@@ -28,8 +28,15 @@ Public Class studentManagement
         cboFilter.SelectedIndex = 0 ' Default to "ALL"
 
         createPnl.Hide()
+        updateOldStudentPnl.Hide()
         LoadStudents()
     End Sub
+
+    Private Sub CenterPanel(panel As Panel)
+        panel.Left = (Me.ClientSize.Width - panel.Width) \ 2
+        panel.Top = (Me.ClientSize.Height - panel.Height) \ 2
+    End Sub
+
 
     Private Sub cboFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboFilter.SelectedIndexChanged
         LoadStudents()
@@ -134,6 +141,7 @@ Public Class studentManagement
     End Sub
 
     Private Sub createLbl_Click(sender As Object, e As EventArgs) Handles createLbl.Click
+        CenterPanel(createPnl)
         createPnl.Show()
         ComboBox1.Enabled = False
         ComboBox1.Items.Clear()
@@ -434,4 +442,142 @@ Public Class studentManagement
         searchTxt.Text = ""
     End Sub
 
+    Private Sub btnOldcancel_Click(sender As Object, e As EventArgs) Handles btnOldcancel.Click
+        updateOldStudentPnl.Hide()
+    End Sub
+
+    Private Sub lblupdateoldstudent_Click(sender As Object, e As EventArgs) Handles lblupdateoldstudent.Click
+        CenterPanel(updateOldStudentPnl)
+        updateOldStudentPnl.Show()
+    End Sub
+
+    Private Sub cboOldstudid_KeyUp(sender As Object, e As KeyEventArgs) Handles cboOldstudid.KeyUp
+        Dim searchText As String = cboOldstudid.Text.Trim()
+        If searchText.Length = 0 Then Exit Sub
+
+
+        ' Save caret position
+        Dim caretPos As Integer = cboOldstudid.SelectionStart
+
+        cboOldstudid.Items.Clear()
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim query As String = "SELECT stud_id FROM students WHERE stud_id LIKE @search LIMIT 10"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@search", "%" & searchText & "%")
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            cboOldstudid.Items.Add(reader("stud_id").ToString())
+                        End While
+                    End Using
+                End Using
+            Catch ex As Exception
+                ' Optionally handle error
+            End Try
+        End Using
+        cboOldstudid.DroppedDown = True
+        cboOldstudid.SelectionStart = cboOldstudid.Text.Length
+        cboOldstudid.Text = searchText
+        cboOldstudid.SelectionStart = caretPos
+
+        cboOldstudid.SelectionLength = 0
+    End Sub
+
+    Private Sub cboOldstudid_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboOldstudid.SelectedIndexChanged
+        Dim selectedId As String = cboOldstudid.Text.Trim()
+        If String.IsNullOrEmpty(selectedId) Then Exit Sub
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim query As String = "SELECT * FROM students WHERE stud_id = @stud_id"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@stud_id", selectedId)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            txtOldFname.Text = reader("first_name").ToString()
+                            txtOldLname.Text = reader("last_name").ToString()
+                            txtOldMname.Text = reader("middle_name").ToString()
+
+                            cboOldyrlvl.SelectedItem = reader("year_level").ToString()
+
+                            ' Department ComboBox
+                            Dim dept = reader("department").ToString()
+                            If Not cboOldDept.Items.Contains(dept) Then cboOldDept.Items.Add(dept)
+                            cboOldDept.SelectedItem = dept
+
+                            ' Course ComboBox
+                            Dim course = reader("course_code").ToString()
+                            If Not cboOldCourse.Items.Contains(course) Then cboOldCourse.Items.Add(course)
+                            cboOldCourse.SelectedItem = course
+
+                            txtOldpass.Text = reader("password").ToString()
+
+                            ' Status ComboBox
+                            cboOldstatus.SelectedItem = reader("status").ToString()
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading student info: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub btnOldsave_Click(sender As Object, e As EventArgs) Handles btnOldsave.Click
+        If String.IsNullOrWhiteSpace(cboOldstudid.Text) Then
+            MessageBox.Show("Please select a student ID.")
+            Return
+        End If
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                ' Update year level if changed
+                Dim updateQuery As String = "UPDATE students SET year_level = @year_level WHERE stud_id = @stud_id"
+                Using cmd As New MySqlCommand(updateQuery, conn)
+                    cmd.Parameters.AddWithValue("@year_level", cboOldyrlvl.Text)
+                    cmd.Parameters.AddWithValue("@stud_id", cboOldstudid.Text)
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                ' Get current school year and semester
+                Dim currentSchoolYear As String = ""
+                Dim currentSemester As String = ""
+                Using cmdYear As New MySqlCommand("SELECT school_year FROM school_year_table WHERE status = 'Open'", conn)
+                    currentSchoolYear = Convert.ToString(cmdYear.ExecuteScalar())
+                End Using
+                Using cmdSem As New MySqlCommand("SELECT semester FROM semester_table WHERE status = 'Open'", conn)
+                    currentSemester = Convert.ToString(cmdSem.ExecuteScalar())
+                End Using
+
+                ' Enroll for new semester/school year if not already enrolled
+                Dim checkQuery As String = "SELECT COUNT(*) FROM enrollment WHERE stud_id = @stud_id AND academic_year = @year AND semester = @sem"
+                Using checkCmd As New MySqlCommand(checkQuery, conn)
+                    checkCmd.Parameters.AddWithValue("@stud_id", cboOldstudid.Text)
+                    checkCmd.Parameters.AddWithValue("@year", currentSchoolYear)
+                    checkCmd.Parameters.AddWithValue("@sem", currentSemester)
+                    Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                    If count = 0 Then
+                        Dim enrollQuery As String = "INSERT INTO enrollment (stud_id, section_id, academic_year, semester, enrolled_date) VALUES (@stud_id, @section_id, @year, @sem, @date)"
+                        Using enrollCmd As New MySqlCommand(enrollQuery, conn)
+                            enrollCmd.Parameters.AddWithValue("@stud_id", cboOldstudid.Text)
+                            enrollCmd.Parameters.AddWithValue("@section_id", 1) ' Set as needed
+                            enrollCmd.Parameters.AddWithValue("@year", currentSchoolYear)
+                            enrollCmd.Parameters.AddWithValue("@sem", currentSemester)
+                            enrollCmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"))
+                            enrollCmd.ExecuteNonQuery()
+                        End Using
+                    End If
+                End Using
+
+                MessageBox.Show("Student year level and enrollment updated successfully.")
+                updateOldStudentPnl.Hide()
+                LoadStudents()
+            Catch ex As Exception
+                MessageBox.Show("Error updating student: " & ex.Message)
+            End Try
+        End Using
+    End Sub
 End Class

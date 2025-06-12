@@ -80,8 +80,32 @@ Partial Class studentManagement
         Label15 = New Label()
         cboFilter = New ComboBox()
         createLbl = New Label()
+        lblupdateoldstudent = New Label()
+        updateOldStudentPnl = New Panel()
+        cboOldstudid = New ComboBox()
+        cboOldyrlvl = New ComboBox()
+        Label16 = New Label()
+        Label17 = New Label()
+        cboOldCourse = New ComboBox()
+        cboOldDept = New ComboBox()
+        cboOldstatus = New ComboBox()
+        Label18 = New Label()
+        btnOldcancel = New ReaLTaiizor.Controls.ForeverButton()
+        btnOldsave = New ReaLTaiizor.Controls.ForeverButton()
+        txtOldpass = New TextBox()
+        txtOldMname = New TextBox()
+        txtOldLname = New TextBox()
+        txtOldFname = New TextBox()
+        Label19 = New Label()
+        Label20 = New Label()
+        Label21 = New Label()
+        Label22 = New Label()
+        Label23 = New Label()
+        Label24 = New Label()
+        Label25 = New Label()
         CType(DGV1, ComponentModel.ISupportInitialize).BeginInit()
         createPnl.SuspendLayout()
+        updateOldStudentPnl.SuspendLayout()
         SuspendLayout()
         ' 
         ' DGV1
@@ -272,7 +296,7 @@ Partial Class studentManagement
         createPnl.Controls.Add(Label4)
         createPnl.Controls.Add(Label2)
         createPnl.Controls.Add(Label3)
-        createPnl.Location = New Point(398, 182)
+        createPnl.Location = New Point(224, 200)
         createPnl.Name = "createPnl"
         createPnl.Size = New Size(569, 695)
         createPnl.TabIndex = 6
@@ -328,6 +352,7 @@ Partial Class studentManagement
         ' 
         status.Font = New Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         status.FormattingEnabled = True
+        status.Items.AddRange(New Object() {"REGULAR", "IRREGULAR"})
         status.Location = New Point(199, 571)
         status.Name = "status"
         status.Size = New Size(305, 25)
@@ -597,11 +622,270 @@ Partial Class studentManagement
         createLbl.AutoSize = True
         createLbl.Font = New Font("Century Gothic", 14.25F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         createLbl.ForeColor = Color.Black
-        createLbl.Location = New Point(1317, 41)
+        createLbl.Location = New Point(739, 84)
         createLbl.Name = "createLbl"
-        createLbl.Size = New Size(129, 22)
+        createLbl.Size = New Size(137, 22)
         createLbl.TabIndex = 0
-        createLbl.Text = "[create new]"
+        createLbl.Text = "[new student]"
+        ' 
+        ' lblupdateoldstudent
+        ' 
+        lblupdateoldstudent.AutoSize = True
+        lblupdateoldstudent.Font = New Font("Century Gothic", 14.25F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        lblupdateoldstudent.ForeColor = Color.Black
+        lblupdateoldstudent.Location = New Point(919, 84)
+        lblupdateoldstudent.Name = "lblupdateoldstudent"
+        lblupdateoldstudent.Size = New Size(127, 22)
+        lblupdateoldstudent.TabIndex = 45
+        lblupdateoldstudent.Text = "[old student]"
+        ' 
+        ' updateOldStudentPnl
+        ' 
+        updateOldStudentPnl.BackColor = Color.MidnightBlue
+        updateOldStudentPnl.Controls.Add(cboOldstudid)
+        updateOldStudentPnl.Controls.Add(cboOldyrlvl)
+        updateOldStudentPnl.Controls.Add(Label16)
+        updateOldStudentPnl.Controls.Add(Label17)
+        updateOldStudentPnl.Controls.Add(cboOldCourse)
+        updateOldStudentPnl.Controls.Add(cboOldDept)
+        updateOldStudentPnl.Controls.Add(cboOldstatus)
+        updateOldStudentPnl.Controls.Add(Label18)
+        updateOldStudentPnl.Controls.Add(btnOldcancel)
+        updateOldStudentPnl.Controls.Add(btnOldsave)
+        updateOldStudentPnl.Controls.Add(txtOldpass)
+        updateOldStudentPnl.Controls.Add(txtOldMname)
+        updateOldStudentPnl.Controls.Add(txtOldLname)
+        updateOldStudentPnl.Controls.Add(txtOldFname)
+        updateOldStudentPnl.Controls.Add(Label19)
+        updateOldStudentPnl.Controls.Add(Label20)
+        updateOldStudentPnl.Controls.Add(Label21)
+        updateOldStudentPnl.Controls.Add(Label22)
+        updateOldStudentPnl.Controls.Add(Label23)
+        updateOldStudentPnl.Controls.Add(Label24)
+        updateOldStudentPnl.Controls.Add(Label25)
+        updateOldStudentPnl.Location = New Point(986, 200)
+        updateOldStudentPnl.Name = "updateOldStudentPnl"
+        updateOldStudentPnl.Size = New Size(569, 695)
+        updateOldStudentPnl.TabIndex = 24
+        ' 
+        ' cboOldstudid
+        ' 
+        cboOldstudid.FormattingEnabled = True
+        cboOldstudid.Location = New Point(199, 80)
+        cboOldstudid.Name = "cboOldstudid"
+        cboOldstudid.Size = New Size(305, 23)
+        cboOldstudid.TabIndex = 24
+        ' 
+        ' cboOldyrlvl
+        ' 
+        cboOldyrlvl.DropDownStyle = ComboBoxStyle.DropDownList
+        cboOldyrlvl.FormattingEnabled = True
+        cboOldyrlvl.Items.AddRange(New Object() {"1st Year", "2nd Year", "3rd Year", "4th Year"})
+        cboOldyrlvl.Location = New Point(199, 311)
+        cboOldyrlvl.Name = "cboOldyrlvl"
+        cboOldyrlvl.Size = New Size(305, 23)
+        cboOldyrlvl.TabIndex = 23
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label16.ForeColor = Color.White
+        Label16.Location = New Point(62, 315)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(89, 19)
+        Label16.TabIndex = 22
+        Label16.Text = "Year Level"
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label17.ForeColor = Color.White
+        Label17.Location = New Point(62, 439)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(62, 19)
+        Label17.TabIndex = 21
+        Label17.Text = "Course"
+        ' 
+        ' cboOldCourse
+        ' 
+        cboOldCourse.DropDownStyle = ComboBoxStyle.DropDownList
+        cboOldCourse.FormattingEnabled = True
+        cboOldCourse.Location = New Point(199, 435)
+        cboOldCourse.Name = "cboOldCourse"
+        cboOldCourse.Size = New Size(305, 23)
+        cboOldCourse.TabIndex = 20
+        ' 
+        ' cboOldDept
+        ' 
+        cboOldDept.DropDownStyle = ComboBoxStyle.DropDownList
+        cboOldDept.FormattingEnabled = True
+        cboOldDept.Location = New Point(199, 368)
+        cboOldDept.Name = "cboOldDept"
+        cboOldDept.Size = New Size(305, 23)
+        cboOldDept.TabIndex = 19
+        ' 
+        ' cboOldstatus
+        ' 
+        cboOldstatus.DropDownStyle = ComboBoxStyle.DropDownList
+        cboOldstatus.Font = New Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cboOldstatus.FormattingEnabled = True
+        cboOldstatus.Items.AddRange(New Object() {"REGULAR", "IRREGULAR"})
+        cboOldstatus.Location = New Point(199, 571)
+        cboOldstatus.Name = "cboOldstatus"
+        cboOldstatus.Size = New Size(305, 25)
+        cboOldstatus.TabIndex = 18
+        ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Font = New Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label18.ForeColor = Color.White
+        Label18.Location = New Point(199, 18)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(228, 25)
+        Label18.TabIndex = 17
+        Label18.Text = "UPDATE OLD STUDENT"
+        ' 
+        ' btnOldcancel
+        ' 
+        btnOldcancel.BackColor = Color.Transparent
+        btnOldcancel.BaseColor = Color.IndianRed
+        btnOldcancel.Font = New Font("Century Gothic", 12F)
+        btnOldcancel.Location = New Point(405, 623)
+        btnOldcancel.Name = "btnOldcancel"
+        btnOldcancel.Rounded = False
+        btnOldcancel.Size = New Size(99, 36)
+        btnOldcancel.TabIndex = 16
+        btnOldcancel.Text = "CANCEL"
+        btnOldcancel.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
+        ' 
+        ' btnOldsave
+        ' 
+        btnOldsave.BackColor = Color.Transparent
+        btnOldsave.BaseColor = Color.FromArgb(CByte(35), CByte(168), CByte(109))
+        btnOldsave.Font = New Font("Century Gothic", 12F)
+        btnOldsave.Location = New Point(299, 623)
+        btnOldsave.Name = "btnOldsave"
+        btnOldsave.Rounded = False
+        btnOldsave.Size = New Size(100, 36)
+        btnOldsave.TabIndex = 15
+        btnOldsave.Text = "SAVE"
+        btnOldsave.TextColor = Color.FromArgb(CByte(243), CByte(243), CByte(243))
+        ' 
+        ' txtOldpass
+        ' 
+        txtOldpass.Location = New Point(199, 503)
+        txtOldpass.Multiline = True
+        txtOldpass.Name = "txtOldpass"
+        txtOldpass.Size = New Size(305, 32)
+        txtOldpass.TabIndex = 13
+        txtOldpass.UseSystemPasswordChar = True
+        ' 
+        ' txtOldMname
+        ' 
+        txtOldMname.Location = New Point(199, 235)
+        txtOldMname.Multiline = True
+        txtOldMname.Name = "txtOldMname"
+        txtOldMname.ReadOnly = True
+        txtOldMname.Size = New Size(305, 38)
+        txtOldMname.TabIndex = 11
+        ' 
+        ' txtOldLname
+        ' 
+        txtOldLname.Location = New Point(199, 178)
+        txtOldLname.Multiline = True
+        txtOldLname.Name = "txtOldLname"
+        txtOldLname.ReadOnly = True
+        txtOldLname.Size = New Size(305, 38)
+        txtOldLname.TabIndex = 10
+        ' 
+        ' txtOldFname
+        ' 
+        txtOldFname.Location = New Point(199, 121)
+        txtOldFname.Multiline = True
+        txtOldFname.Name = "txtOldFname"
+        txtOldFname.ReadOnly = True
+        txtOldFname.Size = New Size(305, 38)
+        txtOldFname.TabIndex = 9
+        ' 
+        ' Label19
+        ' 
+        Label19.AutoSize = True
+        Label19.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label19.ForeColor = Color.White
+        Label19.Location = New Point(66, 577)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(52, 19)
+        Label19.TabIndex = 7
+        Label19.Text = "Status"
+        ' 
+        ' Label20
+        ' 
+        Label20.AutoSize = True
+        Label20.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label20.ForeColor = Color.White
+        Label20.Location = New Point(62, 516)
+        Label20.Name = "Label20"
+        Label20.Size = New Size(80, 19)
+        Label20.TabIndex = 6
+        Label20.Text = "Password"
+        ' 
+        ' Label21
+        ' 
+        Label21.AutoSize = True
+        Label21.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label21.ForeColor = Color.White
+        Label21.Location = New Point(62, 372)
+        Label21.Name = "Label21"
+        Label21.Size = New Size(101, 19)
+        Label21.TabIndex = 5
+        Label21.Text = "Department"
+        ' 
+        ' Label22
+        ' 
+        Label22.AutoSize = True
+        Label22.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label22.ForeColor = Color.White
+        Label22.Location = New Point(62, 254)
+        Label22.Name = "Label22"
+        Label22.Size = New Size(116, 19)
+        Label22.TabIndex = 3
+        Label22.Text = "Middle Name"
+        ' 
+        ' Label23
+        ' 
+        Label23.AutoSize = True
+        Label23.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label23.ForeColor = Color.White
+        Label23.Location = New Point(62, 197)
+        Label23.Name = "Label23"
+        Label23.Size = New Size(90, 19)
+        Label23.TabIndex = 2
+        Label23.Text = "Last Name"
+        ' 
+        ' Label24
+        ' 
+        Label24.AutoSize = True
+        Label24.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label24.ForeColor = Color.White
+        Label24.Location = New Point(62, 84)
+        Label24.Name = "Label24"
+        Label24.Size = New Size(96, 19)
+        Label24.TabIndex = 1
+        Label24.Text = "Student No."
+        ' 
+        ' Label25
+        ' 
+        Label25.AutoSize = True
+        Label25.Font = New Font("Century Gothic", 12F, FontStyle.Bold)
+        Label25.ForeColor = Color.White
+        Label25.Location = New Point(66, 140)
+        Label25.Name = "Label25"
+        Label25.Size = New Size(89, 19)
+        Label25.TabIndex = 0
+        Label25.Text = "First Name"
         ' 
         ' studentManagement
         ' 
@@ -609,6 +893,8 @@ Partial Class studentManagement
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(1612, 1080)
+        Controls.Add(updateOldStudentPnl)
+        Controls.Add(lblupdateoldstudent)
         Controls.Add(Label15)
         Controls.Add(cboFilter)
         Controls.Add(lblTerm)
@@ -630,6 +916,8 @@ Partial Class studentManagement
         CType(DGV1, ComponentModel.ISupportInitialize).EndInit()
         createPnl.ResumeLayout(False)
         createPnl.PerformLayout()
+        updateOldStudentPnl.ResumeLayout(False)
+        updateOldStudentPnl.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -678,4 +966,27 @@ Partial Class studentManagement
     Friend WithEvents Label15 As Label
     Friend WithEvents cboFilter As ComboBox
     Friend WithEvents createLbl As Label
+    Friend WithEvents lblupdateoldstudent As Label
+    Friend WithEvents updateOldStudentPnl As Panel
+    Friend WithEvents cboOldyrlvl As ComboBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents cboOldCourse As ComboBox
+    Friend WithEvents cboOldDept As ComboBox
+    Friend WithEvents cboOldstatus As ComboBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents btnOldcancel As ReaLTaiizor.Controls.ForeverButton
+    Friend WithEvents btnOldsave As ReaLTaiizor.Controls.ForeverButton
+    Friend WithEvents txtOldpass As TextBox
+    Friend WithEvents txtOldMname As TextBox
+    Friend WithEvents txtOldLname As TextBox
+    Friend WithEvents txtOldFname As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents cboOldstudid As ComboBox
 End Class
