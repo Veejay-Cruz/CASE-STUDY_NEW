@@ -22,12 +22,12 @@ Partial Class schoolyear
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Panel3 = New Panel()
         radFinals = New ReaLTaiizor.Controls.ParrotRadioButton()
         radPrefinal = New ReaLTaiizor.Controls.ParrotRadioButton()
@@ -248,51 +248,52 @@ Partial Class schoolyear
         ' 
         ' DGVSchoolyear
         ' 
-        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle13.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle13.ForeColor = Color.Black
-        DGVSchoolyear.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        DGVSchoolyear.AllowUserToAddRows = False
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = Color.Black
+        DGVSchoolyear.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         DGVSchoolyear.BackgroundColor = SystemColors.ControlLightLight
-        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle14.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle14.ForeColor = Color.White
-        DataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.True
-        DGVSchoolyear.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle2.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        DGVSchoolyear.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         DGVSchoolyear.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         DGVSchoolyear.Columns.AddRange(New DataGridViewColumn() {school_yr, schoolyr_status})
-        DataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle17.BackColor = Color.White
-        DataGridViewCellStyle17.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle17.ForeColor = Color.Black
-        DataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle17.WrapMode = DataGridViewTriState.True
-        DGVSchoolyear.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.White
+        DataGridViewCellStyle5.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.Black
+        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
+        DGVSchoolyear.DefaultCellStyle = DataGridViewCellStyle5
         DGVSchoolyear.EnableHeadersVisualStyles = False
         DGVSchoolyear.Location = New Point(321, 91)
         DGVSchoolyear.Name = "DGVSchoolyear"
         DGVSchoolyear.ReadOnly = True
-        DataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle18.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle18.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle18.ForeColor = Color.White
-        DataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle18.WrapMode = DataGridViewTriState.True
-        DGVSchoolyear.RowHeadersDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle6.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle6.ForeColor = Color.White
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
+        DGVSchoolyear.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         DGVSchoolyear.Size = New Size(573, 554)
         DGVSchoolyear.TabIndex = 35
         ' 
         ' school_yr
         ' 
         school_yr.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle15.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle15.ForeColor = Color.Black
-        school_yr.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.Black
+        school_yr.DefaultCellStyle = DataGridViewCellStyle3
         school_yr.HeaderText = "SCHOOL YEAR"
         school_yr.Name = "school_yr"
         school_yr.ReadOnly = True
@@ -300,10 +301,10 @@ Partial Class schoolyear
         ' schoolyr_status
         ' 
         schoolyr_status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle16.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle16.ForeColor = Color.Black
-        schoolyr_status.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.Black
+        schoolyr_status.DefaultCellStyle = DataGridViewCellStyle4
         schoolyr_status.HeaderText = "STATUS"
         schoolyr_status.Name = "schoolyr_status"
         schoolyr_status.ReadOnly = True

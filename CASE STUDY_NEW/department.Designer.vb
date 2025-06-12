@@ -54,6 +54,7 @@ Partial Class department
         ' 
         ' DGVDepartment
         ' 
+        DGVDepartment.AllowUserToAddRows = False
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.White
         DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -128,7 +129,7 @@ Partial Class department
         ' 
         ' edit
         ' 
-        edit.HeaderText = "  "
+        edit.HeaderText = "EDIT"
         edit.Name = "edit"
         edit.ReadOnly = True
         edit.Text = "EDIT"
@@ -136,7 +137,7 @@ Partial Class department
         ' 
         ' delete
         ' 
-        delete.HeaderText = "  "
+        delete.HeaderText = "DELETE"
         delete.Name = "delete"
         delete.ReadOnly = True
         delete.Text = "DELETE"
@@ -328,11 +329,6 @@ Partial Class department
     Friend WithEvents DGVDepartment As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents createLbl As Label
-    Friend WithEvents dept_id As DataGridViewTextBoxColumn
-    Friend WithEvents dept As DataGridViewTextBoxColumn
-    Friend WithEvents course As DataGridViewTextBoxColumn
-    Friend WithEvents edit As DataGridViewButtonColumn
-    Friend WithEvents delete As DataGridViewButtonColumn
     Friend WithEvents createPnl2 As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents btnCancel As ReaLTaiizor.Controls.ForeverButton
@@ -345,4 +341,9 @@ Partial Class department
     Friend WithEvents cboStatus As ComboBox
     Friend WithEvents cboFilter As ComboBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents dept_id As DataGridViewTextBoxColumn
+    Friend WithEvents dept As DataGridViewTextBoxColumn
+    Friend WithEvents course As DataGridViewTextBoxColumn
+    Friend WithEvents edit As DataGridViewButtonColumn
+    Friend WithEvents delete As DataGridViewButtonColumn
 End Class

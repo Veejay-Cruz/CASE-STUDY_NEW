@@ -31,7 +31,6 @@ Partial Class courses
         Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
         deleteLbl = New Label()
-        closeLbl = New Label()
         createLbl = New Label()
         Label1 = New Label()
         DGV3 = New DataGridView()
@@ -70,19 +69,6 @@ Partial Class courses
         deleteLbl.Size = New Size(73, 19)
         deleteLbl.TabIndex = 11
         deleteLbl.Text = "[delete]"
-        ' 
-        ' closeLbl
-        ' 
-        closeLbl.AutoSize = True
-        closeLbl.BackColor = Color.White
-        closeLbl.FlatStyle = FlatStyle.System
-        closeLbl.Font = New Font("Century Gothic", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        closeLbl.ForeColor = Color.Black
-        closeLbl.Location = New Point(1540, 5)
-        closeLbl.Name = "closeLbl"
-        closeLbl.Size = New Size(60, 19)
-        closeLbl.TabIndex = 10
-        closeLbl.Text = "[close]"
         ' 
         ' createLbl
         ' 
@@ -366,7 +352,6 @@ Partial Class courses
         Controls.Add(DGV3)
         Controls.Add(Label1)
         Controls.Add(deleteLbl)
-        Controls.Add(closeLbl)
         Controls.Add(createLbl)
         ForeColor = SystemColors.ControlText
         FormBorderStyle = FormBorderStyle.None
@@ -381,7 +366,6 @@ Partial Class courses
     End Sub
 
     Friend WithEvents deleteLbl As Label
-    Friend WithEvents closeLbl As Label
     Friend WithEvents createLbl As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents DGV3 As DataGridView

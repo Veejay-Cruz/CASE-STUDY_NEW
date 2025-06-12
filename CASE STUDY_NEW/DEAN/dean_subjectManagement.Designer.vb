@@ -171,6 +171,7 @@ Partial Class dean_subjectManagement
         ' 
         ' DGVSection
         ' 
+        DGVSection.AllowUserToAddRows = False
         DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle7.BackColor = Color.White
         DataGridViewCellStyle7.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))

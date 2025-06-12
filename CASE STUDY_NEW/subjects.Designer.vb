@@ -65,6 +65,7 @@ Partial Class subjects
         Label5 = New Label()
         Label4 = New Label()
         Label3 = New Label()
+        Label11 = New Label()
         CType(DGV4, ComponentModel.ISupportInitialize).BeginInit()
         createPnl.SuspendLayout()
         SuspendLayout()
@@ -256,6 +257,7 @@ Partial Class subjects
         ' createPnl
         ' 
         createPnl.BackColor = Color.MidnightBlue
+        createPnl.Controls.Add(Label11)
         createPnl.Controls.Add(txtprereq)
         createPnl.Controls.Add(Label9)
         createPnl.Controls.Add(Label10)
@@ -469,6 +471,17 @@ Partial Class subjects
         Label3.TabIndex = 0
         Label3.Text = "SUBJECT ID"
         ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Century Gothic", 11.25F, FontStyle.Bold)
+        Label11.ForeColor = Color.White
+        Label11.Location = New Point(29, 363)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(77, 18)
+        Label11.TabIndex = 22
+        Label11.Text = "SEMESTER"
+        ' 
         ' subjects
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -523,4 +536,5 @@ Partial Class subjects
     Friend WithEvents coursee As DataGridViewTextBoxColumn
     Friend WithEvents prerequisite As DataGridViewTextBoxColumn
     Friend WithEvents editBtn As DataGridViewButtonColumn
+    Friend WithEvents Label11 As Label
 End Class

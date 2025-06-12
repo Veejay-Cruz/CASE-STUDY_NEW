@@ -14,18 +14,6 @@ Public Class dean_subjectManagement
 
 
     Private Sub LoadTeacherSubjects()
-        'DGVSection.Rows.Clear()
-        'DGVSection.Columns.Clear()
-
-        '' Add columns if not already present
-        'DGVSection.Columns.Add("profid", "Teacher ID")
-        'DGVSection.Columns.Add("lname", "Last Name")
-        'DGVSection.Columns.Add("fname", "First Name")
-        'DGVSection.Columns.Add("subject", "Subject Code")
-        'DGVSection.Columns.Add("section", "Section")
-        'DGVSection.Columns.Add("course", "Course")
-        'DGVSection.Columns.Add("yearlevel", "Year Level")
-        'DGVSection.Columns.Add("semester", "Semester")
 
         Using conn As New MySqlConnection(connString)
             Try
@@ -33,8 +21,13 @@ Public Class dean_subjectManagement
                 ' Join teacher_subjects with teacher_table to get names
                 Dim query As String = "SELECT ts.teacher_id, t.last_name, t.first_name, ts.sub_code, ts.section, ts.course_code, ts.yearlevel, ts.semester " &
                                   "FROM teacher_subjects ts " &
-                                  "LEFT JOIN teacher_table t ON ts.teacher_id = t.teacher_id"
+                                  "LEFT JOIN teacher_table t ON ts.teacher_id = t.teacher_id " &
+                                  "WHERE ts.semester = @semester AND ts.school_year = @schoolYear"
+
                 Using cmd As New MySqlCommand(query, conn)
+                    ' Get current school year and semester
+                    cmd.Parameters.AddWithValue("@schoolYear", lblSchoolyr.Text)
+                    cmd.Parameters.AddWithValue("@semester", lblSem.Text)
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         While reader.Read()
                             DGVSection.Rows.Add(

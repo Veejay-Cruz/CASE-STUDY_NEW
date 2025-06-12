@@ -39,10 +39,7 @@ Public Class courses
         End Try
     End Sub
 
-    Private Sub closeLbl_Click(sender As Object, e As EventArgs) Handles closeLbl.Click
-        main.Show()
-        Me.Hide()
-    End Sub
+
 
     Private Sub createLbl_Click(sender As Object, e As EventArgs)
         createPnl2.Show()

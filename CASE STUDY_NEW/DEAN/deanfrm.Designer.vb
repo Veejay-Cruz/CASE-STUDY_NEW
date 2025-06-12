@@ -85,7 +85,7 @@ Partial Class deanfrm
         sectionBtn.Name = "sectionBtn"
         sectionBtn.Size = New Size(267, 52)
         sectionBtn.TabIndex = 13
-        sectionBtn.Text = "SECTIONS"
+        sectionBtn.Text = "DEPARTMENT SECTIONS"
         sectionBtn.UseVisualStyleBackColor = False
         ' 
         ' logoutBtn
@@ -117,7 +117,7 @@ Partial Class deanfrm
         subjectmanBtn.Name = "subjectmanBtn"
         subjectmanBtn.Size = New Size(267, 52)
         subjectmanBtn.TabIndex = 7
-        subjectmanBtn.Text = "SUBJECT MANAGEMENT"
+        subjectmanBtn.Text = "SUBJECT EVALUATION"
         subjectmanBtn.UseVisualStyleBackColor = False
         ' 
         ' coursemanagementBtn
@@ -134,7 +134,7 @@ Partial Class deanfrm
         coursemanagementBtn.Name = "coursemanagementBtn"
         coursemanagementBtn.Size = New Size(267, 52)
         coursemanagementBtn.TabIndex = 6
-        coursemanagementBtn.Text = "COURSE MANAGEMENT"
+        coursemanagementBtn.Text = "COURSE EVALUATION"
         coursemanagementBtn.UseVisualStyleBackColor = False
         ' 
         ' gradeentryBtn
