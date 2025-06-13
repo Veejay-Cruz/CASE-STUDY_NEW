@@ -217,7 +217,7 @@ Partial Class dean_courseManagement
         ' 
         ' btnConfirm
         ' 
-        btnConfirm.Location = New Point(372, 92)
+        btnConfirm.Location = New Point(372, 89)
         btnConfirm.Name = "btnConfirm"
         btnConfirm.Size = New Size(75, 23)
         btnConfirm.TabIndex = 31

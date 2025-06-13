@@ -143,6 +143,8 @@ Public Class studentManagement
     Private Sub createLbl_Click(sender As Object, e As EventArgs) Handles createLbl.Click
         CenterPanel(createPnl)
         createPnl.Show()
+        updateOldStudentPnl.Hide()
+
         ComboBox1.Enabled = False
         ComboBox1.Items.Clear()
 
@@ -448,6 +450,7 @@ Public Class studentManagement
 
     Private Sub lblupdateoldstudent_Click(sender As Object, e As EventArgs) Handles lblupdateoldstudent.Click
         CenterPanel(updateOldStudentPnl)
+        createPnl.Hide()
         updateOldStudentPnl.Show()
     End Sub
 

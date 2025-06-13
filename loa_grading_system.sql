@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2025 at 02:30 PM
+-- Generation Time: Jun 12, 2025 at 05:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -129,7 +129,8 @@ INSERT INTO `audit_trail` (`username`, `date_time`, `action`) VALUES
 ('REG-2025-001', '2025-06-12 15:39:00', 'CREATED NEW SUBJECT'),
 ('REG-2025-001', '2025-06-12 16:28:00', 'CREATED NEW SUBJECT'),
 ('REG-2025-001', '2025-06-12 16:48:06', 'CREATED NEW SUBJECT'),
-('REG-2025-001', '2025-06-12 19:36:49', 'CREATED NEW');
+('REG-2025-001', '2025-06-12 19:36:49', 'CREATED NEW'),
+('REG-2025-001', '2025-06-12 20:41:06', 'CREATED NEW');
 
 -- --------------------------------------------------------
 
@@ -257,7 +258,9 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (50, '1112-23', 1, '2023-2024', '1st Sem', '2023-06-09'),
 (51, '1113-23', 1, '2023-2024', '1st Sem', '2023-06-10'),
 (52, '1114-23', 1, '2023-2024', '1st Sem', '2023-06-11'),
-(53, '2012-25', 1, '2025-2026', '1st Sem', '2025-06-12');
+(53, '2012-25', 1, '2025-2026', '1st Sem', '2025-06-12'),
+(54, '2013-25', 1, '2025-2026', '1st Sem', '2025-06-12'),
+(55, '2013-25', 1, '2025-2026', '2nd Sem', '2025-06-12');
 
 -- --------------------------------------------------------
 
@@ -292,7 +295,8 @@ INSERT INTO `grades` (`grade_id`, `stud_id`, `sub_code`, `prelim`, `midterm`, `p
 (8, '2008-25', 'CC133-2', NULL, NULL, NULL, NULL, NULL, 'UOD'),
 (9, '1096-25', 'CC133-2', 90, 80, 99, 99, 1.75, 'PASSED'),
 (10, '2009-25', 'CC133-2', 80, 60, 60, 60, 5.00, 'FAILED'),
-(11, '2012-25', 'CC133-2', 80, 80, 80, 90, 2.50, 'PASSED');
+(11, '2012-25', 'CC133-2', 80, 80, 80, 90, 2.50, 'PASSED'),
+(12, '2013-25', 'CC133-2', 80, 90, 90, 90, 2.00, 'PASSED');
 
 -- --------------------------------------------------------
 
@@ -399,7 +403,7 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('1112-27', 'isa', 'jeremaya', 'Romero', '4th Year', 'CTHM', 'courses', '123', 'REGULAR', 'Active'),
 ('1113-24', 'Reyes', 'Juan', 'Santos', '4th Year', 'CCS', 'BSIT', 'pass456', 'REGULAR', 'Active'),
 ('1113-25', 'Balon', 'Laurence', 'Sapero', '2nd Year', 'CCS', 'BSIT', 'stud1236-25', 'IRREGULAR', 'Active'),
-('1113-26', 'Noche', 'Ysmael', 'Bautista', '2nd Year', 'CCS', 'BSCS', 'noche123', 'Regular', 'Active'),
+('1113-26', 'Noche', 'Ysmael', 'Bautista', '2nd Year', 'CCS', 'BSCS', 'noche123', 'REGULAR', 'Active'),
 ('1113-27', 'Jhad', 'Usman', 'Rosmar', '2nd Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
 ('1114-24', 'Dela Cruz', 'Ana', 'Torres', '2nd Year', 'CAS', 'BSREM', 'pass789', 'IRREGULAR', 'Active'),
 ('1114-25', 'Cruz', 'Veejay', 'Roxas', '3rd Year', 'CCS', 'BSIT', 'stud1238-25', 'IRREGULAR', 'Active'),
@@ -436,7 +440,8 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('2009-25', 'sha', 'nata', 'rol', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('2010-25', 'lakay', 'apo', 'saka', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('2011-25', 'fig', 'ayo', 'isa', '2nd Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
-('2012-25', 'ccs dumy', 'dododo', 'IT', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
+('2012-25', 'ccs dumy', 'dododo', 'IT', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
+('2013-25', 'dum', 'ccs dumdum', 'it', '2nd Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active');
 
 -- --------------------------------------------------------
 
@@ -591,7 +596,13 @@ INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `subject_
 (102, '2012-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
 (103, '2012-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
 (104, '2012-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
-(105, '2012-25', 'sub07', 'VDG113', 'Visual Design Graphics', '2025-2026', '2nd Sem', '12M1', '2025-06-12');
+(105, '2012-25', 'sub07', 'VDG113', 'Visual Design Graphics', '2025-2026', '2nd Sem', '12M1', '2025-06-12'),
+(106, '2013-25', 'sub06', 'CC133-2', 'Computer Programming 1', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
+(107, '2013-25', 'sub08', 'CC113-1', 'Introduction to Computing with Produtivity tools', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
+(108, '2013-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
+(109, '2013-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
+(110, '2013-25', 'sub15', 'CS213', 'Discrete Structures 2', '2025-2026', '2nd Sem', '22A1', '2025-06-12'),
+(111, '2013-25', 'sub19', 'SDF213', 'Object-Oriented Programming', '2025-2026', '2nd Sem', '22A1', '2025-06-12');
 
 -- --------------------------------------------------------
 
@@ -679,7 +690,9 @@ INSERT INTO `teacher_subjects` (`id`, `teacher_id`, `sub_code`, `course_code`, `
 (11, 'TR0005', 'PIT313', 'BSIT', '31E1', '3rd Year', '1st Sem', '2025-2026'),
 (12, 'TR0005', 'BP113', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026'),
 (13, 'TR0005', 'CC113-1', 'BSIT', '11M1', '1st Year', '1st Sem', '2025-2026'),
-(14, 'TR0001', 'VDG113', 'BSIT', '12M1', '1st Year', '2nd Sem', '2025-2026');
+(14, 'TR0001', 'VDG113', 'BSIT', '12M1', '1st Year', '2nd Sem', '2025-2026'),
+(15, 'TR0001', 'SDF213', 'BSIT', '22A1', '2nd Year', '2nd Sem', '2025-2026'),
+(16, 'TR0001', 'CS213', 'BSIT', '22A1', '2nd Year', '2nd Sem', '2025-2026');
 
 -- --------------------------------------------------------
 
@@ -723,10 +736,10 @@ CREATE TABLE `term_table` (
 --
 
 INSERT INTO `term_table` (`term`, `status`) VALUES
-('final', 'Open'),
+('final', 'Closed'),
 ('midterm', 'Closed'),
 ('prefinal', 'Closed'),
-('prelim', 'Closed');
+('prelim', 'Open');
 
 -- --------------------------------------------------------
 
@@ -857,13 +870,13 @@ ALTER TABLE `user_register`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `student_section`
@@ -875,13 +888,13 @@ ALTER TABLE `student_section`
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `teacher_subjects`
 --
 ALTER TABLE `teacher_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
