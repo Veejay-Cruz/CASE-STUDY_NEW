@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Printing
+Imports MySql.Data.MySqlClient
 
 Public Class student_grades
 
@@ -6,8 +7,115 @@ Public Class student_grades
 
 
     Private Sub student_grades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        UpdateAcademicPeriodLabels()
+        LoadStudentInfo()
+        LoadEnrolledSubjectsAndGrades()
     End Sub
+    Private Sub UpdateAcademicPeriodLabels()
+        ' Get current school year and semester
+        Dim currentSchoolYear As String = ""
+        Dim currentSemester As String = ""
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+
+                ' Get current school year
+                Using cmdYear As New MySqlCommand("SELECT school_year FROM school_year_table WHERE status = 'Open'", conn)
+                    Dim currentYear = Convert.ToString(cmdYear.ExecuteScalar())
+                    lblSchoolYr.Text = If(String.IsNullOrEmpty(currentYear), "No Active School Year", currentYear)
+                End Using
+
+                ' Get current semester
+                Using cmdSem As New MySqlCommand("SELECT semester FROM semester_table WHERE status = 'Open'", conn)
+                    Dim currentSem = Convert.ToString(cmdSem.ExecuteScalar())
+                    lblSem.Text = If(String.IsNullOrEmpty(currentSem), "No Active Semester", currentSem)
+                End Using
+
+            Catch ex As MySqlException
+                MessageBox.Show("Error updating academic period labels: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LoadStudentInfo()
+        ' Get the currently logged-in student ID (adjust as needed)
+        Dim studId As String = Login.CurrentStudentID ' Or use your actual property for the logged-in user
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim query As String = "SELECT last_name, first_name, middle_name, course_code, year_level FROM students WHERE stud_id = @stud_id"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@stud_id", studId)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            LblFullName.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
+                            lblCourse.Text = reader("course_code").ToString()
+                            lblStudentID.Text = studId
+                            LblYearLevel.Text = reader("year_level").ToString()
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading student info: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+
+    Private Sub LoadEnrolledSubjectsAndGrades()
+        Dim studId As String = Login.CurrentStudentID ' Adjust as needed
+        Dim schoolYear As String = lblSchoolYr.Text
+        Dim semester As String = lblSem.Text
+
+        ' Load enrolled subjects
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                ' Enrolled subjects
+                Dim subjQuery As String = "SELECT sub_code, subject_name, section FROM student_subjects WHERE stud_id = @stud_id AND school_year = @school_year AND semester = @semester"
+                Using subjCmd As New MySqlCommand(subjQuery, conn)
+                    subjCmd.Parameters.AddWithValue("@stud_id", studId)
+                    subjCmd.Parameters.AddWithValue("@school_year", schoolYear)
+                    subjCmd.Parameters.AddWithValue("@semester", semester)
+                    Using da As New MySqlDataAdapter(subjCmd)
+                        Dim dt As New DataTable()
+                        da.Fill(dt)
+                        dgvEnrolledSubjects.DataSource = dt
+                    End Using
+                End Using
+
+                ' Grades for enrolled subjects
+                Dim gradesQuery As String = "
+                SELECT 
+                    ss.sub_code, 
+                    ss.subject_name, 
+                    g.prelim, 
+                    g.midterm, 
+                    g.prefinal, 
+                    g.final, 
+                    g.final_grade, 
+                    g.remarks
+                FROM student_subjects ss
+                LEFT JOIN grades g ON ss.stud_id = g.stud_id AND ss.sub_code = g.sub_code
+                WHERE ss.stud_id = @stud_id AND ss.school_year = @school_year AND ss.semester = @semester"
+                Using gradesCmd As New MySqlCommand(gradesQuery, conn)
+                    gradesCmd.Parameters.AddWithValue("@stud_id", studId)
+                    gradesCmd.Parameters.AddWithValue("@school_year", schoolYear)
+                    gradesCmd.Parameters.AddWithValue("@semester", semester)
+                    Using da As New MySqlDataAdapter(gradesCmd)
+                        Dim dtGrades As New DataTable()
+                        da.Fill(dtGrades)
+                        dgvgrades.DataSource = dtGrades
+                    End Using
+                End Using
+
+            Catch ex As Exception
+                MessageBox.Show("Error loading enrolled subjects or grades: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
 
     Private Sub logoutBtn_Click(sender As Object, e As EventArgs) Handles logoutBtn.Click
 
