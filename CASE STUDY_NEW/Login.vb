@@ -6,6 +6,7 @@ Public Class Login
     Public Shared CurrentTeacherID As String
     Public Shared CurrentUserRole As String
     Public Shared CurrentStudentID As String
+    Public Shared CurrentDeanDepartmentID As String
 
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Start()
@@ -50,6 +51,7 @@ Public Class Login
                 If teacherDr.Read() Then
                     Dim teacherId As String = teacherDr("teacher_id").ToString().Trim()
                     Dim isDean As String = teacherDr("is_Dean").ToString()
+                    Dim departmentId As String = teacherDr("department_id").ToString().Trim()
 
                     CurrentTeacherID = teacherId
                     usernameLbl.Text = teacherId
@@ -57,9 +59,11 @@ Public Class Login
                     If isDean = "dean" Then
                         MsgBox("Login Success! Welcome Dean.", MsgBoxStyle.Information)
                         CurrentUserRole = "Dean"
+                        CurrentDeanDepartmentID = departmentId
                         teacherDr.Close()
                         Me.Hide()
                         deanfrm.Show()
+
                     Else
                         MsgBox("Login Success! Welcome Teacher.", MsgBoxStyle.Information)
                         CurrentUserRole = "Teacher"

@@ -32,6 +32,16 @@
     End Sub
 
     Private Sub deanfrm_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Hide and disable sectionBtn if dean is from GEN ED
+        If Login.CurrentDeanDepartmentID = "GEN ED" Then
+            sectionBtn.Enabled = False
+            sectionBtn.Visible = False
+        Else
+            sectionBtn.Enabled = True
+            sectionBtn.Visible = True
+        End If
+
+
         LoadFormInPanel(New teacher_gradeentry())
     End Sub
 End Class

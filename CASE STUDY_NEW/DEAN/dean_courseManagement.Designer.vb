@@ -130,7 +130,7 @@ Partial Class dean_courseManagement
         ' 
         ' txtYearlvl
         ' 
-        txtYearlvl.Location = New Point(918, 92)
+        txtYearlvl.Location = New Point(917, 84)
         txtYearlvl.Name = "txtYearlvl"
         txtYearlvl.ReadOnly = True
         txtYearlvl.Size = New Size(78, 23)
@@ -139,7 +139,7 @@ Partial Class dean_courseManagement
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(850, 95)
+        Label5.Location = New Point(849, 87)
         Label5.Name = "Label5"
         Label5.Size = New Size(62, 15)
         Label5.TabIndex = 20

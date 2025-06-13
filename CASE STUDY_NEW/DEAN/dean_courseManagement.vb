@@ -4,6 +4,8 @@ Imports System.Windows.Forms
 Public Class dean_courseManagement
     Private connString As String = "server=localhost;port=3306;user id=root;password=;database=loa_grading_system"
 
+
+
     Private Sub dean_courseManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Enable and set up txtSearchStudent
         'txtSearchStudent.Enabled = True
@@ -204,7 +206,6 @@ Public Class dean_courseManagement
 
 
 
-
         ' Get current semester
         Dim currentSemester = ""
         Using conn As New MySqlConnection(connString)
@@ -228,16 +229,30 @@ Public Class dean_courseManagement
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                Dim query = "SELECT sub_id, sub_code, subject_name, unit, prerequisite_sub_id " &
-                                    "FROM subjects " &
-                                    "WHERE (course = @course OR course = 'General Education') " &
-                                    "AND year_level = @yearLevel " &
-                                    "AND semester = @semester " &
-                                    "AND sub_id NOT IN (SELECT sub_id FROM student_subjects WHERE stud_id = @studId AND school_year = @schoolYear AND semester = @semester)"
+                Dim deanDepartmentId As String = Login.CurrentDeanDepartmentID
+                Dim query As String = ""
+                If deanDepartmentId = "GEN ED" Then
+                    query = "SELECT sub_id, sub_code, subject_name, unit, prerequisite_sub_id " &
+            "FROM subjects " &
+            "WHERE course = 'GEN ED' " &
+            "AND year_level = @yearLevel " &
+            "AND semester = @semester " &
+            "AND sub_id NOT IN (SELECT sub_id FROM student_subjects WHERE stud_id = @studId AND school_year = @schoolYear AND semester = @semester)"
+                Else
+                    query = "SELECT sub_id, sub_code, subject_name, unit, prerequisite_sub_id " &
+            "FROM subjects " &
+            "WHERE course = @course " &
+            "AND year_level = @yearLevel " &
+            "AND semester = @semester " &
+            "AND sub_id NOT IN (SELECT sub_id FROM student_subjects WHERE stud_id = @studId AND school_year = @schoolYear AND semester = @semester)"
+                End If
 
                 Using da As New MySqlDataAdapter
                     da.SelectCommand = New MySqlCommand(query, conn)
-                    da.SelectCommand.Parameters.AddWithValue("@course", txtCourse.Text)
+                    If deanDepartmentId <> "GEN ED" Then
+                        da.SelectCommand.Parameters.AddWithValue("@course", txtCourse.Text)
+                    End If
+                    'da.SelectCommand.Parameters.AddWithValue("@course", txtCourse.Text)
                     da.SelectCommand.Parameters.AddWithValue("@yearLevel", txtYearlvl.Text)
                     da.SelectCommand.Parameters.AddWithValue("@semester", currentSemester)
 

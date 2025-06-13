@@ -5,16 +5,14 @@ Public Class student_grades
 
     Private connString As String = "server=localhost;port=3306;user id=root;password=;database=loa_grading_system"
 
-
     Private Sub student_grades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateAcademicPeriodLabels()
         LoadStudentInfo()
         LoadEnrolledSubjectsAndGrades()
     End Sub
+
     Private Sub UpdateAcademicPeriodLabels()
         ' Get current school year and semester
-        Dim currentSchoolYear As String = ""
-        Dim currentSemester As String = ""
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
@@ -38,8 +36,7 @@ Public Class student_grades
     End Sub
 
     Private Sub LoadStudentInfo()
-        ' Get the currently logged-in student ID (adjust as needed)
-        Dim studId As String = Login.CurrentStudentID ' Or use your actual property for the logged-in user
+        Dim studId As String = Login.CurrentStudentID
 
         Using conn As New MySqlConnection(connString)
             Try
@@ -62,7 +59,6 @@ Public Class student_grades
         End Using
     End Sub
 
-
     Private Sub LoadEnrolledSubjectsAndGrades()
         Dim studId As String = Login.CurrentStudentID
         Dim schoolYear As String = lblSchoolYr.Text
@@ -71,7 +67,6 @@ Public Class student_grades
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' Join student_subjects and grades to show subject info and grades in one grid
                 Dim query As String = "
                 SELECT 
                     ss.sub_code, 
@@ -89,7 +84,7 @@ Public Class student_grades
                 WHERE ss.stud_id = @stud_id 
                   AND ss.school_year = @school_year 
                   AND ss.semester = @semester
-            "
+                "
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@stud_id", studId)
                     cmd.Parameters.AddWithValue("@school_year", schoolYear)
@@ -106,78 +101,103 @@ Public Class student_grades
         End Using
     End Sub
 
-
-
     Private Sub logoutBtn_Click(sender As Object, e As EventArgs) Handles logoutBtn.Click
-
-        Hide()
-        Login.Show()
+        Application.Exit()
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
+        ' Empty paint handler
     End Sub
 
+    Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        Dim font As New Font("Arial", 11)
+        Dim headerFont As New Font("Arial", 12, FontStyle.Bold)
+        Dim brush As New SolidBrush(Color.Black)
+        Dim x As Integer = 50
+        Dim y As Integer = 100
 
-    'Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
-    '    Dim font As New Font("Arial", 11)
-    '    Dim headerFont As New Font("Arial", 12, FontStyle.Bold)
-    '    Dim brush As New SolidBrush(Color.Black)
-    '    Dim x As Integer = 50
-    '    Dim y As Integer = 100
+        ' Try to load and print logo
+        Try
+            Dim logoPath As String = "E:\document\32A1\CASE STUDY_NEW\CASE STUDY_NEW\loa.png"
+            If System.IO.File.Exists(logoPath) Then
+                Using logo As Image = Image.FromFile(logoPath)
+                    e.Graphics.DrawImage(logo, x, y, 100, 100)
+                End Using
+            End If
+        Catch ex As Exception
+            ' Silently continue if logo fails to load
+        End Try
 
-    '    Try
-    '        Dim logoPath As String = System.IO.Path.Combine(Application.StartupPath, "loa.png")
-    '        If System.IO.File.Exists(logoPath) Then
-    '            Using logo As Image = Image.FromFile(logoPath)
-    '                e.Graphics.DrawImage(logo, x, y, 100, 100)
-    '            End Using
-    '        Else
-    '            MessageBox.Show("Logo file not found at: " & logoPath)
-    '        End If
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error loading logo: " & ex.Message)
-    '    End Try
+        y += 120 ' Move down after logo
 
-    '    y += 120
+        ' School information header
+        e.Graphics.DrawString("LYCEUM OF ALABANG", New Font("Arial", 14, FontStyle.Bold), brush, x, y)
+        y += 25
+        e.Graphics.DrawString("STUDENT GRADE REPORT", New Font("Arial", 12, FontStyle.Bold), brush, x, y)
+        y += 40
 
-    '    e.Graphics.DrawString("STUDENT GRADE REPORT", New Font("Arial", 14, FontStyle.Bold), brush, x, y)
-    '    y += 40
-    '    e.Graphics.DrawString("Name: " & LblFullName.Text, font, brush, x, y)
-    '    y += 25
-    '    e.Graphics.DrawString("Student ID: " & lblStudentID.Text, font, brush, x, y)
-    '    y += 25
-    '    e.Graphics.DrawString("Course: " & lblCourse.Text, font, brush, x, y)
-    '    y += 25
-    '    e.Graphics.DrawString("Year Level: " & LblYearLevel.Text, font, brush, x, y)
-    '    y += 40
+        ' Student information section
+        e.Graphics.DrawString("Name: " & LblFullName.Text, font, brush, x, y)
+        y += 25
+        e.Graphics.DrawString("Student ID: " & lblStudentID.Text, font, brush, x, y)
+        y += 25
+        e.Graphics.DrawString("Course: " & lblCourse.Text, font, brush, x, y)
+        y += 25
+        e.Graphics.DrawString("Year Level: " & LblYearLevel.Text, font, brush, x, y)
+        y += 25
+        e.Graphics.DrawString("School Year: " & lblSchoolYr.Text, font, brush, x, y)
+        y += 25
+        e.Graphics.DrawString("Semester: " & lblSem.Text, font, brush, x, y)
+        y += 40
 
-    '    ' === Table Headers ===
-    '    Dim colHeaders As String() = {"Prelim", "Midterm", "Prefinal", "Final", "Final Grade", "Remarks"}
-    '    Dim colX() As Integer = {x, x + 80, x + 170, x + 270, x + 360, x + 470}
+        ' === Grade Table Headers ===
+        Dim colHeaders As String() = {"Subject Code", "Prelim", "Midterm", "Prefinal", "Final", "Final Grade", "Remarks"}
+        Dim colWidths() As Integer = {120, 80, 80, 80, 80, 100, 120}
+        Dim colX(colHeaders.Length - 1) As Integer
 
-    '    For i As Integer = 0 To colHeaders.Length - 1
-    '        e.Graphics.DrawString(colHeaders(i), headerFont, brush, colX(i), y)
-    '    Next
-    '    y += 30
+        ' Calculate column positions
+        colX(0) = x
+        For i As Integer = 1 To colHeaders.Length - 1
+            colX(i) = colX(i - 1) + colWidths(i - 1)
+        Next
 
-    '    ' === Table Data ===
-    '    For Each row As DataGridViewRow In dgvgrades.Rows
-    '        If Not row.IsNewRow Then
-    '            e.Graphics.DrawString(row.Cells("prelim").Value?.ToString(), font, brush, colX(0), y)
-    '            e.Graphics.DrawString(row.Cells("midterm").Value?.ToString(), font, brush, colX(1), y)
-    '            e.Graphics.DrawString(row.Cells("pfinal").Value?.ToString(), font, brush, colX(2), y)
-    '            e.Graphics.DrawString(row.Cells("final").Value?.ToString(), font, brush, colX(3), y)
-    '            e.Graphics.DrawString(row.Cells("final_grade").Value?.ToString(), font, brush, colX(4), y)
-    '            e.Graphics.DrawString(row.Cells("remarkss").Value?.ToString(), font, brush, colX(5), y)
-    '            y += 25
-    '        End If
-    '    Next
-    'End Sub
+        ' Draw headers (without lines)
+        For i As Integer = 0 To colHeaders.Length - 1
+            e.Graphics.DrawString(colHeaders(i), headerFont, brush, colX(i), y)
+        Next
+        y += 30
 
+        ' === Grade Table Data ===
+        For Each row As DataGridViewRow In dgvEnrolledSubjects.Rows
+            If Not row.IsNewRow Then
+                ' Subject code
+                e.Graphics.DrawString(row.Cells("subcode").Value?.ToString(), font, brush, colX(0), y)
 
-    'Private Sub printBtn_Click(sender As Object, e As EventArgs) Handles printBtn.Click
-    '    PrintPreviewDialog1.Document = PrintDocument1
-    '    PrintPreviewDialog1.ShowDialog()
-    'End Sub
+                ' Grades
+                e.Graphics.DrawString(If(IsDBNull(row.Cells("prelim").Value), "", row.Cells("prelim").Value.ToString()), font, brush, colX(1), y)
+                e.Graphics.DrawString(If(IsDBNull(row.Cells("midterm").Value), "", row.Cells("midterm").Value.ToString()), font, brush, colX(2), y)
+                e.Graphics.DrawString(If(IsDBNull(row.Cells("prefinal").Value), "", row.Cells("prefinal").Value.ToString()), font, brush, colX(3), y)
+                e.Graphics.DrawString(If(IsDBNull(row.Cells("final").Value), "", row.Cells("final").Value.ToString()), font, brush, colX(4), y)
+                e.Graphics.DrawString(If(IsDBNull(row.Cells("final_grade").Value), "", row.Cells("final_grade").Value.ToString()), font, brush, colX(5), y)
+                e.Graphics.DrawString(If(IsDBNull(row.Cells("remarks").Value), "", row.Cells("remarks").Value.ToString()), font, brush, colX(6), y)
+
+                y += 25
+
+                ' Add page break if needed
+                If y > e.MarginBounds.Height - 100 Then
+                    e.HasMorePages = True
+                    Return
+                End If
+            End If
+        Next
+
+        ' Add footer with date printed
+        y += 40
+        e.Graphics.DrawString("Date Printed: " & DateTime.Now.ToString("MMMM dd, yyyy"), font, brush, x, y)
+    End Sub
+
+    Private Sub printBtn_Click(sender As Object, e As EventArgs) Handles printBtn.Click
+        PrintPreviewDialog1.Document = PrintDocument1
+        PrintPreviewDialog1.ShowDialog()
+    End Sub
 End Class

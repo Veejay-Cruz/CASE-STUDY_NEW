@@ -23,12 +23,12 @@ Partial Class student_grades
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(student_grades))
-        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Panel1 = New Panel()
         Label7 = New Label()
         lblSem = New Label()
@@ -47,9 +47,6 @@ Partial Class student_grades
         MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         logoutBtn = New Button()
         dgvEnrolledSubjects = New DataGridView()
-        lblCourse = New Label()
-        lblStudentID = New Label()
-        LblYearLevel = New Label()
         subcode = New DataGridViewTextBoxColumn()
         subject_name = New DataGridViewTextBoxColumn()
         section = New DataGridViewTextBoxColumn()
@@ -59,6 +56,11 @@ Partial Class student_grades
         final = New DataGridViewTextBoxColumn()
         final_grade = New DataGridViewTextBoxColumn()
         remarks = New DataGridViewTextBoxColumn()
+        lblCourse = New Label()
+        lblStudentID = New Label()
+        LblYearLevel = New Label()
+        PrintPreviewDialog1 = New PrintPreviewDialog()
+        PrintDocument1 = New Printing.PrintDocument()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvEnrolledSubjects, ComponentModel.ISupportInitialize).BeginInit()
@@ -256,86 +258,56 @@ Partial Class student_grades
         ' 
         dgvEnrolledSubjects.AllowUserToAddRows = False
         dgvEnrolledSubjects.AllowUserToDeleteRows = False
-        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle13.BackColor = Color.White
-        DataGridViewCellStyle13.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle13.ForeColor = Color.Black
-        dgvEnrolledSubjects.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle19.BackColor = Color.White
+        DataGridViewCellStyle19.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle19.ForeColor = Color.Black
+        dgvEnrolledSubjects.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
         dgvEnrolledSubjects.BackgroundColor = SystemColors.ControlLightLight
-        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle14.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle14.ForeColor = Color.White
-        DataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.True
-        dgvEnrolledSubjects.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle20.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle20.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle20.ForeColor = Color.White
+        DataGridViewCellStyle20.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle20.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle20.WrapMode = DataGridViewTriState.True
+        dgvEnrolledSubjects.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
         dgvEnrolledSubjects.ColumnHeadersHeight = 47
         dgvEnrolledSubjects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         dgvEnrolledSubjects.Columns.AddRange(New DataGridViewColumn() {subcode, subject_name, section, prelim, midterm, prefinal, final, final_grade, remarks})
-        DataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle17.BackColor = Color.White
-        DataGridViewCellStyle17.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle17.ForeColor = Color.Black
-        DataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle17.SelectionForeColor = Color.White
-        DataGridViewCellStyle17.WrapMode = DataGridViewTriState.True
-        dgvEnrolledSubjects.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle23.BackColor = Color.White
+        DataGridViewCellStyle23.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle23.ForeColor = Color.Black
+        DataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle23.SelectionForeColor = Color.White
+        DataGridViewCellStyle23.WrapMode = DataGridViewTriState.True
+        dgvEnrolledSubjects.DefaultCellStyle = DataGridViewCellStyle23
         dgvEnrolledSubjects.EnableHeadersVisualStyles = False
         dgvEnrolledSubjects.Location = New Point(374, 385)
         dgvEnrolledSubjects.Name = "dgvEnrolledSubjects"
         dgvEnrolledSubjects.ReadOnly = True
         dgvEnrolledSubjects.RowHeadersVisible = False
-        DataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle18.BackColor = Color.White
-        DataGridViewCellStyle18.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle18.ForeColor = Color.Black
-        DataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle18.SelectionForeColor = Color.White
-        DataGridViewCellStyle18.WrapMode = DataGridViewTriState.True
-        dgvEnrolledSubjects.RowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle24.BackColor = Color.White
+        DataGridViewCellStyle24.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle24.ForeColor = Color.Black
+        DataGridViewCellStyle24.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle24.SelectionForeColor = Color.White
+        DataGridViewCellStyle24.WrapMode = DataGridViewTriState.True
+        dgvEnrolledSubjects.RowsDefaultCellStyle = DataGridViewCellStyle24
         dgvEnrolledSubjects.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvEnrolledSubjects.Size = New Size(1175, 587)
         dgvEnrolledSubjects.TabIndex = 49
-        ' 
-        ' lblCourse
-        ' 
-        lblCourse.AutoSize = True
-        lblCourse.Font = New Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblCourse.Location = New Point(534, 282)
-        lblCourse.Name = "lblCourse"
-        lblCourse.Size = New Size(45, 36)
-        lblCourse.TabIndex = 51
-        lblCourse.Text = "---"
-        ' 
-        ' lblStudentID
-        ' 
-        lblStudentID.AutoSize = True
-        lblStudentID.Font = New Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblStudentID.Location = New Point(1221, 209)
-        lblStudentID.Name = "lblStudentID"
-        lblStudentID.Size = New Size(45, 36)
-        lblStudentID.TabIndex = 52
-        lblStudentID.Text = "---"
-        ' 
-        ' LblYearLevel
-        ' 
-        LblYearLevel.AutoSize = True
-        LblYearLevel.Font = New Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        LblYearLevel.Location = New Point(1221, 282)
-        LblYearLevel.Name = "LblYearLevel"
-        LblYearLevel.Size = New Size(45, 36)
-        LblYearLevel.TabIndex = 53
-        LblYearLevel.Text = "---"
         ' 
         ' subcode
         ' 
         subcode.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
         subcode.DataPropertyName = "sub_code"
-        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle15.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle15.ForeColor = Color.Black
-        subcode.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle21.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle21.ForeColor = Color.Black
+        subcode.DefaultCellStyle = DataGridViewCellStyle21
         subcode.HeaderText = "SUBJECT CODE"
         subcode.Name = "subcode"
         subcode.ReadOnly = True
@@ -345,10 +317,10 @@ Partial Class student_grades
         ' 
         subject_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         subject_name.DataPropertyName = "subject_name"
-        DataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle16.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle16.ForeColor = Color.Black
-        subject_name.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle22.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle22.ForeColor = Color.Black
+        subject_name.DefaultCellStyle = DataGridViewCellStyle22
         subject_name.HeaderText = "SUBJECT NAME"
         subject_name.Name = "subject_name"
         subject_name.ReadOnly = True
@@ -401,6 +373,46 @@ Partial Class student_grades
         remarks.HeaderText = "REMARKS"
         remarks.Name = "remarks"
         remarks.ReadOnly = True
+        ' 
+        ' lblCourse
+        ' 
+        lblCourse.AutoSize = True
+        lblCourse.Font = New Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblCourse.Location = New Point(534, 282)
+        lblCourse.Name = "lblCourse"
+        lblCourse.Size = New Size(45, 36)
+        lblCourse.TabIndex = 51
+        lblCourse.Text = "---"
+        ' 
+        ' lblStudentID
+        ' 
+        lblStudentID.AutoSize = True
+        lblStudentID.Font = New Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblStudentID.Location = New Point(1221, 209)
+        lblStudentID.Name = "lblStudentID"
+        lblStudentID.Size = New Size(45, 36)
+        lblStudentID.TabIndex = 52
+        lblStudentID.Text = "---"
+        ' 
+        ' LblYearLevel
+        ' 
+        LblYearLevel.AutoSize = True
+        LblYearLevel.Font = New Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        LblYearLevel.Location = New Point(1221, 282)
+        LblYearLevel.Name = "LblYearLevel"
+        LblYearLevel.Size = New Size(45, 36)
+        LblYearLevel.TabIndex = 53
+        LblYearLevel.Text = "---"
+        ' 
+        ' PrintPreviewDialog1
+        ' 
+        PrintPreviewDialog1.AutoScrollMargin = New Size(0, 0)
+        PrintPreviewDialog1.AutoScrollMinSize = New Size(0, 0)
+        PrintPreviewDialog1.ClientSize = New Size(400, 300)
+        PrintPreviewDialog1.Enabled = True
+        PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), Icon)
+        PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        PrintPreviewDialog1.Visible = False
         ' 
         ' student_grades
         ' 
@@ -463,4 +475,6 @@ Partial Class student_grades
     Friend WithEvents final As DataGridViewTextBoxColumn
     Friend WithEvents final_grade As DataGridViewTextBoxColumn
     Friend WithEvents remarks As DataGridViewTextBoxColumn
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
 End Class
