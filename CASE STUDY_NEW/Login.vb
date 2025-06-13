@@ -5,6 +5,7 @@ Public Class Login
     ' Declare a public variable to store the current teacher ID
     Public Shared CurrentTeacherID As String
     Public Shared CurrentUserRole As String
+    Public Shared CurrentStudentID As String
 
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Start()
@@ -80,11 +81,12 @@ Public Class Login
                 If studentDr.Read() Then
                     MsgBox("Login Success! Welcome Student.", MsgBoxStyle.Information)
                     Dim studId As String = studentDr("stud_id").ToString().Trim()
+                    CurrentStudentID = studId
                     usernameLbl.Text = studId
                     CurrentUserRole = "Student"
                     studentDr.Close()
                     Me.Hide()
-                    studentfrm.Show()
+                    student_grades.Show()
                     Return
                 End If
                 studentDr.Close()
