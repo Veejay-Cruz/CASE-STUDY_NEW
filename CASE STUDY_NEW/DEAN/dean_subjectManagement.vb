@@ -18,16 +18,21 @@ Public Class dean_subjectManagement
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' Join teacher_subjects with teacher_table to get names
-                Dim query As String = "SELECT ts.teacher_id, t.last_name, t.first_name, ts.sub_code, ts.section, ts.course_code, ts.yearlevel, ts.semester " &
-                                  "FROM teacher_subjects ts " &
-                                  "LEFT JOIN teacher_table t ON ts.teacher_id = t.teacher_id " &
-                                  "WHERE ts.semester = @semester AND ts.school_year = @schoolYear"
+                ' Only load teacher_subjects for teachers in the same department as the dean
+                Dim query As String = "
+                SELECT ts.teacher_id, t.last_name, t.first_name, ts.sub_code, ts.section, ts.course_code, ts.yearlevel, ts.semester
+                FROM teacher_subjects ts
+                LEFT JOIN teacher_table t ON ts.teacher_id = t.teacher_id
+                WHERE ts.semester = @semester
+                  AND ts.school_year = @schoolYear
+                  AND t.department_id = @deptId
+            "
 
                 Using cmd As New MySqlCommand(query, conn)
-                    ' Get current school year and semester
                     cmd.Parameters.AddWithValue("@schoolYear", lblSchoolyr.Text)
                     cmd.Parameters.AddWithValue("@semester", lblSem.Text)
+                    cmd.Parameters.AddWithValue("@deptId", Login.CurrentDeanDepartmentID) ' Use the dean's department
+
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         While reader.Read()
                             DGVSection.Rows.Add(
@@ -347,5 +352,6 @@ Public Class dean_subjectManagement
         cboSection.SelectedIndex = -1
         createPnl2.Visible = False
     End Sub
+
 
 End Class
