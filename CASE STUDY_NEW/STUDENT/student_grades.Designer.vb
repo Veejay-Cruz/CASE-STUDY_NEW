@@ -23,19 +23,14 @@ Partial Class student_grades
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(student_grades))
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Panel1 = New Panel()
+        Label7 = New Label()
         lblSem = New Label()
         Label9 = New Label()
         lblSchoolYr = New Label()
@@ -52,23 +47,21 @@ Partial Class student_grades
         MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         logoutBtn = New Button()
         dgvEnrolledSubjects = New DataGridView()
+        lblCourse = New Label()
+        lblStudentID = New Label()
+        LblYearLevel = New Label()
         subcode = New DataGridViewTextBoxColumn()
         subject_name = New DataGridViewTextBoxColumn()
-        dgvgrades = New DataGridView()
+        section = New DataGridViewTextBoxColumn()
         prelim = New DataGridViewTextBoxColumn()
         midterm = New DataGridViewTextBoxColumn()
         prefinal = New DataGridViewTextBoxColumn()
         final = New DataGridViewTextBoxColumn()
         final_grade = New DataGridViewTextBoxColumn()
         remarks = New DataGridViewTextBoxColumn()
-        lblCourse = New Label()
-        lblStudentID = New Label()
-        LblYearLevel = New Label()
-        Label7 = New Label()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvEnrolledSubjects, ComponentModel.ISupportInitialize).BeginInit()
-        CType(dgvgrades, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Panel1
@@ -85,6 +78,17 @@ Partial Class student_grades
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1612, 144)
         Panel1.TabIndex = 0
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Century Gothic", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.ForeColor = Color.White
+        Label7.Location = New Point(444, 24)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(1105, 56)
+        Label7.TabIndex = 56
+        Label7.Text = "LYCEUM OF ALABANG GRADING KIOSK SYSTEM"
         ' 
         ' lblSem
         ' 
@@ -194,7 +198,7 @@ Partial Class student_grades
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(534, 346)
+        Label6.Location = New Point(519, 346)
         Label6.Name = "Label6"
         Label6.Size = New Size(291, 36)
         Label6.TabIndex = 6
@@ -252,173 +256,47 @@ Partial Class student_grades
         ' 
         dgvEnrolledSubjects.AllowUserToAddRows = False
         dgvEnrolledSubjects.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.White
-        DataGridViewCellStyle1.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = Color.Black
-        dgvEnrolledSubjects.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = Color.White
+        DataGridViewCellStyle13.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle13.ForeColor = Color.Black
+        dgvEnrolledSubjects.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
         dgvEnrolledSubjects.BackgroundColor = SystemColors.ControlLightLight
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle2.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        dgvEnrolledSubjects.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle14.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle14.ForeColor = Color.White
+        DataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.True
+        dgvEnrolledSubjects.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
         dgvEnrolledSubjects.ColumnHeadersHeight = 47
         dgvEnrolledSubjects.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        dgvEnrolledSubjects.Columns.AddRange(New DataGridViewColumn() {subcode, subject_name})
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = Color.White
-        DataGridViewCellStyle5.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle5.ForeColor = Color.Black
-        DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle5.SelectionForeColor = Color.White
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
-        dgvEnrolledSubjects.DefaultCellStyle = DataGridViewCellStyle5
+        dgvEnrolledSubjects.Columns.AddRange(New DataGridViewColumn() {subcode, subject_name, section, prelim, midterm, prefinal, final, final_grade, remarks})
+        DataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.BackColor = Color.White
+        DataGridViewCellStyle17.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle17.ForeColor = Color.Black
+        DataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle17.SelectionForeColor = Color.White
+        DataGridViewCellStyle17.WrapMode = DataGridViewTriState.True
+        dgvEnrolledSubjects.DefaultCellStyle = DataGridViewCellStyle17
         dgvEnrolledSubjects.EnableHeadersVisualStyles = False
         dgvEnrolledSubjects.Location = New Point(374, 385)
         dgvEnrolledSubjects.Name = "dgvEnrolledSubjects"
         dgvEnrolledSubjects.ReadOnly = True
         dgvEnrolledSubjects.RowHeadersVisible = False
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = Color.White
-        DataGridViewCellStyle6.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle6.ForeColor = Color.Black
-        DataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle6.SelectionForeColor = Color.White
-        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
-        dgvEnrolledSubjects.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle18.BackColor = Color.White
+        DataGridViewCellStyle18.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle18.ForeColor = Color.Black
+        DataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
+        DataGridViewCellStyle18.SelectionForeColor = Color.White
+        DataGridViewCellStyle18.WrapMode = DataGridViewTriState.True
+        dgvEnrolledSubjects.RowsDefaultCellStyle = DataGridViewCellStyle18
         dgvEnrolledSubjects.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvEnrolledSubjects.Size = New Size(571, 587)
+        dgvEnrolledSubjects.Size = New Size(1175, 587)
         dgvEnrolledSubjects.TabIndex = 49
-        ' 
-        ' subcode
-        ' 
-        subcode.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        subcode.DataPropertyName = "sub_code"
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.Black
-        subcode.DefaultCellStyle = DataGridViewCellStyle3
-        subcode.HeaderText = "SUBJECT CODE"
-        subcode.Name = "subcode"
-        subcode.ReadOnly = True
-        subcode.Width = 115
-        ' 
-        ' subject_name
-        ' 
-        subject_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        subject_name.DataPropertyName = "subject_name"
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = Color.Black
-        subject_name.DefaultCellStyle = DataGridViewCellStyle4
-        subject_name.HeaderText = "SUBJECT NAME"
-        subject_name.Name = "subject_name"
-        subject_name.ReadOnly = True
-        ' 
-        ' dgvgrades
-        ' 
-        dgvgrades.AllowUserToAddRows = False
-        dgvgrades.AllowUserToDeleteRows = False
-        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = Color.White
-        DataGridViewCellStyle7.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle7.ForeColor = Color.Black
-        dgvgrades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
-        dgvgrades.BackgroundColor = SystemColors.ControlLightLight
-        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.BackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle8.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle8.ForeColor = Color.White
-        DataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.True
-        dgvgrades.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
-        dgvgrades.ColumnHeadersHeight = 47
-        dgvgrades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        dgvgrades.Columns.AddRange(New DataGridViewColumn() {prelim, midterm, prefinal, final, final_grade, remarks})
-        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.BackColor = Color.White
-        DataGridViewCellStyle11.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle11.ForeColor = Color.Black
-        DataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle11.SelectionForeColor = Color.White
-        DataGridViewCellStyle11.WrapMode = DataGridViewTriState.True
-        dgvgrades.DefaultCellStyle = DataGridViewCellStyle11
-        dgvgrades.EnableHeadersVisualStyles = False
-        dgvgrades.Location = New Point(978, 385)
-        dgvgrades.Name = "dgvgrades"
-        dgvgrades.ReadOnly = True
-        dgvgrades.RowHeadersVisible = False
-        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.BackColor = Color.White
-        DataGridViewCellStyle12.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle12.ForeColor = Color.Black
-        DataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(CByte(44), CByte(60), CByte(79))
-        DataGridViewCellStyle12.SelectionForeColor = Color.White
-        DataGridViewCellStyle12.WrapMode = DataGridViewTriState.True
-        dgvgrades.RowsDefaultCellStyle = DataGridViewCellStyle12
-        dgvgrades.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvgrades.Size = New Size(571, 587)
-        dgvgrades.TabIndex = 50
-        ' 
-        ' prelim
-        ' 
-        prelim.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        prelim.DataPropertyName = "prelim"
-        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle9.ForeColor = Color.Black
-        prelim.DefaultCellStyle = DataGridViewCellStyle9
-        prelim.HeaderText = "PRELIM"
-        prelim.Name = "prelim"
-        prelim.ReadOnly = True
-        prelim.Width = 76
-        ' 
-        ' midterm
-        ' 
-        midterm.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        midterm.DataPropertyName = "midterm"
-        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle10.ForeColor = Color.Black
-        midterm.DefaultCellStyle = DataGridViewCellStyle10
-        midterm.HeaderText = "MIDTERM"
-        midterm.Name = "midterm"
-        midterm.ReadOnly = True
-        ' 
-        ' prefinal
-        ' 
-        prefinal.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        prefinal.DataPropertyName = "prefinal"
-        prefinal.HeaderText = "PREFINAL"
-        prefinal.Name = "prefinal"
-        prefinal.ReadOnly = True
-        prefinal.Width = 90
-        ' 
-        ' final
-        ' 
-        final.DataPropertyName = "final"
-        final.HeaderText = "FINAL"
-        final.Name = "final"
-        final.ReadOnly = True
-        ' 
-        ' final_grade
-        ' 
-        final_grade.DataPropertyName = "final_grade"
-        final_grade.HeaderText = "FINAL GRADE"
-        final_grade.Name = "final_grade"
-        final_grade.ReadOnly = True
-        ' 
-        ' remarks
-        ' 
-        remarks.DataPropertyName = "remarks"
-        remarks.HeaderText = "REMARKS"
-        remarks.Name = "remarks"
-        remarks.ReadOnly = True
         ' 
         ' lblCourse
         ' 
@@ -450,16 +328,79 @@ Partial Class student_grades
         LblYearLevel.TabIndex = 53
         LblYearLevel.Text = "---"
         ' 
-        ' Label7
+        ' subcode
         ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Century Gothic", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.ForeColor = Color.White
-        Label7.Location = New Point(444, 24)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(1105, 56)
-        Label7.TabIndex = 56
-        Label7.Text = "LYCEUM OF ALABANG GRADING KIOSK SYSTEM"
+        subcode.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        subcode.DataPropertyName = "sub_code"
+        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle15.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle15.ForeColor = Color.Black
+        subcode.DefaultCellStyle = DataGridViewCellStyle15
+        subcode.HeaderText = "SUBJECT CODE"
+        subcode.Name = "subcode"
+        subcode.ReadOnly = True
+        subcode.Width = 115
+        ' 
+        ' subject_name
+        ' 
+        subject_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        subject_name.DataPropertyName = "subject_name"
+        DataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle16.Font = New Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle16.ForeColor = Color.Black
+        subject_name.DefaultCellStyle = DataGridViewCellStyle16
+        subject_name.HeaderText = "SUBJECT NAME"
+        subject_name.Name = "subject_name"
+        subject_name.ReadOnly = True
+        ' 
+        ' section
+        ' 
+        section.DataPropertyName = "section"
+        section.HeaderText = "SECTION"
+        section.Name = "section"
+        section.ReadOnly = True
+        ' 
+        ' prelim
+        ' 
+        prelim.DataPropertyName = "prelim"
+        prelim.HeaderText = "PRELIM"
+        prelim.Name = "prelim"
+        prelim.ReadOnly = True
+        ' 
+        ' midterm
+        ' 
+        midterm.DataPropertyName = "midterm"
+        midterm.HeaderText = "MIDTERM"
+        midterm.Name = "midterm"
+        midterm.ReadOnly = True
+        ' 
+        ' prefinal
+        ' 
+        prefinal.DataPropertyName = "prefinal"
+        prefinal.HeaderText = "PREFINAL"
+        prefinal.Name = "prefinal"
+        prefinal.ReadOnly = True
+        ' 
+        ' final
+        ' 
+        final.DataPropertyName = "final"
+        final.HeaderText = "FINAL"
+        final.Name = "final"
+        final.ReadOnly = True
+        ' 
+        ' final_grade
+        ' 
+        final_grade.DataPropertyName = "final_grade"
+        final_grade.HeaderText = "FINAL GRADE"
+        final_grade.Name = "final_grade"
+        final_grade.ReadOnly = True
+        ' 
+        ' remarks
+        ' 
+        remarks.DataPropertyName = "remarks"
+        remarks.HeaderText = "REMARKS"
+        remarks.Name = "remarks"
+        remarks.ReadOnly = True
         ' 
         ' student_grades
         ' 
@@ -469,7 +410,6 @@ Partial Class student_grades
         Controls.Add(LblYearLevel)
         Controls.Add(lblStudentID)
         Controls.Add(lblCourse)
-        Controls.Add(dgvgrades)
         Controls.Add(dgvEnrolledSubjects)
         Controls.Add(logoutBtn)
         Controls.Add(printBtn)
@@ -490,7 +430,6 @@ Partial Class student_grades
         Panel1.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         CType(dgvEnrolledSubjects, ComponentModel.ISupportInitialize).EndInit()
-        CType(dgvgrades, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -507,21 +446,21 @@ Partial Class student_grades
     Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
     Friend WithEvents logoutBtn As Button
     Friend WithEvents dgvEnrolledSubjects As DataGridView
-    Friend WithEvents dgvgrades As DataGridView
     Friend WithEvents lblCourse As Label
     Friend WithEvents lblStudentID As Label
     Friend WithEvents LblYearLevel As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents lblSem As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents lblSchoolYr As Label
+    Friend WithEvents Label7 As Label
     Friend WithEvents subcode As DataGridViewTextBoxColumn
     Friend WithEvents subject_name As DataGridViewTextBoxColumn
+    Friend WithEvents section As DataGridViewTextBoxColumn
     Friend WithEvents prelim As DataGridViewTextBoxColumn
     Friend WithEvents midterm As DataGridViewTextBoxColumn
     Friend WithEvents prefinal As DataGridViewTextBoxColumn
     Friend WithEvents final As DataGridViewTextBoxColumn
     Friend WithEvents final_grade As DataGridViewTextBoxColumn
     Friend WithEvents remarks As DataGridViewTextBoxColumn
-    Friend WithEvents Label4 As Label
-    Friend WithEvents lblSem As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents lblSchoolYr As Label
-    Friend WithEvents Label7 As Label
 End Class

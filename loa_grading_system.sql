@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2025 at 05:19 PM
+-- Generation Time: Jun 13, 2025 at 07:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -130,7 +130,8 @@ INSERT INTO `audit_trail` (`username`, `date_time`, `action`) VALUES
 ('REG-2025-001', '2025-06-12 16:28:00', 'CREATED NEW SUBJECT'),
 ('REG-2025-001', '2025-06-12 16:48:06', 'CREATED NEW SUBJECT'),
 ('REG-2025-001', '2025-06-12 19:36:49', 'CREATED NEW'),
-('REG-2025-001', '2025-06-12 20:41:06', 'CREATED NEW');
+('REG-2025-001', '2025-06-12 20:41:06', 'CREATED NEW'),
+('REG-2025-001', '2025-06-12 23:43:03', 'CREATED NEW');
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,8 @@ INSERT INTO `enrollment` (`enrollment_id`, `stud_id`, `section_id`, `academic_ye
 (52, '1114-23', 1, '2023-2024', '1st Sem', '2023-06-11'),
 (53, '2012-25', 1, '2025-2026', '1st Sem', '2025-06-12'),
 (54, '2013-25', 1, '2025-2026', '1st Sem', '2025-06-12'),
-(55, '2013-25', 1, '2025-2026', '2nd Sem', '2025-06-12');
+(55, '2013-25', 1, '2025-2026', '2nd Sem', '2025-06-12'),
+(56, '2014-25', 1, '2025-2026', '2nd Sem', '2025-06-12');
 
 -- --------------------------------------------------------
 
@@ -360,8 +362,8 @@ CREATE TABLE `semester_table` (
 --
 
 INSERT INTO `semester_table` (`semester`, `status`) VALUES
-('1st Sem', 'Closed'),
-('2nd Sem', 'Open');
+('1st Sem', 'Open'),
+('2nd Sem', 'Closed');
 
 -- --------------------------------------------------------
 
@@ -441,7 +443,8 @@ INSERT INTO `students` (`stud_id`, `last_name`, `first_name`, `middle_name`, `ye
 ('2010-25', 'lakay', 'apo', 'saka', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('2011-25', 'fig', 'ayo', 'isa', '2nd Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
 ('2012-25', 'ccs dumy', 'dododo', 'IT', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active'),
-('2013-25', 'dum', 'ccs dumdum', 'it', '2nd Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active');
+('2013-25', 'dum', 'ccs dumdum', 'it', '2nd Year', 'CCS', 'BSIT', '123', 'IRREGULAR', 'Active'),
+('2014-25', 'Mayote', 'John Mark', 'Col', '1st Year', 'CCS', 'BSIT', '123', 'REGULAR', 'Active');
 
 -- --------------------------------------------------------
 
@@ -602,7 +605,11 @@ INSERT INTO `student_subjects` (`id`, `stud_id`, `sub_id`, `sub_code`, `subject_
 (108, '2013-25', 'sub13', 'BP113', 'Basic Photography', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
 (109, '2013-25', 'sub21', 'CSS113', 'Advanced PC Troubleshooting', '2025-2026', '1st Sem', '11M1', '2025-06-12'),
 (110, '2013-25', 'sub15', 'CS213', 'Discrete Structures 2', '2025-2026', '2nd Sem', '22A1', '2025-06-12'),
-(111, '2013-25', 'sub19', 'SDF213', 'Object-Oriented Programming', '2025-2026', '2nd Sem', '22A1', '2025-06-12');
+(111, '2013-25', 'sub19', 'SDF213', 'Object-Oriented Programming', '2025-2026', '2nd Sem', '22A1', '2025-06-12'),
+(112, '2014-25', 'sub07', 'VDG113', 'Visual Design Graphics', '2025-2026', '2nd Sem', '12M1', '2025-06-12'),
+(113, '1115-25', 'sub02', 'ELEC313', 'IT Elective 2', '2025-2026', '1st Sem', '31E1', '2025-06-12'),
+(114, '1115-25', 'sub03', 'PIT313', 'Integrative Programming & Technologies 1', '2025-2026', '1st Sem', '31E1', '2025-06-12'),
+(115, '1115-25', 'sub24', 'SAD313', 'System Analysis and Development', '2025-2026', '1st Sem', '31E1', '2025-06-12');
 
 -- --------------------------------------------------------
 
@@ -718,7 +725,9 @@ INSERT INTO `teacher_table` (`teacher_id`, `last_name`, `first_name`, `departmen
 ('TR0002', 'Rodriguez', 'Ernesto', 'CCS', '123', 'not_dean'),
 ('TR0003', 'Santos', 'Carlos', 'CCS', '123', 'not_dean'),
 ('TR0004', 'Lim', 'Grace', 'CAS', '123', 'not_dean'),
-('TR0005', 'Martinez', 'Juan', 'CCS', '123', 'dean');
+('TR0005', 'Martinez', 'Juan', 'CCS', '123', 'dean'),
+('TR0006', 'Swimmer', 'Rosales', 'GEN ED', '123', 'dean'),
+('TR0007', 'Bahay', 'Psych', 'CAS', '123', 'dean');
 
 -- --------------------------------------------------------
 
@@ -870,7 +879,7 @@ ALTER TABLE `user_register`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `grades`
@@ -888,7 +897,7 @@ ALTER TABLE `student_section`
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `teacher_subjects`

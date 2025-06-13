@@ -64,32 +64,19 @@ Public Class student_grades
 
 
     Private Sub LoadEnrolledSubjectsAndGrades()
-        Dim studId As String = Login.CurrentStudentID ' Adjust as needed
+        Dim studId As String = Login.CurrentStudentID
         Dim schoolYear As String = lblSchoolYr.Text
         Dim semester As String = lblSem.Text
 
-        ' Load enrolled subjects
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' Enrolled subjects
-                Dim subjQuery As String = "SELECT sub_code, subject_name, section FROM student_subjects WHERE stud_id = @stud_id AND school_year = @school_year AND semester = @semester"
-                Using subjCmd As New MySqlCommand(subjQuery, conn)
-                    subjCmd.Parameters.AddWithValue("@stud_id", studId)
-                    subjCmd.Parameters.AddWithValue("@school_year", schoolYear)
-                    subjCmd.Parameters.AddWithValue("@semester", semester)
-                    Using da As New MySqlDataAdapter(subjCmd)
-                        Dim dt As New DataTable()
-                        da.Fill(dt)
-                        dgvEnrolledSubjects.DataSource = dt
-                    End Using
-                End Using
-
-                ' Grades for enrolled subjects
-                Dim gradesQuery As String = "
+                ' Join student_subjects and grades to show subject info and grades in one grid
+                Dim query As String = "
                 SELECT 
                     ss.sub_code, 
                     ss.subject_name, 
+                    ss.section,
                     g.prelim, 
                     g.midterm, 
                     g.prefinal, 
@@ -97,30 +84,38 @@ Public Class student_grades
                     g.final_grade, 
                     g.remarks
                 FROM student_subjects ss
-                LEFT JOIN grades g ON ss.stud_id = g.stud_id AND ss.sub_code = g.sub_code
-                WHERE ss.stud_id = @stud_id AND ss.school_year = @school_year AND ss.semester = @semester"
-                Using gradesCmd As New MySqlCommand(gradesQuery, conn)
-                    gradesCmd.Parameters.AddWithValue("@stud_id", studId)
-                    gradesCmd.Parameters.AddWithValue("@school_year", schoolYear)
-                    gradesCmd.Parameters.AddWithValue("@semester", semester)
-                    Using da As New MySqlDataAdapter(gradesCmd)
-                        Dim dtGrades As New DataTable()
-                        da.Fill(dtGrades)
-                        dgvgrades.DataSource = dtGrades
+                LEFT JOIN grades g 
+                    ON ss.stud_id = g.stud_id AND ss.sub_code = g.sub_code
+                WHERE ss.stud_id = @stud_id 
+                  AND ss.school_year = @school_year 
+                  AND ss.semester = @semester
+            "
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@stud_id", studId)
+                    cmd.Parameters.AddWithValue("@school_year", schoolYear)
+                    cmd.Parameters.AddWithValue("@semester", semester)
+                    Using da As New MySqlDataAdapter(cmd)
+                        Dim dt As New DataTable()
+                        da.Fill(dt)
+                        dgvEnrolledSubjects.DataSource = dt
                     End Using
                 End Using
-
             Catch ex As Exception
-                MessageBox.Show("Error loading enrolled subjects or grades: " & ex.Message)
+                MessageBox.Show("Error loading enrolled subjects and grades: " & ex.Message)
             End Try
         End Using
     End Sub
+
 
 
     Private Sub logoutBtn_Click(sender As Object, e As EventArgs) Handles logoutBtn.Click
 
         Hide()
         Login.Show()
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 
 
